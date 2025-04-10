@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47386fa2c7f4436aa36d0eff3730c3df" Name="Diagram1">
+        <EntityTypeShape EntityType="proyecto_petiModel.Mision" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.ObjetivosEspecificos" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.ObjetivosEstrategicos" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.PlanEstrategico" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.Users" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.Valores" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_petiModel.Vision" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="proyecto_petiModel.FK__Mision__PlanId__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_petiModel.FK__Objetivos__Objet__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_petiModel.FK__Objetivos__PlanI__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_petiModel.FK__PlanEstra__UserI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_petiModel.FK__Valores__PlanId__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_petiModel.FK__Vision__PlanId__35BCFE0A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

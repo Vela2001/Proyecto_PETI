@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Proyecto PETI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+            min-height: 100vh;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mejor contraste para placeholders */
+        ::placeholder {
+            color: rgba(237, 233, 254, 0.7) !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-purple-900 to-indigo-900">
+    <!-- Header transparente -->
+    <header class="bg-white bg-opacity-10 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-white">Proyecto PETI</h1>
+                <nav>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <a href="@Url.Action("Logout", "Account")" class="text-white hover:text-purple-200 transition duration-300">
+                            Cerrar Sesión
+                        </a>
+                    }
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal con fondo morado completo -->
+    <main class="flex-grow">
+        @RenderBody()
+    </main>
+
+    <!-- Footer transparente -->
+    <footer class="bg-white bg-opacity-10 backdrop-blur-md py-4 text-center">
+        <p class="text-xs text-purple-200">© @DateTime.Now.Year - PROYECTO PETI</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
