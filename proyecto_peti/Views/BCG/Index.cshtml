@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Matriz BCG";
+}
+
+<div class="card p-4">
+    <h2 class="text-white text-center p-2 mb-4" style="background-color: #007bff;">
+        7. ANÁLISIS INTERNO: MATRIZ DE CRECIMIENTO - PARTICIPACIÓN BCG
+    </h2>
+
+    <p>
+        Toda empresa debe analizar de forma periódica su cartera de productos y servicios.
+        La <strong>Matriz de crecimiento - participación</strong>, conocida como Matriz <strong>BCG</strong>, es un método gráfico desarrollado por The Boston Consulting Group en los años 70 para clasificar las unidades de negocio según su cuota de mercado y crecimiento del mercado.
+    </p>
+
+    <p>
+        Su objetivo es ayudar a priorizar recursos entre distintas áreas para decidir dónde invertir, mantener o retirar inversiones. Cada unidad se representa con una figura: Estrella, Incógnita, Vaca o Perro.
+    </p>
+
+    <p>
+        El eje vertical representa el <strong>crecimiento</strong> del mercado; el horizontal, la <strong>participación relativa</strong>.
+    </p>
+
+    <div class="text-center my-4">
+        <img src="~/Source/img/matriz-bcg.png" class="img-fluid" alt="Matriz BCG" style="max-width: 600px;" />
+    </div>
+
+    <h4 class="mt-5 mb-3">Cuadro resumen de las principales características</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>Características</th>
+                    <th>Estrella</th>
+                    <th>Incógnita</th>
+                    <th>Vaca</th>
+                    <th>Perro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cuota de mercado</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                </tr>
+                <tr>
+                    <td>Crecimiento del mercado</td>
+                    <td>Alto</td>
+                    <td>Alto</td>
+                    <td>Bajo</td>
+                    <td>Bajo</td>
+                </tr>
+                <tr>
+                    <td>Estrategia</td>
+                    <td>Crecer o mantener</td>
+                    <td>Evaluar</td>
+                    <td>Mantener</td>
+                    <td>Reestructurar o abandonar</td>
+                </tr>
+                <tr>
+                    <td>Inversión requerida</td>
+                    <td>Alta</td>
+                    <td>Muy alta</td>
+                    <td>Baja</td>
+                    <td>Baja</td>
+                </tr>
+                <tr>
+                    <td>Rentabilidad</td>
+                    <td>Alta</td>
+                    <td>Incierta</td>
+                    <td>Alta</td>
+                    <td>Baja o negativa</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        La situación ideal es tener una cartera equilibrada, es decir, productos o servicios que representen cada uno de estos cuadrantes, según su participación y crecimiento.
+    </p>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="@Url.Action("Index", "CadenaValor")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> 6. CADENA DE VALOR
+        </a>
+        <a href="@Url.Action("Index", "AutodiagnosticoBCG")" class="btn btn-primary">
+            AUTODIAGNÓSTICO BCG <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>

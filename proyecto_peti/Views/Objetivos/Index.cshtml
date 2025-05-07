@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Objetivos Estratégicos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card p-4 shadow-sm">
+        <h2 class="text-center mb-4 text-white bg-primary py-2 rounded">4. OBJETIVOS ESTRATÉGICOS</h2>
+
+        <p>
+            El siguiente paso es establecer los objetivos de la empresa en relación al sector al que pertenece.
+            Un <strong>objetivo estratégico</strong> es un fin deseado, clave para la organización y para la consecución de su visión.
+            Se recomienda construirlos en forma de pirámide: misión, visión y valores → objetivos generales → objetivos específicos.
+        </p>
+
+        <img src="~/Source/img/piramide.png" alt="Pirámide objetivos" width="100" class="d-block mx-auto mb-3" />
+
+        <h5>Tipos de objetivos:</h5>
+        <ul>
+            <li><strong>Estratégicos:</strong> Enfocados en crecimiento, rentabilidad, sostenibilidad. Horizonte de 3-5 años.</li>
+            <li><strong>Operativos:</strong> Concreción anual de los estratégicos. Deben ser claros, medibles y concisos.</li>
+        </ul>
+
+        <div class="table-responsive mb-4">
+            <table class="table table-bordered text-center align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>MISIÓN</th>
+                        <th>OBJETIVOS GENERALES O ESTRATÉGICOS</th>
+                        <th>OBJETIVOS ESPECÍFICOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <tr>
+                            <td rowspan="2" class="bg-light align-middle">@("Objetivo " + (i + 1))</td>
+                            <td rowspan="2"><input type="text" class="form-control" placeholder="Objetivo estratégico" /></td>
+                            <td><input type="text" class="form-control" placeholder="Objetivo específico 1" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" placeholder="Objetivo específico 2" /></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <h5 class="mt-4">¿Qué son las UEN (Unidades Estratégicas de Negocio)?</h5>
+        <p>
+            En empresas grandes se pueden formular objetivos por áreas estratégicas o líneas de negocio.
+            Una UEN es un conjunto homogéneo de actividades o productos, con estrategia común.
+        </p>
+        <p><strong>¿Cómo identificarlas?</strong></p>
+        <ul>
+            <li><strong>Grupos de clientes</strong>: tipo de clientela.</li>
+            <li><strong>Funciones</strong>: necesidades cubiertas.</li>
+            <li><strong>Tecnología</strong>: forma en que se cubre esa necesidad.</li>
+        </ul>
+
+        <div class="mb-4">
+            <label class="form-label fw-bold">En este apartado comente las distintas UEN que tiene su empresa:</label>
+            <textarea class="form-control" rows="4" placeholder="Describa sus UEN si las tiene..."></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="@Url.Action("Index", "Valores")" class="btn btn-secondary">🔙 3. VALORES</a>
+            <a href="@Url.Action("Index", "Analisis")" class="btn btn-primary">5. ANÁLISIS INTERNO Y EXTERNO 🔜</a>
+        </div>
+    </div>
+</div>
