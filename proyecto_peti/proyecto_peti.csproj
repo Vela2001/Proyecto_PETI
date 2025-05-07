@@ -43,15 +43,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -98,16 +90,6 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="modelproyecto_peti.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>modelproyecto_peti.Context.cs</LastGenOutput>
-      <DependentUpon>modelproyecto_peti.edmx</DependentUpon>
-    </Content>
-    <Content Include="modelproyecto_peti.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modelproyecto_peti.edmx</DependentUpon>
-      <LastGenOutput>modelproyecto_peti.cs</LastGenOutput>
-    </Content>
     <Content Include="Source\css\bootstrap-grid.css" />
     <Content Include="Source\css\bootstrap.css" />
     <Content Include="Source\css\bootstrap.min.css" />
@@ -132,62 +114,29 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MisionController.cs" />
+    <Compile Include="Controllers\ObjetivosController.cs" />
+    <Compile Include="Controllers\ValoresController.cs" />
+    <Compile Include="Controllers\VisionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mision.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="modelproyecto_peti.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modelproyecto_peti.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="modelproyecto_peti.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="modelproyecto_peti.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modelproyecto_peti.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs" />
-    <Compile Include="ObjetivosEspecificos.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ObjetivosEstrategicos.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PlanEstrategico.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Valores.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vision.cs">
-      <DependentUpon>modelproyecto_peti.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="modelproyecto_peti.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>modelproyecto_peti.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="modelproyecto_peti.edmx.diagram">
-      <DependentUpon>modelproyecto_peti.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Mision\Index.cshtml" />
+    <Content Include="Views\Vision\Index.cshtml" />
+    <Content Include="Views\Valores\Index.cshtml" />
+    <Content Include="Views\Objetivos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,9 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
