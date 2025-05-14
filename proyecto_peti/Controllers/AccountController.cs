@@ -28,6 +28,23 @@ namespace proyecto_peti.Controllers
 
                 if (user != null)
                 {
+                    // Buscar o crear plan asociado al usuario
+                    var plan = db.PlanEstrategico.FirstOrDefault(p => p.UserId == user.Id);
+                    if (plan == null)
+                    {
+                        plan = new PlanEstrategico
+                        {
+                            UserId = user.Id,
+                            FechaCreacion = DateTime.Now
+                        };
+                        db.PlanEstrategico.Add(plan);
+                        db.SaveChanges();
+                    }
+
+                    // Guardar el ID del plan en sesión
+                    Session["PlanId"] = plan.Id;
+
+                    // Iniciar sesión
                     FormsAuthentication.SetAuthCookie(user.Username, false);
                     return RedirectToAction("Index", "Menu");
                 }
@@ -39,6 +56,7 @@ namespace proyecto_peti.Controllers
 
             return View(model);
         }
+
 
         public ActionResult Logout()
         {

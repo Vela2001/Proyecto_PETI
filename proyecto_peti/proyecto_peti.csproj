@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\InformacionEmpresaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MisionController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
@@ -130,11 +131,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnalisisFODA.cs" />
+    <Compile Include="Models\AnalisisPEST.cs" />
+    <Compile Include="Models\CadenaValor.cs" />
+    <Compile Include="Models\FuerzasPorter.cs" />
+    <Compile Include="Models\InformacionEmpresa.cs" />
+    <Compile Include="Models\IniciativasEstrategicas.cs" />
+    <Compile Include="Models\MatrizCAME.cs" />
+    <Compile Include="Models\MatrizRACI.cs" />
     <Compile Include="Models\Mision.cs" />
     <Compile Include="Models\Modelo.cs" />
     <Compile Include="Models\ObjetivosEspecificos.cs" />
     <Compile Include="Models\ObjetivosEstrategicos.cs" />
     <Compile Include="Models\PlanEstrategico.cs" />
+    <Compile Include="Models\ResumenEjecutivo.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\Valores.cs" />
     <Compile Include="Models\Vision.cs" />
@@ -152,6 +162,7 @@
     <Content Include="Views\Vision\Index.cshtml" />
     <Content Include="Views\Valores\Index.cshtml" />
     <Content Include="Views\Objetivos\Index.cshtml" />
+    <Content Include="Views\InformacionEmpresa\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

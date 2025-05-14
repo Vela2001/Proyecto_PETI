@@ -15,6 +15,10 @@ namespace proyecto_peti.Models
 
         public string Contenido { get; set; }
 
+        public DateTime? CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
         public virtual PlanEstrategico PlanEstrategico { get; set; }
     }
 }

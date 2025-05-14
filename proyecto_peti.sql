@@ -5,94 +5,182 @@ GO
 USE proyecto_peti;
 GO
 
--- Tabla de Usuarios con seguridad mejorada (compatible con tu login)
+-- Tabla de Usuarios
 CREATE TABLE Users (
     Id INT PRIMARY KEY IDENTITY,
-    Username NVARCHAR(50) NOT NULL UNIQUE,
-    Password NVARCHAR(255) NOT NULL,  -- Almacena el hash PBKDF2
-    Email NVARCHAR(100) NULL,
-    DateCreated DATETIME NOT NULL DEFAULT GETDATE(),
-    LastLogin DATETIME NULL
+    Username NVARCHAR(50) NOT NULL,
+    Password NVARCHAR(255) NOT NULL
 );
 GO
 
--- Tabla del Plan Estratégico con metadatos
+-- Plan Estratégico
 CREATE TABLE PlanEstrategico (
     Id INT PRIMARY KEY IDENTITY,
     UserId INT NOT NULL,
-    Nombre NVARCHAR(100) NOT NULL DEFAULT 'Mi Plan Estratégico',
-    Descripcion NVARCHAR(255) NULL,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FechaActualizacion DATETIME NULL,
-    Estado NVARCHAR(20) NOT NULL DEFAULT 'Borrador' 
-        CHECK (Estado IN ('Borrador', 'Publicado', 'Archivado')),
-    FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (UserId) REFERENCES Users(Id)
 );
 GO
 
--- Tabla de Misión con control de versiones
+-- Información de la Empresa
+CREATE TABLE InformacionEmpresa (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    NombreEmpresa NVARCHAR(255),
+    Descripcion NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Misión
 CREATE TABLE Mision (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    Contenido NVARCHAR(MAX) NOT NULL,
-    Version INT NOT NULL DEFAULT 1,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id) ON DELETE CASCADE
+    Contenido NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
 
--- Tabla de Visión con control de versiones
+-- Visión
 CREATE TABLE Vision (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    Contenido NVARCHAR(MAX) NOT NULL,
-    Version INT NOT NULL DEFAULT 1,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id) ON DELETE CASCADE
+    Contenido NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
 
--- Tabla de Valores con ordenamiento
+-- Valores
 CREATE TABLE Valores (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    Valor NVARCHAR(200) NOT NULL,
-    Descripcion NVARCHAR(500) NULL,
-    Orden INT NOT NULL DEFAULT 0,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id) ON DELETE CASCADE
+    Valor NVARCHAR(200),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
 
--- Tabla de Objetivos Estratégicos con prioridad
+-- Objetivos Estratégicos
 CREATE TABLE ObjetivosEstrategicos (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    Objetivo NVARCHAR(MAX) NOT NULL,
-    Prioridad INT NOT NULL DEFAULT 3 CHECK (Prioridad BETWEEN 1 AND 5),
-    FechaEstimada DATE NULL,
-    Completado BIT NOT NULL DEFAULT 0,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id) ON DELETE CASCADE
+    Objetivo NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
 
--- Tabla de Objetivos Específicos con seguimiento
+-- Objetivos Específicos
 CREATE TABLE ObjetivosEspecificos (
     Id INT PRIMARY KEY IDENTITY,
     ObjetivoId INT NOT NULL,
-    Detalle NVARCHAR(MAX) NOT NULL,
-    Completado BIT NOT NULL DEFAULT 0,
-    FechaCompletado DATETIME NULL,
-    FechaEstimada DATE NULL,
-    FechaCreacion DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (ObjetivoId) REFERENCES ObjetivosEstrategicos(Id) ON DELETE CASCADE
+    Detalle NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (ObjetivoId) REFERENCES ObjetivosEstrategicos(Id)
 );
 GO
 
--- Índices para mejorar el rendimiento
-CREATE INDEX IX_Users_Username ON Users(Username);
-CREATE INDEX IX_PlanEstrategico_UserId ON PlanEstrategico(UserId);
-CREATE INDEX IX_ObjetivosEstrategicos_PlanId ON ObjetivosEstrategicos(PlanId);
-CREATE INDEX IX_ObjetivosEspecificos_ObjetivoId ON ObjetivosEspecificos(ObjetivoId);
+-- Análisis FODA
+CREATE TABLE AnalisisFODA (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Fortalezas NVARCHAR(MAX),
+    Debilidades NVARCHAR(MAX),
+    Oportunidades NVARCHAR(MAX),
+    Amenazas NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Cadena de Valor
+CREATE TABLE CadenaValor (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    ActividadPrimaria NVARCHAR(MAX),
+    ActividadSecundaria NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Iniciativas Estratégicas
+CREATE TABLE IniciativasEstrategicas (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Perspectiva NVARCHAR(100),
+    Descripcion NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Matriz RACI
+CREATE TABLE MatrizRACI (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Actividad NVARCHAR(255),
+    Responsable NVARCHAR(100),
+    Aprobador NVARCHAR(100),
+    Consultado NVARCHAR(100),
+    Informado NVARCHAR(100),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Fuerzas de Porter
+CREATE TABLE FuerzasPorter (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    AmenazaNuevos NVARCHAR(MAX),
+    RivalidadCompetidores NVARCHAR(MAX),
+    PoderProveedores NVARCHAR(MAX),
+    PoderClientes NVARCHAR(MAX),
+    AmenazaSustitutos NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Análisis PEST
+CREATE TABLE AnalisisPEST (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Politico NVARCHAR(MAX),
+    Economico NVARCHAR(MAX),
+    Social NVARCHAR(MAX),
+    Tecnologico NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Matriz CAME
+CREATE TABLE MatrizCAME (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Corregir NVARCHAR(MAX),
+    Afrontar NVARCHAR(MAX),
+    Mantener NVARCHAR(MAX),
+    Explotar NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
+GO
+
+-- Resumen Ejecutivo
+CREATE TABLE ResumenEjecutivo (
+    Id INT PRIMARY KEY IDENTITY,
+    PlanId INT NOT NULL,
+    Introduccion NVARCHAR(MAX),
+    Alcance NVARCHAR(MAX),
+    ResultadosEsperados NVARCHAR(MAX),
+    Conclusiones NVARCHAR(MAX),
+    FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
+);
 GO

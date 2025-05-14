@@ -6,18 +6,17 @@ namespace proyecto_peti.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Vision")]
-    public partial class Vision
+    [Table("InformacionEmpresa")]
+    public partial class InformacionEmpresa
     {
         public int Id { get; set; }
 
         public int PlanId { get; set; }
 
-        public string Contenido { get; set; }
+        [StringLength(255)]
+        public string NombreEmpresa { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
-
-        public DateTime? UpdatedAt { get; set; }
+        public string Descripcion { get; set; }
 
         public virtual PlanEstrategico PlanEstrategico { get; set; }
     }
