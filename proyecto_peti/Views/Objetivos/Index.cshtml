@@ -4,68 +4,179 @@
 }
 
 <div class="container mt-4">
-    <div class="card p-4 shadow-sm">
-        <h2 class="text-center mb-4 text-white bg-primary py-2 rounded">4. OBJETIVOS ESTRATÉGICOS</h2>
+    <div class="card p-4 shadow-lg" style="border-radius: 15px; border: none;">
+        <!-- Encabezado con gradiente profesional -->
+        <h2 class="text-center mb-4 text-white py-3 rounded" style="
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        ">
+            <i class="fas fa-bullseye me-2"></i>4. OBJETIVOS ESTRATÉGICOS
+        </h2>
 
-        <p>
-            El siguiente paso es establecer los objetivos de la empresa en relación al sector al que pertenece.
-            Un <strong>objetivo estratégico</strong> es un fin deseado, clave para la organización y para la consecución de su visión.
-            Se recomienda construirlos en forma de pirámide: misión, visión y valores → objetivos generales → objetivos específicos.
-        </p>
+        <div class="px-3">
+            <!-- Introducción destacada -->
+            <div class="alert alert-primary" style="background-color: #e3f2fd; border-left: 5px solid #2196f3;">
+                <p class="lead mb-0" style="font-size: 1.1rem; color: #0d47a1;">
+                    Los <strong style="font-weight: 600;">objetivos estratégicos</strong> son los fines clave para la organización
+                    y la consecución de su visión. Se recomienda construirlos en forma de pirámide.
+                </p>
+            </div>
 
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Pyramid_icon.svg/512px-Pyramid_icon.svg.png" alt="Pirámide objetivos" width="100" class="d-block mx-auto mb-3" />
+            <!-- Pirámide visual mejorada -->
+            <div class="text-center my-4">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="bg-primary text-white p-3 rounded-top" style="width: 120px;">
+                        <i class="fas fa-flag"></i> Misión
+                    </div>
+                    <div class="bg-info text-white p-3" style="width: 180px;">
+                        <i class="fas fa-eye"></i> Visión
+                    </div>
+                    <div class="bg-success text-white p-3" style="width: 240px;">
+                        <i class="fas fa-bullseye"></i> Objetivos Generales
+                    </div>
+                    <div class="bg-warning text-dark p-3 rounded-bottom" style="width: 300px;">
+                        <i class="fas fa-tasks"></i> Objetivos Específicos
+                    </div>
+                </div>
+            </div>
 
-        <h5>Tipos de objetivos:</h5>
-        <ul>
-            <li><strong>Estratégicos:</strong> Enfocados en crecimiento, rentabilidad, sostenibilidad. Horizonte de 3-5 años.</li>
-            <li><strong>Operativos:</strong> Concreción anual de los estratégicos. Deben ser claros, medibles y concisos.</li>
-        </ul>
+            <!-- Tipos de objetivos en cards -->
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <i class="fas fa-chess-king me-2"></i>Objetivos Estratégicos
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Enfocados en crecimiento, rentabilidad y sostenibilidad con horizonte de 3-5 años.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Orientados al largo plazo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Alcanzan la visión</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i>Definen ventajas competitivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-chess-pawn me-2"></i>Objetivos Operativos
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Concreción anual de los estratégicos. Deben ser claros, medibles y concisos.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Corto plazo (1 año)</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Acciones concretas</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Indicadores medibles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered text-center align-middle">
-                <thead class="table-primary">
-                    <tr>
-                        <th>MISIÓN</th>
-                        <th>OBJETIVOS GENERALES O ESTRATÉGICOS</th>
-                        <th>OBJETIVOS ESPECÍFICOS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < 3; i++)
-                    {
+            <!-- Tabla mejorada -->
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered text-center align-middle shadow-sm">
+                    <thead class="table-primary" style="background: linear-gradient(135deg, #2c3e50, #4a6491); color: white;">
                         <tr>
-                            <td rowspan="2" class="bg-light align-middle">@("Objetivo " + (i + 1))</td>
-                            <td rowspan="2"><input type="text" class="form-control" placeholder="Objetivo estratégico" /></td>
-                            <td><input type="text" class="form-control" placeholder="Objetivo específico 1" /></td>
+                            <th style="width: 20%; color: red"><i class="fas fa-flag me-2"></i>MISIÓN</th>
+                            <th style="width: 35%; color: red"><i class="fas fa-bullseye me-2"></i>OBJETIVOS ESTRATÉGICOS</th>
+                            <th style="width: 45%; color:red"><i class="fas fa-tasks me-2"></i>OBJETIVOS ESPECÍFICOS</th>
                         </tr>
-                        <tr>
-                            <td><input type="text" class="form-control" placeholder="Objetivo específico 2" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <tr>
+                                <td rowspan="2" class="bg-light align-middle" style="background-color: #f8f9fa!important;">
+                                    <strong>Objetivo @(i + 1)</strong>
+                                </td>
+                                <td rowspan="2">
+                                    <input type="text" class="form-control shadow-none" placeholder="Escriba objetivo estratégico" style="border: 1px solid #ced4da;" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control shadow-none" placeholder="Objetivo específico 1" style="border: 1px solid #ced4da;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control shadow-none" placeholder="Objetivo específico 2" style="border: 1px solid #ced4da;" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sección UEN mejorada -->
+            <div class="p-4 mb-4" style="
+                background: linear-gradient(to right, #f8f9fa, #ffffff);
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                border: 1px solid #e9ecef;
+            ">
+                <h5 class="mb-3" style="color: #2c3e50; font-weight: 600; border-bottom: 2px solid #4a6491; padding-bottom: 8px; display: inline-block;">
+                    <i class="fas fa-sitemap me-2 text-primary"></i>UNIDADES ESTRATÉGICAS DE NEGOCIO (UEN)
+                </h5>
+                <p class="mt-3">
+                    En empresas grandes se pueden formular objetivos por áreas estratégicas o líneas de negocio.
+                    Una UEN es un conjunto homogéneo de actividades o productos, con estrategia común.
+                </p>
+
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-users fa-3x mb-3" style="color: #4a6491;"></i>
+                                <h5 style="color: #2c3e50;">Grupos de Clientes</h5>
+                                <p class="text-muted">Segmentación por tipo de clientela</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-cogs fa-3x mb-3" style="color: #4a6491;"></i>
+                                <h5 style="color: #2c3e50;">Funciones</h5>
+                                <p class="text-muted">Necesidades específicas cubiertas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-microchip fa-3x mb-3" style="color: #4a6491;"></i>
+                                <h5 style="color: #2c3e50;">Tecnología</h5>
+                                <p class="text-muted">Forma en que se cubren las necesidades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="form-label fw-bold" style="color: #2c3e50;">
+                        <i class="fas fa-edit me-2 text-primary"></i>Describa las UEN de su empresa:
+                    </label>
+                    <textarea class="form-control p-3" rows="4" style=" border-radius: 8px; border: 2px solid #e9ecef; font-size: 1.1rem; transition: all 0.3s; min-height: 200px; padding: 20px; resize: none; background-color: #f8f9fa; width: 100vw; /* Ancho completo del viewport */ max-width: 100%; position: relative; left: 0; " placeholder="Describa sus unidades estratégicas de negocio..."></textarea>
+                </div>
+            </div>
         </div>
 
-        <h5 class="mt-4">¿Qué son las UEN (Unidades Estratégicas de Negocio)?</h5>
-        <p>
-            En empresas grandes se pueden formular objetivos por áreas estratégicas o líneas de negocio.
-            Una UEN es un conjunto homogéneo de actividades o productos, con estrategia común.
-        </p>
-        <p><strong>¿Cómo identificarlas?</strong></p>
-        <ul>
-            <li><strong>Grupos de clientes</strong>: tipo de clientela.</li>
-            <li><strong>Funciones</strong>: necesidades cubiertas.</li>
-            <li><strong>Tecnología</strong>: forma en que se cubre esa necesidad.</li>
-        </ul>
-
-        <div class="mb-4">
-            <label class="form-label fw-bold">En este apartado comente las distintas UEN que tiene su empresa:</label>
-            <textarea class="form-control" rows="4" placeholder="Describa sus UEN si las tiene..."></textarea>
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <a href="@Url.Action("Index", "Valores")" class="btn btn-secondary">🔙 3. VALORES</a>
-            <a href="@Url.Action("Index", "Analisis")" class="btn btn-primary">5. ANÁLISIS INTERNO Y EXTERNO 🔜</a>
+        <!-- Botones de navegación mejorados -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="@Url.Action("Index", "Valores")" class="btn btn-lg btn-outline-primary px-4 py-2" style="border-radius: 8px;">
+                <i class="fas fa-arrow-left me-2"></i>3. VALORES
+            </a>
+            <a href="@Url.Action("Index", "Analisis")" class="btn btn-lg btn-primary px-4 py-2" style="
+                border-radius: 8px;
+                background: linear-gradient(135deg, #4a6491, #2c3e50);
+                border: none;
+                box-shadow: 0 4px 6px rgba(44, 62, 80, 0.3);
+            ">
+                5. ANÁLISIS INTERNO Y EXTERNO <i class="fas fa-arrow-right ms-2"></i>
+            </a>
         </div>
     </div>
 </div>
