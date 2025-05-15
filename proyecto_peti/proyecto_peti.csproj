@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalisisFODAController.cs" />
     <Compile Include="Controllers\InformacionEmpresaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MisionController.cs" />
@@ -163,6 +164,7 @@
     <Content Include="Views\Valores\Index.cshtml" />
     <Content Include="Views\Objetivos\Index.cshtml" />
     <Content Include="Views\InformacionEmpresa\Index.cshtml" />
+    <Content Include="Views\AnalisisFODA\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

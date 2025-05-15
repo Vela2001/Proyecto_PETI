@@ -1,4 +1,6 @@
-﻿@{
+﻿@model proyecto_peti.Models.Vision
+
+@{
     ViewBag.Title = "Visión";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -25,11 +27,11 @@
             <p><strong>Agencia de certificación:</strong> Ser líderes en nuestro sector y un actor principal en todos los mercados donde operamos.</p>
         </div>
 
-        @using (Html.BeginForm("Guardar", "Vision", FormMethod.Post))
+        @using (Html.BeginForm("Index", "Vision", FormMethod.Post))
         {
             <div class="mb-3">
-                <label for="vision" class="form-label fw-bold">En este apartado describa la Visión de su empresa:</label>
-                <textarea id="vision" name="vision" class="form-control" rows="5" placeholder="Escriba aquí su visión...">@ViewBag.VisionTexto</textarea>
+                <label class="form-label fw-bold">En este apartado describa la Visión de su empresa:</label>
+                @Html.TextAreaFor(m => m.Contenido, new { @class = "form-control", rows = 5, placeholder = "Escriba aquí su visión..." })
             </div>
 
             <div class="text-center my-4">
@@ -41,6 +43,7 @@
             <div class="d-flex justify-content-between">
                 <a href="@Url.Action("Index", "Mision")" class="btn btn-secondary">🔙 1. MISIÓN</a>
                 <button type="submit" class="btn btn-success">💾 Guardar y continuar</button>
+                <a href="@Url.Action("Index", "Valores")" class="btn btn-primary">3. VALORES 🔜</a>
             </div>
         }
     </div>

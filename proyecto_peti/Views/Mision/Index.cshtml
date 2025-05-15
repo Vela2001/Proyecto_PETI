@@ -1,4 +1,6 @@
-﻿@{
+﻿@model proyecto_peti.Models.Mision
+
+@{
     ViewBag.Title = "Misión";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -24,15 +26,15 @@
         <div class="bg-light p-3 rounded mb-4">
             <h5><strong>EJEMPLOS</strong></h5>
             <p><strong>Empresa de servicios:</strong> La gestión de servicios que contribuyen a la calidad de vida de las personas y generan valor para los grupos de interés.</p>
-            <p><strong>Empresa productora de café:</strong> Gracias a nuestro entusiasmo, trabajo en equipo y valores, queremos deleitar a todos aquellos que, en el mundo aman la calidad de vida, a través del mejor café que la naturaleza pueda ofrecer, ensalzado por las mejores tecnologías, por la emoción y la imitación intelectual que nacen de la búsqueda de lo bello en todo lo que hacemos.</p>
-            <p><strong>Agencia de certificación:</strong> Dar a nuestros clientes avance económico a través de la gestión de la Calidad, la Salud y la Seguridad, el Medio Ambiente y la Responsabilidad Social de sus activos, procesos, productos y sistemas, obteniendo como resultado la capacidad para lograr la reducción de riesgos y la mejora de los resultados.</p>
+            <p><strong>Empresa productora de café:</strong> Gracias a nuestro entusiasmo, trabajo en equipo y valores, queremos deleitar a todos aquellos que, en el mundo aman la calidad de vida, a través del mejor café que la naturaleza pueda ofrecer...</p>
+            <p><strong>Agencia de certificación:</strong> Dar a nuestros clientes avance económico a través de la gestión de la Calidad, la Salud y la Seguridad...</p>
         </div>
 
-        @using (Html.BeginForm("Guardar", "Mision", FormMethod.Post))
+        @using (Html.BeginForm("Index", "Mision", FormMethod.Post))
         {
             <div class="mb-3">
-                <label for="mision" class="form-label fw-bold">En este apartado describa la Misión de su empresa:</label>
-                <textarea id="mision" name="mision" class="form-control" rows="5" placeholder="Escriba aquí su misión...">@ViewBag.MisionTexto</textarea>
+                <label class="form-label fw-bold">En este apartado describa la Misión de su empresa:</label>
+                @Html.TextAreaFor(m => m.Contenido, new { @class = "form-control", rows = 5, placeholder = "Escriba aquí su misión..." })
             </div>
 
             <div class="d-flex justify-content-between">
