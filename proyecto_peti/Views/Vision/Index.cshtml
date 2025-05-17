@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 ﻿@{
+=======
+﻿@model proyecto_peti.Models.Vision
+
+@{
+>>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
     ViewBag.Title = "Visión";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
+<<<<<<< HEAD
     <div class="card p-4 shadow-lg" style="border-radius: 15px; border: none; background-color: #f8f9fa;">
         <!-- Encabezado con gradiente profesional -->
         <h2 class="text-center mb-4 text-white py-3 rounded" style="
@@ -186,3 +193,47 @@
 >>>>>>> Stashed changes
     </div>
 </div>
+=======
+    <div class="card p-4 shadow-sm">
+        <h2 class="text-center mb-4 text-white bg-primary py-2 rounded">2. VISIÓN</h2>
+
+        <p>
+            La <strong>VISIÓN</strong> de una empresa define lo que la empresa quiere lograr en el futuro.
+            Es lo que la organización aspira ser en torno a 3-5 años.
+            <ul>
+                <li>Debe ser retadora, positiva, comprensible y coherente con la misión.</li>
+                <li>Marcada por el mismo propósito de la misión.</li>
+                <li>Motivadora y estimulante para todos los miembros.</li>
+            </ul>
+            La visión debe ser conocida y compartida por toda la membresía de la empresa y también por aquellos que se relacionan con ella.
+        </p>
+
+        <div class="bg-light p-3 rounded mb-4">
+            <h5><strong>EJEMPLOS</strong></h5>
+            <p><strong>Empresa de servicios:</strong> Ser el grupo empresarial de referencia en nuestro área de actividad.</p>
+            <p><strong>Empresa productora de café:</strong> Queremos ser uno de los referentes en términos de la cultura y la excelencia del café. Una empresa con una oferta de los mejores productos y servicios que se conviertan en la primera elección de los amantes del café de todo el mundo.</p>
+            <p><strong>Agencia de certificación:</strong> Ser líderes en nuestro sector y un actor principal en todos los mercados donde operamos.</p>
+        </div>
+
+        @using (Html.BeginForm("Index", "Vision", FormMethod.Post))
+        {
+            <div class="mb-3">
+                <label class="form-label fw-bold">En este apartado describa la Visión de su empresa:</label>
+                @Html.TextAreaFor(m => m.Contenido, new { @class = "form-control", rows = 5, placeholder = "Escriba aquí su visión..." })
+            </div>
+
+            <div class="text-center my-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Target_icon.svg/512px-Target_icon.svg.png" style="width: 80px;" alt="Visión" />
+                <p class="mt-2"><strong>Relación entre Misión, Proceso y Visión</strong></p>
+                <p class="fst-italic">¿Cuál es la situación actual? ¿Qué camino seguir? ¿Cuál es la situación futura?</p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index", "Mision")" class="btn btn-secondary">🔙 1. MISIÓN</a>
+                <button type="submit" class="btn btn-success">💾 Guardar y continuar</button>
+                <a href="@Url.Action("Index", "Valores")" class="btn btn-primary">3. VALORES 🔜</a>
+            </div>
+        }
+    </div>
+</div>
+>>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4

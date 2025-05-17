@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 ﻿@{
+=======
+﻿@model proyecto_peti.Models.Mision
+
+@{
+>>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
     ViewBag.Title = "Misión";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-4">
+<<<<<<< HEAD
     <div class="card p-4 shadow-lg" style="border-radius: 15px; border: none;">
         <h2 class="text-center mb-4 text-white py-3 rounded" style="
             background: linear-gradient(135deg, #2c3e50, #3498db);
@@ -130,3 +137,44 @@
 >>>>>>> Stashed changes
     </div>
 </div>
+=======
+    <div class="card p-4 shadow-sm">
+        <h2 class="text-center mb-4 text-white bg-primary py-2 rounded">1. MISIÓN</h2>
+
+        <p>
+            La <strong>MISIÓN</strong> es la razón de ser de la empresa/organización.
+            <ul>
+                <li>Debe ser clara, conocida y compartida.</li>
+                <li>Siempre orientada hacia el cliente no hacia el producto o servicio.</li>
+                <li>Refleja el propósito fundamental de la empresa en el mercado.</li>
+            </ul>
+        </p>
+
+        <p>
+            En términos generales describe la actividad o razón de ser de la organización y contribuye como una referencia permanente en el proceso de planificación estratégica.
+            Se expresa a través de una oración que define el propósito fundamental de su existencia, estableciendo qué hace la empresa, por qué y para quién lo hace.
+        </p>
+
+        <div class="bg-light p-3 rounded mb-4">
+            <h5><strong>EJEMPLOS</strong></h5>
+            <p><strong>Empresa de servicios:</strong> La gestión de servicios que contribuyen a la calidad de vida de las personas y generan valor para los grupos de interés.</p>
+            <p><strong>Empresa productora de café:</strong> Gracias a nuestro entusiasmo, trabajo en equipo y valores, queremos deleitar a todos aquellos que, en el mundo aman la calidad de vida, a través del mejor café que la naturaleza pueda ofrecer...</p>
+            <p><strong>Agencia de certificación:</strong> Dar a nuestros clientes avance económico a través de la gestión de la Calidad, la Salud y la Seguridad...</p>
+        </div>
+
+        @using (Html.BeginForm("Index", "Mision", FormMethod.Post))
+        {
+            <div class="mb-3">
+                <label class="form-label fw-bold">En este apartado describa la Misión de su empresa:</label>
+                @Html.TextAreaFor(m => m.Contenido, new { @class = "form-control", rows = 5, placeholder = "Escriba aquí su misión..." })
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index", "Menu")" class="btn btn-secondary">🔙 ÍNDICE</a>
+                <button type="submit" class="btn btn-success">💾 GUARDAR</button>
+                <a href="@Url.Action("Index", "Vision")" class="btn btn-primary">2. VISIÓN 🔜</a>
+            </div>
+        }
+    </div>
+</div>
+>>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4

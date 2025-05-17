@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Proyecto peti</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title - Proyecto Peti</title>
+    <!-- Bootstrap CSS -->
+    <link href="~/Source/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- CSS personalizado -->
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/favicon.ico" />
 </head>
 
 <style>
@@ -98,24 +103,34 @@
 </style>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Navbar con estilo mejorado -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <i class="fas fa-chart-line me-2"></i>Proyecto Peti
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Menu", "Home")">
+                            <i class="fas fa-home me-1"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Resumen")">
+                            <i class="fas fa-file-alt me-1"></i>Resumen
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container body-content">
+    <!-- Contenido principal con padding superior para compensar la navbar -->
+    <main class="container mt-5 py-4">
         @RenderBody()
         <hr />
         <footer>
@@ -123,27 +138,37 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Source/js/bootstrap.bundle.js"></script>
-    <script src="~/Source/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Source/js/bootstrap.js"></script>
-    <script src="~/Source/js/highcharts-more.js"></script>
-    <script src="~/Source/js/highcharts.js"></script>
-    <script src="~/Source/js/highcharts-3d.js"></script>
-    <script src="~/Source/js/ini.js"></script>
-    <script src="~/Source/js/jquery.js"></script>
-    <script src="~/Source/js/jquery.form.js"></script>
+    <!-- Footer mejorado -->
+    <footer class="bg-light py-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; @DateTime.Now.Year - Proyecto Peti</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">Planeación Estratégica TI</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts optimizados - reduciendo duplicidades -->
     <script src="~/Source/js/jquery-3.7.1.min.js"></script>
-    <script src="~/Source/js/exporting.js"></script>
-    <script src="~/Source/js/bootstrap.min.js"></script>
-    <link href="~/Source/css/bootstrap-grid.css" rel="stylesheet" />
-    <link href="~/Source/css/highcharts.css" rel="stylesheet" />
+    <script src="~/Source/js/bootstrap.bundle.min.js"></script>
     <script src="~/Source/js/jquery.validate.min.js"></script>
-    <link href="~/Source/css/bootstrap.min.css" rel="stylesheet" />
-    @RenderSection("Scripts", false)
-    <link href="~/Source/css/bootstrap.css" rel="stylesheet" />
     <script src="~/Source/js/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Scripts para gráficos Highcharts -->
+    <script src="~/Source/js/highcharts.js"></script>
+    <script src="~/Source/js/highcharts-more.js"></script>
+    <script src="~/Source/js/highcharts-3d.js"></script>
+    <script src="~/Source/js/exporting.js"></script>
     <script src="~/Source/js/offline-exporting.js"></script>
+
+    <!-- Scripts adicionales -->
+    <script src="~/Source/js/ini.js"></script>
+    <script src="~/Source/js/jquery.form.js"></script>
+
+    @RenderSection("Scripts", false)
 </body>
 </html>

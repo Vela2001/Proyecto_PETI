@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
-using System.Configuration;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
@@ -11,7 +10,7 @@ namespace proyecto_peti.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private Modelo db = new Modelo(); // Usa el DbContext generado
 
         public ActionResult Login()
         {
@@ -19,33 +18,45 @@ namespace proyecto_peti.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User model)
+        public ActionResult Login(Users model)
         {
             if (ModelState.IsValid)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                string hashedPassword = HashPassword(model.Password);
+
+                var user = db.Users.FirstOrDefault(u => u.Username == model.Username && u.Password == hashedPassword);
+
+                if (user != null)
                 {
-                    conn.Open();
-                    string query = "SELECT COUNT(1) FROM Users WHERE Username=@Username AND Password=@Password";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Username", model.Username);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(model.Password)); // Hash para mayor seguridad
-
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if (count == 1)
+                    // Buscar o crear plan asociado al usuario
+                    var plan = db.PlanEstrategico.FirstOrDefault(p => p.UserId == user.Id);
+                    if (plan == null)
                     {
-                        FormsAuthentication.SetAuthCookie(model.Username, false);
-                        return RedirectToAction("Index", "Menu");
+                        plan = new PlanEstrategico
+                        {
+                            UserId = user.Id,
+                            FechaCreacion = DateTime.Now
+                        };
+                        db.PlanEstrategico.Add(plan);
+                        db.SaveChanges();
                     }
-                    else
-                    {
-                        ViewBag.Message = "Usuario o contraseña incorrectos";
-                    }
+
+                    // Guardar el ID del plan en sesión
+                    Session["PlanId"] = plan.Id;
+
+                    // Iniciar sesión
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
+                    return RedirectToAction("Index", "Menu");
+                }
+                else
+                {
+                    ViewBag.Message = "Usuario o contraseña incorrectos";
                 }
             }
+
             return View(model);
         }
+
 
         public ActionResult Logout()
         {
@@ -53,31 +64,30 @@ namespace proyecto_peti.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        // Acción para el registro
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-       
-
-        public ActionResult Register(User model)
+        public ActionResult Register(Users model)
         {
             if (ModelState.IsValid)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                // Verifica si ya existe el usuario
+                if (db.Users.Any(u => u.Username == model.Username))
                 {
-                    conn.Open();
-                    string query = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Username", model.Username);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(model.Password));
-
-                    cmd.ExecuteNonQuery();
-                    return RedirectToAction("Login");
+                    ViewBag.Message = "El nombre de usuario ya existe.";
+                    return View(model);
                 }
+
+                model.Password = HashPassword(model.Password);
+                db.Users.Add(model);
+                db.SaveChanges();
+
+                return RedirectToAction("Login");
             }
+
             return View(model);
         }
 

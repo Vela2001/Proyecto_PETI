@@ -6,22 +6,23 @@ namespace proyecto_peti.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Valores
+    [Table("FuerzasPorter")]
+    public partial class FuerzasPorter
     {
         public int Id { get; set; }
 
         public int PlanId { get; set; }
 
-        [StringLength(200)]
-        public string Valor { get; set; }
+        public string AmenazaNuevos { get; set; }
 
-<<<<<<< HEAD
-=======
-        public DateTime? CreatedAt { get; set; }
+        public string RivalidadCompetidores { get; set; }
 
-        public DateTime? UpdatedAt { get; set; }
+        public string PoderProveedores { get; set; }
 
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
+        public string PoderClientes { get; set; }
+
+        public string AmenazaSustitutos { get; set; }
+
         public virtual PlanEstrategico PlanEstrategico { get; set; }
     }
 }

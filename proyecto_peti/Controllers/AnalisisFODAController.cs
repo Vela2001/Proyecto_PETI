@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< HEAD
-=======
 using proyecto_peti.Models;
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
 
 namespace proyecto_peti.Controllers
 {
-    public class VisionController : Controller
+    public class AnalisisFODAController : Controller
     {
-<<<<<<< HEAD
-        // GET: Vision
-        public ActionResult Index()
-        {
-            return View();
-=======
         private Modelo db = new Modelo();
 
-        // GET: Vision
+        // GET: AnalisisFODA
         public ActionResult Index()
         {
             if (Session["PlanId"] == null)
@@ -28,41 +19,39 @@ namespace proyecto_peti.Controllers
 
             int planId = (int)Session["PlanId"];
 
-            var vision = db.Vision.FirstOrDefault(v => v.PlanId == planId);
-            if (vision == null)
-            {
-                vision = new Vision { PlanId = planId };
-            }
+            var analisis = db.AnalisisFODA.FirstOrDefault(a => a.PlanId == planId);
+            if (analisis == null)
+                analisis = new AnalisisFODA { PlanId = planId };
 
-            ViewBag.VisionTexto = vision.Contenido;
-            return View(vision);
+            return View(analisis);
         }
 
         [HttpPost]
-        public ActionResult Index(Vision model)
+        public ActionResult Index(AnalisisFODA model)
         {
             if (Session["PlanId"] == null)
                 return RedirectToAction("Login", "Account");
 
             int planId = (int)Session["PlanId"];
+            var existente = db.AnalisisFODA.FirstOrDefault(a => a.PlanId == planId);
 
-            var existente = db.Vision.FirstOrDefault(v => v.PlanId == planId);
             if (existente != null)
             {
-                existente.Contenido = model.Contenido;
+                existente.Fortalezas = model.Fortalezas;
+                existente.Debilidades = model.Debilidades;
+                existente.Oportunidades = model.Oportunidades;
+                existente.Amenazas = model.Amenazas;
                 existente.UpdatedAt = DateTime.Now;
             }
             else
             {
                 model.PlanId = planId;
                 model.CreatedAt = DateTime.Now;
-                db.Vision.Add(model);
+                db.AnalisisFODA.Add(model);
             }
 
             db.SaveChanges();
-
-            return RedirectToAction("Index", "Valores");
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
+            return RedirectToAction("Index", "CadenaValor");
         }
     }
 }

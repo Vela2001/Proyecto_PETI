@@ -20,6 +20,13 @@ namespace proyecto_peti.Models
 
         public string Objetivo { get; set; }
 
+<<<<<<< HEAD
+=======
+        public DateTime? CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
+>>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ObjetivosEspecificos> ObjetivosEspecificos { get; set; }
 
