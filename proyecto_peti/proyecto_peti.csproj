@@ -126,6 +126,7 @@
     <Compile Include="Controllers\AnalisisFODAController.cs" />
     <Compile Include="Controllers\CadenaValorController.cs" />
     <Compile Include="Controllers\InformacionEmpresaController.cs" />
+    <Compile Include="Controllers\MatrizParticipacionController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MisionController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
@@ -170,6 +171,8 @@
     <Content Include="Views\AnalisisFODA\Index.cshtml" />
     <Content Include="Views\CadenaValor\Index.cshtml" />
     <Content Include="Views\Porter\Index.cshtml" />
+    <Content Include="Views\MatrizParticipacion\Index.cshtml" />
+    <Content Include="Views\MatrizParticipacion\AutoDiagnosticoBCG.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
