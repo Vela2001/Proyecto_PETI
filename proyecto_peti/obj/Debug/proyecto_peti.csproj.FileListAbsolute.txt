@@ -442,3 +442,5 @@ C:\Users\Juan Jose\Desktop\Proyecto_PETI\proyecto_peti\bin\EntityFramework.dll
 C:\Users\Juan Jose\Desktop\Proyecto_PETI\proyecto_peti\bin\EntityFramework.SqlServer.dll
 C:\Users\Juan Jose\Desktop\Proyecto_PETI\proyecto_peti\bin\EntityFramework.xml
 C:\Users\Juan Jose\Desktop\Proyecto_PETI\proyecto_peti\bin\EntityFramework.SqlServer.xml
+C:\Carpeta D\UPT\ULTIMO CICLO\PETI\Proyecto\Proyecto_PETI\proyecto_peti\obj\Debug\proyecto_peti.csproj.AssemblyReference.cache
+C:\Carpeta D\UPT\ULTIMO CICLO\PETI\Proyecto\Proyecto_PETI\proyecto_peti\obj\Debug\proyecto_peti.csproj.CoreCompileInputs.cache
