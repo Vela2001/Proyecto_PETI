@@ -13,7 +13,7 @@ CREATE TABLE Users (
 );
 GO
 
--- Plan Estratégico
+-- Plan Estratï¿½gico
 CREATE TABLE PlanEstrategico (
     Id INT PRIMARY KEY IDENTITY,
     UserId INT NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE PlanEstrategico (
 );
 GO
 
--- Información de la Empresa
+-- Informaciï¿½n de la Empresa
 CREATE TABLE InformacionEmpresa (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE InformacionEmpresa (
 );
 GO
 
--- Misión
+-- Misiï¿½n
 CREATE TABLE Mision (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Mision (
 );
 GO
 
--- Visión
+-- Visiï¿½n
 CREATE TABLE Vision (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Valores (
 );
 GO
 
--- Objetivos Estratégicos
+-- Objetivos Estratï¿½gicos
 CREATE TABLE ObjetivosEstrategicos (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE ObjetivosEstrategicos (
 );
 GO
 
--- Objetivos Específicos
+-- Objetivos Especï¿½ficos
 CREATE TABLE ObjetivosEspecificos (
     Id INT PRIMARY KEY IDENTITY,
     ObjetivoId INT NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE ObjetivosEspecificos (
 );
 GO
 
--- Análisis FODA
+-- Anï¿½lisis FODA
 CREATE TABLE AnalisisFODA (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE CadenaValor (
 );
 GO
 
--- Iniciativas Estratégicas
+-- Iniciativas Estratï¿½gicas
 CREATE TABLE IniciativasEstrategicas (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
@@ -166,7 +166,7 @@ CREATE TABLE FuerzasPorter (
     -- Productos Sustitutos
     DisponibilidadSustitutos NVARCHAR(50),
 
-    -- Conclusión final
+    -- Conclusiï¿½n final
     Conclusion NVARCHAR(MAX),
 
     -- Oportunidades y amenazas
@@ -183,7 +183,7 @@ CREATE TABLE FuerzasPorter (
 GO
 
 
--- Análisis PEST
+-- Anï¿½lisis PEST
 CREATE TABLE AnalisisPEST (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
