@@ -102,6 +102,7 @@
     <Content Include="Source\css\bootstrap.css" />
     <Content Include="Source\css\bootstrap.min.css" />
     <Content Include="Source\css\highcharts.css" />
+    <Content Include="Source\img\8.PNG" />
     <Content Include="Source\js\bootstrap.bundle.js" />
     <Content Include="Source\js\bootstrap.bundle.min.js" />
     <Content Include="Source\js\bootstrap.js" />
@@ -123,10 +124,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalisisFODAController.cs" />
+    <Compile Include="Controllers\CadenaValorController.cs" />
     <Compile Include="Controllers\InformacionEmpresaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MisionController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
+    <Compile Include="Controllers\PorterController.cs" />
     <Compile Include="Controllers\ValoresController.cs" />
     <Compile Include="Controllers\VisionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -165,6 +168,8 @@
     <Content Include="Views\Objetivos\Index.cshtml" />
     <Content Include="Views\InformacionEmpresa\Index.cshtml" />
     <Content Include="Views\AnalisisFODA\Index.cshtml" />
+    <Content Include="Views\CadenaValor\Index.cshtml" />
+    <Content Include="Views\Porter\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

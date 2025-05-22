@@ -28,6 +28,8 @@ namespace proyecto_peti.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Valores> Valores { get; set; }
         public virtual DbSet<Vision> Vision { get; set; }
+        public DbSet<ObservacionesCadenaValor> ObservacionesCadenaValor { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

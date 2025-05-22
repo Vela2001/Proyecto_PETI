@@ -105,8 +105,9 @@ GO
 CREATE TABLE CadenaValor (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    ActividadPrimaria NVARCHAR(MAX),
-    ActividadSecundaria NVARCHAR(MAX),
+    PreguntaNumero INT NOT NULL,
+    PreguntaTexto NVARCHAR(MAX),
+    Valoracion INT CHECK (Valoracion BETWEEN 1 AND 5) NULL,
     CreatedAt DATETIME DEFAULT GETDATE(),
     UpdatedAt DATETIME NULL,
     FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
@@ -140,14 +141,47 @@ GO
 CREATE TABLE FuerzasPorter (
     Id INT PRIMARY KEY IDENTITY,
     PlanId INT NOT NULL,
-    AmenazaNuevos NVARCHAR(MAX),
-    RivalidadCompetidores NVARCHAR(MAX),
-    PoderProveedores NVARCHAR(MAX),
-    PoderClientes NVARCHAR(MAX),
-    AmenazaSustitutos NVARCHAR(MAX),
+
+    -- Rivalidad empresas del sector
+    NaturalezaCompetidores NVARCHAR(50),
+    NumeroCompetidores NVARCHAR(50),
+    RentabilidadMedia NVARCHAR(50),
+    Diferenciacion NVARCHAR(50),
+    BarrerasSalida NVARCHAR(50),
+
+    -- Barreras de entrada
+    EconomiaEscala NVARCHAR(50),
+    NecesidadCapital NVARCHAR(50),
+    CostesCambio NVARCHAR(50),
+    RegulacionLegal NVARCHAR(50),
+    AccesoDistribucion NVARCHAR(50),
+    RecursosEspecificos NVARCHAR(50),
+
+    -- Poder de los clientes
+    ConcentracionCompradores NVARCHAR(50),
+    VolumenCompras NVARCHAR(50),
+    Sustitucion NVARCHAR(50),
+    CostesCambioCliente NVARCHAR(50),
+
+    -- Productos Sustitutos
+    DisponibilidadSustitutos NVARCHAR(50),
+
+    -- Conclusión final
+    Conclusion NVARCHAR(MAX),
+
+    -- Oportunidades y amenazas
+    Oportunidad1 NVARCHAR(MAX),
+    Oportunidad2 NVARCHAR(MAX),
+    Amenaza1 NVARCHAR(MAX),
+    Amenaza2 NVARCHAR(MAX),
+
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+
     FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
+
 
 -- Análisis PEST
 CREATE TABLE AnalisisPEST (
@@ -184,3 +218,4 @@ CREATE TABLE ResumenEjecutivo (
     FOREIGN KEY (PlanId) REFERENCES PlanEstrategico(Id)
 );
 GO
+
