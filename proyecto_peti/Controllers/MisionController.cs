@@ -3,21 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< HEAD
-=======
 using proyecto_peti.Models;
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
 
 namespace proyecto_peti.Controllers
 {
     public class MisionController : Controller
     {
-<<<<<<< HEAD
-        // GET: Mision
-        public ActionResult Index()
-        {
-            return View();
-=======
         private Modelo db = new Modelo();
 
         // GET: Mision
@@ -63,7 +54,6 @@ namespace proyecto_peti.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index", "Vision");
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
         }
     }
 }
