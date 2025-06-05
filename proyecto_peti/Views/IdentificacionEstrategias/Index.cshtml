@@ -1,0 +1,337 @@
+﻿@model proyecto_peti.Models.IdentificacionEstrategias
+
+@{
+    ViewBag.Title = "10. Identificación de Estrategias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">10. IDENTIFICACIÓN DE ESTRATEGIAS</h2>
+
+    <p>
+        Tras el análisis realizado habiendo identificado las oportunidades, amenazas, fortalezas y debilidades,
+        el momento de identificar la estrategia que deberá adoptar una empresa para el logro de sus objetivos empresariales.
+    </p>
+
+    @using (Html.BeginForm("Index", "IdentificacionEstrategias", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        <h5 class="mt-4">Factores Internos y Externos</h5>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Fortalezas</label>
+                @Html.TextAreaFor(model => model.ListaFortalezas, new { @class = "form-control", rows = 3 })
+            </div>
+            <div class="col-md-6">
+                <label>Debilidades</label>
+                @Html.TextAreaFor(model => model.ListaDebilidades, new { @class = "form-control", rows = 3 })
+            </div>
+            <div class="col-md-6 mt-3">
+                <label>Oportunidades</label>
+                @Html.TextAreaFor(model => model.ListaOportunidades, new { @class = "form-control", rows = 3 })
+            </div>
+            <div class="col-md-6 mt-3">
+                <label>Amenazas</label>
+                @Html.TextAreaFor(model => model.ListaAmenazas, new { @class = "form-control", rows = 3 })
+            </div>
+        </div>
+
+        <h5 class="mt-5">Matriz FO (Fortalezas - Oportunidades)</h5>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>O1</th>
+                    <th>O2</th>
+                    <th>O3</th>
+                    <th>O4</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <tr>
+                        <th>F@i</th>
+                        @for (int j = 1; j <= 4; j++)
+                        {
+                            var prop = $"FO_F{i}_O{j}";
+                            <td>
+                                <input type="number" name="@prop" class="form-control fo-cell" data-col="@j" value="@Model.GetType().GetProperty(prop)?.GetValue(Model)" />
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr class="bg-warning">
+                    <th>Total</th>
+                    @for (int j = 1; j <= 4; j++)
+                    {
+                        <td><span id="fo-total-col-@j">0</span></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 class="mt-5">Matriz FA (Fortalezas - Amenazas)</h5>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>A1</th>
+                    <th>A2</th>
+                    <th>A3</th>
+                    <th>A4</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <tr>
+                        <th>F@i</th>
+                        @for (int j = 1; j <= 4; j++)
+                        {
+                            var prop = $"FA_F{i}_A{j}";
+                            <td>
+                                <input type="number" name="@prop" class="form-control fa-cell" data-col="@j" value="@Model.GetType().GetProperty(prop)?.GetValue(Model)" />
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr class="bg-warning">
+                    <th>Total</th>
+                    @for (int j = 1; j <= 4; j++)
+                    {
+                        <td><span id="fa-total-col-@j">0</span></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 class="mt-4">Matriz DO (Debilidades - Oportunidades)</h5>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>O1</th>
+                    <th>O2</th>
+                    <th>O3</th>
+                    <th>O4</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <tr>
+                        <th>D@i</th>
+                        @for (int j = 1; j <= 4; j++)
+                        {
+                            var prop = $"DO_D{i}_O{j}";
+                            <td>
+                                <input type="number" name="@prop" class="form-control do-cell" data-col="@j" value="@Model.GetType().GetProperty(prop)?.GetValue(Model)" />
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr class="bg-warning">
+                    <th>Total</th>
+                    @for (int j = 1; j <= 4; j++)
+                    {
+                        <td><span id="do-total-col-@j">0</span></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 class="mt-4">Matriz DA (Debilidades - Amenazas)</h5>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>A1</th>
+                    <th>A2</th>
+                    <th>A3</th>
+                    <th>A4</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <tr>
+                        <th>D@i</th>
+                        @for (int j = 1; j <= 4; j++)
+                        {
+                            var prop = $"DA_D{i}_A{j}";
+                            <td>
+                                <input type="number" name="@prop" class="form-control da-cell" data-col="@j" value="@Model.GetType().GetProperty(prop)?.GetValue(Model)" />
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr class="bg-warning">
+                    <th>Total</th>
+                    @for (int j = 1; j <= 4; j++)
+                    {
+                        <td><span id="da-total-col-@j">0</span></td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 class="mt-5 text-center text-primary">SÍNTESIS DE RESULTADOS</h5>
+        <p class="text-muted text-center">La puntuación mayor le indica la estrategia que deberá llevar a cabo.</p>
+
+        <table class="table table-bordered text-center">
+            <thead class="table-info">
+                <tr>
+                    <th>Relaciones</th>
+                    <th>Tipología de estrategia</th>
+                    <th>Puntuación</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FO</td>
+                    <td>Estrategia Ofensiva</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.PuntajeFO, new { @class = "form-control text-center", type = "number", id = "PuntajeFO" })
+                    </td>
+                    <td class="text-start">Deberá adoptar estrategias de crecimiento</td>
+                </tr>
+                <tr>
+                    <td>FA</td>
+                    <td>Estrategia Defensiva</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.PuntajeFA, new { @class = "form-control text-center", type = "number", id = "PuntajeFA" })
+                    </td>
+                    <td class="text-start">La empresa está preparada para enfrentarse a las amenazas</td>
+                </tr>
+                <tr>
+                    <td>DA</td>
+                    <td>Estrategia de Supervivencia</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.PuntajeDA, new { @class = "form-control text-center", type = "number", id = "PuntajeDA" })
+                    </td>
+                    <td class="text-start">Se enfrenta a amenazas externas sin las fortalezas necesarias para luchar con la competencia</td>
+                </tr>
+                <tr>
+                    <td>DO</td>
+                    <td>Estrategia de Reorientación</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.PuntajeDO, new { @class = "form-control text-center", type = "number", id = "PuntajeDO" })
+                    </td>
+                    <td class="text-start">La empresa no puede aprovechar las oportunidades porque carece de preparación adecuada</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="d-flex justify-content-between">
+            <a href="@Url.Action("Index", "AutodiagnosticoPorter")" class="btn btn-secondary">🔙 ANÁLISIS PORTER</a>
+            <button type="submit" class="btn btn-success">💾 GUARDAR</button>
+            <a href="@Url.Action("Index", "MatrizCAME")" class="btn btn-primary">11. MATRIZ CAME 🔜</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function actualizarTotalesFO() {
+            for (let col = 1; col <= 4; col++) {
+                let total = 0;
+                document.querySelectorAll(`.fo-cell[data-col='${col}']`).forEach(input => {
+                    const val = parseInt(input.value) || 0;
+                    total += val;
+                });
+                document.getElementById(`fo-total-col-${col}`).textContent = total;
+            }
+        }
+
+        document.querySelectorAll('.fo-cell').forEach(input => {
+            input.addEventListener('input', actualizarTotalesFO);
+        });
+
+        // Ejecutar al cargar
+        actualizarTotalesFO();
+
+        function actualizarTotalesFA() {
+            for (let col = 1; col <= 4; col++) {
+                let total = 0;
+                document.querySelectorAll(`.fa-cell[data-col='${col}']`).forEach(input => {
+                    const val = parseInt(input.value) || 0;
+                    total += val;
+                });
+                document.getElementById(`fa-total-col-${col}`).textContent = total;
+            }
+        }
+
+        document.querySelectorAll('.fa-cell').forEach(input => {
+            input.addEventListener('input', actualizarTotalesFA);
+        });
+
+        actualizarTotalesFA();
+
+ 
+            function actualizarTotalesDO() {
+            for (let col = 1; col <= 4; col++) {
+                let total = 0;
+            document.querySelectorAll(`.do-cell[data-col='${col}']`).forEach(input => {
+                    const val = parseInt(input.value) || 0;
+            total += val;
+                });
+            document.getElementById(`do-total-col-${col}`).textContent = total;
+            }
+        }
+
+        document.querySelectorAll('.do-cell').forEach(input => {
+                input.addEventListener('input', actualizarTotalesDO);
+        });
+
+            // Ejecutar al cargar
+        actualizarTotalesDO();
+
+        function actualizarTotalesDA() {
+            for (let col = 1; col <= 4; col++) {
+                let total = 0;
+                document.querySelectorAll(`.da-cell[data-col='${col}']`).forEach(input => {
+                    const val = parseInt(input.value) || 0;
+                    total += val;
+                });
+                document.getElementById(`da-total-col-${col}`).textContent = total;
+            }
+        }
+
+        document.querySelectorAll('.da-cell').forEach(input => {
+            input.addEventListener('input', actualizarTotalesDA);
+        });
+
+        actualizarTotalesDA();
+  
+        function calcularPuntajes(clase, outputId) {
+            let total = 0;
+            document.querySelectorAll('.' + clase).forEach(input => {
+                const val = parseInt(input.value) || 0;
+                total += val;
+            });
+            document.getElementById(outputId).value = total;
+        }
+
+        function actualizarTodosLosPuntajes() {
+            calcularPuntajes('fo-cell', 'PuntajeFO');
+            calcularPuntajes('fa-cell', 'PuntajeFA');
+            calcularPuntajes('do-cell', 'PuntajeDO');
+            calcularPuntajes('da-cell', 'PuntajeDA');
+        }
+
+        ['fo-cell', 'fa-cell', 'do-cell', 'da-cell'].forEach(clase => {
+            document.querySelectorAll('.' + clase).forEach(input => {
+                input.addEventListener('input', actualizarTodosLosPuntajes);
+            });
+        });
+
+        // Ejecutar al cargar la vista
+        actualizarTodosLosPuntajes();
+
+    </script>
+}
+

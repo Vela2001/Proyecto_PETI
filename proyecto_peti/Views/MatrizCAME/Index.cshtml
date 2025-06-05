@@ -1,0 +1,78 @@
+﻿@model proyecto_peti.Models.MatrizCAME
+
+@{
+    ViewBag.Title = "11. Matriz CAME";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">11. MATRIZ CAME</h2>
+    <p class="text-center">
+        A continuación y para finalizar de elaborar un Plan Estratégico, además de tener identificada la estrategia,
+        es necesario determinar acciones que permitan corregir las debilidades, afrontar las amenazas,
+        mantener las fortalezas y explotar las oportunidades.
+    </p>
+    <div class="alert alert-secondary text-center">
+        <strong>Reflexione y anote acciones a llevar a cabo</strong> teniendo en cuenta que estas acciones deben favorecer
+        la ejecución exitosa de la estrategia general identificada.
+    </div>
+
+    @using (Html.BeginForm("Index", "MatrizCAME", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PlanId)
+
+        <table class="table table-bordered text-center">
+            <thead class="table-info">
+                <tr>
+                    <th style="width: 5%">&nbsp;</th>
+                    <th style="width: 10%">Acciones</th>
+                    <th style="width: 85%">Estrategia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">C</td>
+                    <td>1</td>
+                    <td>@Html.TextAreaFor(m => m.Corregir1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>2</td><td>@Html.TextAreaFor(m => m.Corregir2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>3</td><td>@Html.TextAreaFor(m => m.Corregir3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>4</td><td>@Html.TextAreaFor(m => m.Corregir4, new { @class = "form-control", rows = 1 })</td></tr>
+
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">A</td>
+                    <td>5</td>
+                    <td>@Html.TextAreaFor(m => m.Afrontar1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>6</td><td>@Html.TextAreaFor(m => m.Afrontar2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>7</td><td>@Html.TextAreaFor(m => m.Afrontar3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>8</td><td>@Html.TextAreaFor(m => m.Afrontar4, new { @class = "form-control", rows = 1 })</td></tr>
+
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">M</td>
+                    <td>9</td>
+                    <td>@Html.TextAreaFor(m => m.Mantener1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>10</td><td>@Html.TextAreaFor(m => m.Mantener2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>11</td><td>@Html.TextAreaFor(m => m.Mantener3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>12</td><td>@Html.TextAreaFor(m => m.Mantener4, new { @class = "form-control", rows = 1 })</td></tr>
+
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">E</td>
+                    <td>13</td>
+                    <td>@Html.TextAreaFor(m => m.Explotar1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>14</td><td>@Html.TextAreaFor(m => m.Explotar2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>15</td><td>@Html.TextAreaFor(m => m.Explotar3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>16</td><td>@Html.TextAreaFor(m => m.Explotar4, new { @class = "form-control", rows = 1 })</td></tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a href="@Url.Action("Index", "IdentificacionEstrategias")" class="btn btn-secondary">🔙 10. IDENTIFICACIÓN DE ESTRATEGIAS</a>
+            <button type="submit" class="btn btn-success">💾 GUARDAR MATRIZ CAME</button>
+            <a href="@Url.Action("Index", "ResumenEjecutivo")" class="btn btn-primary">RESUMEN ESTRATÉGICO 🔜</a>
+        </div>
+    }
+</div>
