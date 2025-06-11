@@ -19,11 +19,15 @@ namespace proyecto_peti.Controllers
 
             int planId = (int)Session["PlanId"];
 
-            // Cargar todos los objetivos estratégicos y sus específicos
             var objetivos = db.ObjetivosEstrategicos
                               .Where(o => o.PlanId == planId)
                               .OrderBy(o => o.Id)
                               .ToList();
+
+            while (objetivos.Count < 3)
+            {
+                objetivos.Add(new ObjetivosEstrategicos());
+            }
 
             return View(objetivos);
         }
@@ -35,8 +39,11 @@ namespace proyecto_peti.Controllers
                 return RedirectToAction("Login", "Account");
 
             int planId = (int)Session["PlanId"];
+            string comentario = Request.Form["UENComentario"];
 
             var existentes = db.ObjetivosEstrategicos.Where(o => o.PlanId == planId).ToList();
+
+
             db.ObjetivosEstrategicos.RemoveRange(existentes);
             db.SaveChanges();
 
@@ -46,6 +53,7 @@ namespace proyecto_peti.Controllers
                 {
                     objetivo.PlanId = planId;
                     objetivo.CreatedAt = DateTime.Now;
+                    objetivo.UENComentario = comentario;
                     db.ObjetivosEstrategicos.Add(objetivo);
                 }
             }

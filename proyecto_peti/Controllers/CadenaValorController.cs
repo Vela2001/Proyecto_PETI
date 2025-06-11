@@ -18,41 +18,13 @@ namespace proyecto_peti.Controllers
             int planId = (int)Session["PlanId"];
             var preguntas = ObtenerPreguntasCadenaValor();
 
-            var existentes = db.CadenaValor.Where(c => c.PlanId == planId).ToList();
-            if (existentes.Any())
-            {
-                db.CadenaValor.RemoveRange(existentes);
-            }
-
-            var obsExistente = db.ObservacionesCadenaValor.FirstOrDefault(o => o.PlanId == planId);
-            if (obsExistente != null)
-            {
-                db.ObservacionesCadenaValor.Remove(obsExistente);
-            }
-
-            db.SaveChanges(); // Confirmar eliminación
-
-            // Generar nuevas preguntas
-            foreach (var pregunta in preguntas)
-            {
-                db.CadenaValor.Add(new CadenaValor
-                {
-                    PlanId = planId,
-                    PreguntaNumero = pregunta.Key,
-                    PreguntaTexto = pregunta.Value,
-                    Valoracion = null,
-                    CreatedAt = DateTime.Now
-                });
-            }
-            db.SaveChanges();
-
-            var respuestas = db.CadenaValor
+            var respuestasExistentes = db.CadenaValor
                 .Where(c => c.PlanId == planId)
                 .OrderBy(c => c.PreguntaNumero)
                 .ToList();
 
             // Crear registros de preguntas si no existen
-            if (!respuestas.Any())
+            if (!respuestasExistentes.Any())
             {
                 foreach (var pregunta in preguntas)
                 {
@@ -61,24 +33,23 @@ namespace proyecto_peti.Controllers
                         PlanId = planId,
                         PreguntaNumero = pregunta.Key,
                         PreguntaTexto = pregunta.Value,
-                        Valoracion = 0, // valor inicial neutro
+                        Valoracion = 1,
                         CreatedAt = DateTime.UtcNow
                     });
                 }
                 db.SaveChanges();
 
-                respuestas = db.CadenaValor
+                respuestasExistentes = db.CadenaValor
                     .Where(c => c.PlanId == planId)
                     .OrderBy(c => c.PreguntaNumero)
                     .ToList();
             }
 
-            var fortalezasDebilidades = db.ObservacionesCadenaValor.FirstOrDefault(f => f.PlanId == planId)
-                                           ?? new ObservacionesCadenaValor { PlanId = planId };
+            var fortalezasDebilidades = db.ObservacionesCadenaValor.FirstOrDefault(f => f.PlanId == planId) ?? new ObservacionesCadenaValor { PlanId = planId };
 
             // Calcular Potencial de Mejora
             double? potencialMejora = null;
-            var valoraciones = respuestas.Where(r => r.Valoracion >= 1 && r.Valoracion <= 5).ToList();
+            var valoraciones = respuestasExistentes.Where(r => r.Valoracion >= 1 && r.Valoracion <= 5).ToList();
             if (valoraciones.Any())
             {
                 var promedio = valoraciones.Average(r => r.Valoracion);
@@ -89,7 +60,7 @@ namespace proyecto_peti.Controllers
             ViewBag.FortalezasDebilidades = fortalezasDebilidades;
             ViewBag.PotencialMejora = potencialMejora;
 
-            return View(respuestas);
+            return View(respuestasExistentes);
         }
 
         [HttpPost]
@@ -101,18 +72,30 @@ namespace proyecto_peti.Controllers
 
             int planId = (int)Session["PlanId"];
 
-            // Validar que todas las valoraciones estén entre 1 y 5
-            if (modelo == null || modelo.Any(m => !m.Valoracion.HasValue || m.Valoracion < 1 || m.Valoracion > 5))
+            if (modelo == null || modelo.Any(m => m.Valoracion < 1 || m.Valoracion > 5))
             {
                 ModelState.AddModelError("", "Todas las valoraciones deben estar entre 1 y 5.");
                 ViewBag.FortalezasDebilidades = fortalezasDebilidades;
-
-                var potencialMejora = modelo?.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Any() == true
-                    ? 5 - modelo.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Average(m => m.Valoracion.Value)
+                // También recalcular potencial para mostrar al volver a vista
+                var potencialMejora = modelo?.Where(m => m.Valoracion >= 1 && m.Valoracion <= 5).Any() == true
+                    ? 5 - modelo.Where(m => m.Valoracion >= 1 && m.Valoracion <= 5).Average(m => m.Valoracion)
                     : (double?)null;
                 ViewBag.PotencialMejora = potencialMejora;
                 return View(modelo);
             }
+
+            foreach (var item in modelo)
+            {
+                var existente = db.CadenaValor.FirstOrDefault(c => c.PlanId == planId && c.PreguntaNumero == item.PreguntaNumero);
+                if (existente != null)
+                {
+                    existente.Valoracion = item.Valoracion;
+                    existente.UpdatedAt = DateTime.UtcNow;
+                }
+            }
+
+            db.SaveChanges();
+
 
             var fortalezas = new[] { fortalezasDebilidades.Fortalezas1, fortalezasDebilidades.Fortalezas2, fortalezasDebilidades.Fortalezas3, fortalezasDebilidades.Fortalezas4 };
             var debilidades = new[] { fortalezasDebilidades.Debilidades1, fortalezasDebilidades.Debilidades2, fortalezasDebilidades.Debilidades3, fortalezasDebilidades.Debilidades4 };
@@ -121,68 +104,41 @@ namespace proyecto_peti.Controllers
             {
                 ModelState.AddModelError("", "Debe ingresar al menos una fortaleza y una debilidad.");
                 ViewBag.FortalezasDebilidades = fortalezasDebilidades;
-
-                var potencialMejora = modelo?.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Any() == true
-                    ? 5 - modelo.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Average(m => m.Valoracion.Value)
+                var potencialMejora = modelo?.Where(m => m.Valoracion >= 1 && m.Valoracion <= 5).Any() == true
+                    ? 5 - modelo.Where(m => m.Valoracion >= 1 && m.Valoracion <= 5).Average(m => m.Valoracion)
                     : (double?)null;
                 ViewBag.PotencialMejora = potencialMejora;
                 return View(modelo);
             }
 
-            try
+          
+
+            var fdExistente = db.ObservacionesCadenaValor.FirstOrDefault(f => f.PlanId == planId);
+            if (fdExistente != null)
             {
-                // Actualizar valoraciones
-                foreach (var item in modelo)
-                {
-                    var existente = db.CadenaValor.FirstOrDefault(c => c.PlanId == planId && c.PreguntaNumero == item.PreguntaNumero);
-                    if (existente != null)
-                    {
-                        existente.Valoracion = item.Valoracion;
-                        existente.UpdatedAt = DateTime.Now; // Cambiado de DateTime.UtcNow
-                    }
-                }
+                fdExistente.Fortalezas1 = fortalezasDebilidades.Fortalezas1;
+                fdExistente.Fortalezas2 = fortalezasDebilidades.Fortalezas2;
+                fdExistente.Fortalezas3 = fortalezasDebilidades.Fortalezas3;
+                fdExistente.Fortalezas4 = fortalezasDebilidades.Fortalezas4;
 
-                // Actualizar o crear observaciones
-                var fdExistente = db.ObservacionesCadenaValor.FirstOrDefault(f => f.PlanId == planId);
-                if (fdExistente != null)
-                {
-                    fdExistente.Fortalezas1 = fortalezasDebilidades.Fortalezas1;
-                    fdExistente.Fortalezas2 = fortalezasDebilidades.Fortalezas2;
-                    fdExistente.Fortalezas3 = fortalezasDebilidades.Fortalezas3;
-                    fdExistente.Fortalezas4 = fortalezasDebilidades.Fortalezas4;
+                fdExistente.Debilidades1 = fortalezasDebilidades.Debilidades1;
+                fdExistente.Debilidades2 = fortalezasDebilidades.Debilidades2;
+                fdExistente.Debilidades3 = fortalezasDebilidades.Debilidades3;
+                fdExistente.Debilidades4 = fortalezasDebilidades.Debilidades4;
 
-                    fdExistente.Debilidades1 = fortalezasDebilidades.Debilidades1;
-                    fdExistente.Debilidades2 = fortalezasDebilidades.Debilidades2;
-                    fdExistente.Debilidades3 = fortalezasDebilidades.Debilidades3;
-                    fdExistente.Debilidades4 = fortalezasDebilidades.Debilidades4;
-
-                    fdExistente.UpdatedAt = DateTime.Now; // Cambiado de DateTime.UtcNow
-                }
-                else
-                {
-                    fortalezasDebilidades.PlanId = planId;
-                    fortalezasDebilidades.CreatedAt = DateTime.Now; // Cambiado de DateTime.UtcNow
-                    db.ObservacionesCadenaValor.Add(fortalezasDebilidades);
-                }
-
-                db.SaveChanges();
-
-                TempData["SuccessMessage"] = "Datos guardados correctamente.";
-                return RedirectToAction("Index", "Menu");
-
+                fdExistente.UpdatedAt = DateTime.UtcNow;
             }
-            catch (Exception ex)
+            else
             {
-                // Log del error para debugging
-                ModelState.AddModelError("", "Error al guardar los datos: " + ex.Message);
-                ViewBag.FortalezasDebilidades = fortalezasDebilidades;
-
-                var potencialMejora = modelo?.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Any() == true
-                    ? 5 - modelo.Where(m => m.Valoracion.HasValue && m.Valoracion >= 1 && m.Valoracion <= 5).Average(m => m.Valoracion.Value)
-                    : (double?)null;
-                ViewBag.PotencialMejora = potencialMejora;
-                return View(modelo);
+                fortalezasDebilidades.PlanId = planId;
+                fortalezasDebilidades.CreatedAt = DateTime.UtcNow;
+                db.ObservacionesCadenaValor.Add(fortalezasDebilidades);
             }
+
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = "Datos guardados correctamente.";
+            return RedirectToAction("Index", "MatrizParticipacion");
         }
 
         private Dictionary<int, string> ObtenerPreguntasCadenaValor()
@@ -215,15 +171,6 @@ namespace proyecto_peti.Controllers
                 {24, "Nuestra política y equipo de ventas y marketing es una importante ventaja competitiva de nuestra empresa respecto al sector."},
                 {25, "El servicio al cliente que prestamos es uno de nuestras principales ventajas competitivas respecto a nuestros competidores."}
             };
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

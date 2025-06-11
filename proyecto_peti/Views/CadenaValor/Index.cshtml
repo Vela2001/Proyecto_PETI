@@ -56,8 +56,7 @@
                                     new SelectListItem{ Text = "3", Value="3"},
                                     new SelectListItem{ Text = "4", Value="4"},
                                     new SelectListItem{ Text = "5", Value="5"},
-                                }, "Value", "Text", Model[i].Valoracion),
-                            "Seleccione", new { @class = "form-control", required = "required" })
+                                }, "Value", "Text", Model[i].Valoracion), new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(m => m[i].Valoracion, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -110,14 +109,10 @@
         @Html.LabelFor(m => fortalezasDebilidades.Debilidades4)
         @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades4, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades4, "", new { @class = "text-danger" })
-    </div>
-    <br />
+    </div><br />
 
 
 
-    <div class="d-flex justify-content-between">
-        <a href="@Url.Action("Index", "AnalisisFODA")" class="btn btn-secondary">🔙5. ANÁLISIS INTERNO Y EXTERNO</a>
-        <button type="submit" class="btn btn-success">💾 GUARDAR</button>
-        <a href="@Url.Action("Index", "Menu")" class="btn btn-primary">7. Matriz participacion 🔜</a>
-    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 }
+    
