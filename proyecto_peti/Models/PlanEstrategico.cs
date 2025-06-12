@@ -73,5 +73,14 @@ namespace proyecto_peti.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vision> Vision { get; set; }
+
+        public virtual ICollection<BCG_Ventas> BCG_Ventas { get; set; }
+        public virtual ICollection<BCG_TasaCrecimientoMercado> BCG_TasaCrecimientoMercado { get; set; }
+        public virtual ICollection<BCG_ParticipacionMercado> BCG_ParticipacionMercado { get; set; }
+        public virtual ICollection<BCG_DemandaGlobal> BCG_DemandaGlobal { get; set; }
+        public virtual ICollection<BCG_PRM> BCG_PRM { get; set; }
+        public virtual ICollection<BCG_FODA> BCG_FODA { get; set; }
+
+
     }
 }

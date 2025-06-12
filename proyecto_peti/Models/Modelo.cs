@@ -28,7 +28,15 @@ namespace proyecto_peti.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Valores> Valores { get; set; }
         public virtual DbSet<Vision> Vision { get; set; }
-        public DbSet<ObservacionesCadenaValor> ObservacionesCadenaValor { get; set; }
+        public virtual DbSet<ObservacionesCadenaValor> ObservacionesCadenaValor { get; set; }
+        public virtual DbSet<BCG_Ventas> BCG_Ventas { get; set; }
+        public virtual DbSet<BCG_TasaCrecimientoMercado> BCG_TasaCrecimientoMercado { get; set; }
+        public virtual DbSet<BCG_ParticipacionMercado> BCG_ParticipacionMercado { get; set; }
+        public virtual DbSet<BCG_DemandaGlobal> BCG_DemandaGlobal { get; set; }
+        public virtual DbSet<BCG_PRM> BCG_PRM { get; set; }
+        public virtual DbSet<BCG_FODA> BCG_FODA { get; set; }
+
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -122,6 +130,41 @@ namespace proyecto_peti.Models
                 .WithRequired(e => e.Users)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_Ventas)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_TasaCrecimientoMercado)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_ParticipacionMercado)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_DemandaGlobal)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_PRM)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<PlanEstrategico>()
+                .HasMany(e => e.BCG_FODA)
+                .WithRequired(e => e.PlanEstrategico)
+                .HasForeignKey(e => e.PlanEstrategicoId)
+                .WillCascadeOnDelete(false);
+
         }
     }
 }
