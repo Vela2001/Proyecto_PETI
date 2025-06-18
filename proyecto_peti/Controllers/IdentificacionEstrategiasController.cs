@@ -11,39 +11,40 @@ namespace proyecto_peti.Controllers
 
         public ActionResult Index()
         {
-            if (Session["PlanId"] == null)
-                return RedirectToAction("Login", "Account");
+            //if (Session["PlanId"] == null)
+            //    return RedirectToAction("Login", "Account");
 
-            int planId = (int)Session["PlanId"];
-            var estrategia = db.IdentificacionEstrategias.FirstOrDefault(e => e.PlanId == planId);
-            if (estrategia == null)
-                estrategia = new IdentificacionEstrategias { PlanId = planId };
-
-            return View(estrategia);
+            //int planId = (int)Session["PlanId"];
+            //var estrategia = db.IdentificacionEstrategias.FirstOrDefault(e => e.PlanId == planId);
+            //if (estrategia == null)
+            //    estrategia = new IdentificacionEstrategias { PlanId = planId };
+            //else
+            //return View(estrategia);
+            return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(IdentificacionEstrategias model)
-        {
-            if (Session["PlanId"] == null)
-                return RedirectToAction("Login", "Account");
+        //[HttpPost]
+        //public ActionResult Index(IdentificacionEstrategias model)
+        //{
+        //    if (Session["PlanId"] == null)
+        //        return RedirectToAction("Login", "Account");
 
-            int planId = (int)Session["PlanId"];
-            var existente = db.IdentificacionEstrategias.FirstOrDefault(e => e.PlanId == planId);
+        //    int planId = (int)Session["PlanId"];
+        //    var existente = db.IdentificacionEstrategias.FirstOrDefault(e => e.PlanId == planId);
 
-            if (existente != null)
-            {
-                db.Entry(existente).CurrentValues.SetValues(model);
-                existente.UpdatedAt = DateTime.Now;
-            }
-            else
-            {
-                model.CreatedAt = DateTime.Now;
-                db.IdentificacionEstrategias.Add(model);
-            }
+        //    if (existente != null)
+        //    {
+        //        db.Entry(existente).CurrentValues.SetValues(model);
+        //        existente.UpdatedAt = DateTime.Now;
+        //    }
+        //    else
+        //    {
+        //        model.CreatedAt = DateTime.Now;
+        //        db.IdentificacionEstrategias.Add(model);
+        //    }
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "MatrizCAME");
-        }
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index", "MatrizCAME");
+        //}
     }
 }

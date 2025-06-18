@@ -23,32 +23,32 @@ namespace proyecto_peti.Controllers
             return View(modelo);
         }
 
-        [HttpPost]
-        public ActionResult Index(MatrizCAME model)
-        {
-            if (Session["PlanId"] == null)
-                return RedirectToAction("Login", "Account");
+        //[HttpPost]
+        //public ActionResult Index(MatrizCAME model)
+        //{
+        //    //if (Session["PlanId"] == null)
+        //    //    return RedirectToAction("Login", "Account");
 
-            int planId = (int)Session["PlanId"];
-            var existente = db.MatrizCAME.FirstOrDefault(x => x.PlanId == planId);
+        //    //int planId = (int)Session["PlanId"];
+        //    //var existente = db.MatrizCAME.FirstOrDefault(x => x.PlanId == planId);
 
-            if (existente == null)
-            {
-                model.PlanId = planId;
-                model.CreatedAt = DateTime.Now;
-                db.MatrizCAME.Add(model);
-            }
-            else
-            {
-                model.Id = existente.Id;
-                model.PlanId = planId;
-                model.CreatedAt = existente.CreatedAt;
-                model.UpdatedAt = DateTime.Now;
-                db.Entry(existente).CurrentValues.SetValues(model);
-            }
+        //    //if (existente == null)
+        //    //{
+        //    //    model.PlanId = planId;
+        //    //    model.CreatedAt = DateTime.Now;
+        //    //    db.MatrizCAME.Add(model);
+        //    //}
+        //    //else
+        //    //{
+        //    //    model.Id = existente.Id;
+        //    //    model.PlanId = planId;
+        //    //    model.CreatedAt = existente.CreatedAt;
+        //    //    model.UpdatedAt = DateTime.Now;
+        //    //    db.Entry(existente).CurrentValues.SetValues(model);
+        //    //}
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "ResumenEstrategico");
-        }
+        //    //db.SaveChanges();
+        //    //return RedirectToAction("Index", "ResumenEstrategico");
+        //}
     }
 }
