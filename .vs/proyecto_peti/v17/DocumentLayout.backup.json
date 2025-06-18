@@ -3,40 +3,52 @@
   "WorkspaceRootPath": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\porter\\autodiagnosticoporter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\porter\\autodiagnosticoporter.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\identificacionestrategias\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\identificacionestrategias\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\controllers\\portercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\controllers\\portercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\porter\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\porter\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\matrizcame\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\cadenavalor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\cadenavalor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\matrizcame\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\matrizcame\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\controllers\\matrizcamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\identificacionestrategias\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\identificacionestrategias\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\controllers\\matrizcamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\controllers\\matrizcamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\controllers\\identificacionestrategiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\controllers\\identificacionestrategiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\controllers\\identificacionestrategiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|c:\\carpeta d\\upt\\ultimo ciclo\\peti\\proyecto\\proyecto_peti\\proyecto_peti\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\cadenavalor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|solutionrelative:proyecto_peti\\views\\cadenavalor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3BCFDB3F-D3E7-4793-A484-2E8B0DD33A0C}|proyecto_peti\\proyecto_peti.csproj|C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\views\\objetivos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -133,24 +145,64 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\CadenaValor\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\CadenaValor\\Index.cshtml",
               "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\CadenaValor\\Index.cshtml",
               "RelativeToolTip": "proyecto_peti\\Views\\CadenaValor\\Index.cshtml",
-              "ViewState": "AQIAALcBAAAAAAAAAAAIwN4BAAAGAAAA",
+              "ViewState": "AgIAALcBAAAAAAAAAAAIwN4BAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-21T17:41:32.43Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "AutodiagnosticoPorter.cshtml",
+              "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Porter\\AutodiagnosticoPorter.cshtml",
+              "RelativeDocumentMoniker": "proyecto_peti\\Views\\Porter\\AutodiagnosticoPorter.cshtml",
+              "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Porter\\AutodiagnosticoPorter.cshtml",
+              "RelativeToolTip": "proyecto_peti\\Views\\Porter\\AutodiagnosticoPorter.cshtml",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAAANgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-18T18:39:48.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PorterController.cs",
+              "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\PorterController.cs",
+              "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\PorterController.cs",
+              "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\PorterController.cs",
+              "RelativeToolTip": "proyecto_peti\\Controllers\\PorterController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowDUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T18:37:33.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Porter\\Index.cshtml",
+              "RelativeDocumentMoniker": "proyecto_peti\\Views\\Porter\\Index.cshtml",
+              "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Porter\\Index.cshtml",
+              "RelativeToolTip": "proyecto_peti\\Views\\Porter\\Index.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAqwGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-18T18:25:29.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\MatrizCAME\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\MatrizCAME\\Index.cshtml",
@@ -163,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "IdentificacionEstrategiasController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\IdentificacionEstrategiasController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\IdentificacionEstrategiasController.cs",
@@ -171,25 +223,24 @@
               "RelativeToolTip": "proyecto_peti\\Controllers\\IdentificacionEstrategiasController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T08:34:34.808Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T08:34:34.808Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "proyecto_peti\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAGkAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAwwKkAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-14T19:45:56.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\MatrizParticipacion\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\MatrizParticipacion\\Index.cshtml",
@@ -201,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Mision\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Mision\\Index.cshtml",
@@ -213,20 +264,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Menu\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Menu\\Index.cshtml",
-              "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Menu\\Index.cshtml*",
-              "RelativeToolTip": "proyecto_peti\\Views\\Menu\\Index.cshtml*",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAAALQAAAA1AAAAAAAAAA==",
+              "ToolTip": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Menu\\Index.cshtml",
+              "RelativeToolTip": "proyecto_peti\\Views\\Menu\\Index.cshtml",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAALQAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-09T20:07:29.371Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\IdentificacionEstrategias\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\IdentificacionEstrategias\\Index.cshtml",
@@ -234,12 +285,11 @@
               "RelativeToolTip": "proyecto_peti\\Views\\IdentificacionEstrategias\\Index.cshtml",
               "ViewState": "AgIAACoBAAAAAAAAAAAAAFYBAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-18T08:36:34.935Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T08:36:34.935Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "MatrizCAMEController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\MatrizCAMEController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\MatrizCAMEController.cs",
@@ -247,12 +297,11 @@
               "RelativeToolTip": "proyecto_peti\\Controllers\\MatrizCAMEController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T08:34:56.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T08:34:56.677Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "FuerzasPorter.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\FuerzasPorter.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\FuerzasPorter.cs",
@@ -264,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Modelo.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\Modelo.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\Modelo.cs",
@@ -276,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Objetivos\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Objetivos\\Index.cshtml",
@@ -288,7 +337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Account\\Login.cshtml",
@@ -296,12 +345,11 @@
               "RelativeToolTip": "proyecto_peti\\Views\\Account\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-02T18:17:43.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T18:17:43.241Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Web.config",
               "RelativeDocumentMoniker": "proyecto_peti\\Web.config",
@@ -314,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\AnalisisFODA\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\AnalisisFODA\\Index.cshtml",
@@ -326,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Vision\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Vision\\Index.cshtml",
@@ -338,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "CadenaValorController.cs",
               "DocumentMoniker": "C:\\Users\\Juan Jose\\AppData\\Local\\Temp\\.vsdbgsrc\\6b0b5bc68a0149039c9c77dfbfbe4456847c5769b9ed58e1993779a51fb05b99\\CadenaValorController.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Users\\Juan Jose\\AppData\\Local\\Temp\\.vsdbgsrc\\6b0b5bc68a0149039c9c77dfbfbe4456847c5769b9ed58e1993779a51fb05b99\\CadenaValorController.cs",
@@ -350,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "CadenaValor.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\CadenaValor.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\CadenaValor.cs",
@@ -362,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "MatrizRACI.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\MatrizRACI.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\MatrizRACI.cs",
@@ -374,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "Mision.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\Mision.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\Mision.cs",
@@ -386,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "ValoresController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\ValoresController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\ValoresController.cs",
@@ -398,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\AccountController.cs",
@@ -410,7 +458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "ObjetivosController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\ObjetivosController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\ObjetivosController.cs",
@@ -422,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "MenuController.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Controllers\\MenuController.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Controllers\\MenuController.cs",
@@ -434,7 +482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "Valores.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\Valores.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\Valores.cs",
@@ -446,7 +494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Account\\Register.cshtml",
@@ -458,7 +506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\Valores\\Index.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\Valores\\Index.cshtml",
@@ -470,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "Users.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\Users.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\Users.cs",
@@ -482,7 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "PlanEstrategico.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\PlanEstrategico.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\PlanEstrategico.cs",
@@ -494,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "ObjetivosEstrategicos.cs",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Models\\ObjetivosEstrategicos.cs",
               "RelativeDocumentMoniker": "proyecto_peti\\Models\\ObjetivosEstrategicos.cs",
@@ -506,7 +554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Carpeta D\\UPT\\ULTIMO CICLO\\PETI\\Proyecto\\Proyecto_PETI\\proyecto_peti\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "proyecto_peti\\Views\\_ViewStart.cshtml",

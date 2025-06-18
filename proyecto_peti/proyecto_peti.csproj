@@ -193,6 +193,7 @@
     <Content Include="Views\MatrizParticipacion\AutoDiagnosticoBCG.cshtml" />
     <Content Include="Views\IdentificacionEstrategias\Index.cshtml" />
     <Content Include="Views\MatrizCAME\Index.cshtml" />
+    <Content Include="Views\Porter\AutodiagnosticoPorter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
