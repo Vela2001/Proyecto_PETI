@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,7 +106,7 @@
     <!-- Navbar con estilo mejorado -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <a class="navbar-brand" href="@Url.Action("Index", "Menu")">
                 <i class="fas fa-chart-line me-2"></i>Proyecto Peti
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
@@ -132,11 +132,7 @@
     <!-- Contenido principal con padding superior para compensar la navbar -->
     <main class="container mt-5 py-4">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Proyecto peti</p>
-        </footer>
-    </div>
+    </main>
 
     <!-- Footer mejorado -->
     <footer class="bg-light py-4 mt-4">

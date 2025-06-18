@@ -1,29 +1,12 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-=======
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using proyecto_peti.Models;
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
 
 namespace proyecto_peti.Controllers
 {
     public class ValoresController : Controller
     {
-<<<<<<< HEAD
-        // GET: Valores
-        public ActionResult Index()
-        {
-            return View();
-        }
-    }
-}
-=======
         private Modelo db = new Modelo();
 
         public ActionResult Index()
@@ -68,4 +51,3 @@ namespace proyecto_peti.Controllers
         }
     }
 }
->>>>>>> 311d409eeb8b57bb99baeb97d542522fd02de8f4
