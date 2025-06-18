@@ -4,58 +4,261 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    :root {
+        --primary-color: #3f51b5;
+        --secondary-color: #6c757d;
+        --success-color: #28a745;
+        --info-color: #17a2b8;
+        --light-bg: #f8f9fa;
+    }
+
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border: none;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-color), #2196f3);
+        color: white;
+        padding: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-align: center;
+        border-bottom: none;
+        margin: -1.5rem -1.5rem 2rem -1.5rem;
+    }
+
+    .intro-text {
+        color: #495057;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .example-box {
+        background-color: var(--light-bg);
+        border-left: 4px solid var(--info-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .example-title {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+        .example-title i {
+            margin-right: 0.5rem;
+        }
+
+    .company-example {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+        .company-example:last-child {
+            margin-bottom: 0;
+        }
+
+    .company-name {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 1rem;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        transition: all 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25);
+        }
+
+    .btn {
+        font-weight: 600;
+        padding: 0.75rem 1.75rem;
+        border-radius: 30px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+    .btn-success {
+        background: linear-gradient(135deg, var(--success-color), #20c997);
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #218838, #1aa179);
+            transform: translateY(-2px);
+        }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), #17a2b8);
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0069d9, #138496);
+            transform: translateY(-2px);
+        }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .resource-link {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+
+        .resource-link:hover {
+            color: #1e3a8a;
+            text-decoration: underline;
+            transform: translateX(5px);
+        }
+
+        .resource-link i {
+            margin-right: 0.5rem;
+        }
+    .descripcion-horizontal {
+        min-width: 100%;
+        max-width: 100%;
+        resize: vertical;
+    }
+</style>
+
 <div class="container mt-4">
-    <div class="card p-4 shadow-sm">
-        <h2 class="text-center text-white bg-primary py-2 rounded">INFORMACIÓN DE LA EMPRESA</h2>
-
-        <p>
-            El Plan Estratégico de Tecnologías de la Información – PETI, busca que la Entidad administre de manera eficiente los recursos de tecnología, los sistemas de información y la información, necesarios para la gestión de la organización.
-        </p>
-        <p>
-            Ejemplo de un plan estratégico de TI:<br />
-            <a href="https://www.inei.gob.pe/media/peta/PETI/Plan_Estrategico_de_Tecnologia_de_la_Informacion-PETI%20VF.PDF" target="_blank">
-                https://www.inei.gob.pe/media/peta/PETI/Plan_Estrategico_de_Tecnologia_de_la_Informacion-PETI%20VF.PDF
-            </a>
-        </p>
-
-        <div class="bg-light p-4 rounded mb-4 border">
-            <h5 class="fw-bold text-uppercase text-muted">EJEMPLO</h5>
-
-            <p>
-                <strong>Apple Inc.</strong><br />
-                Apple es una empresa tecnológica multinacional con sede en Cupertino, California. Se especializa en el diseño, desarrollo y comercialización de productos electrónicos, software y servicios. Sus productos más conocidos incluyen el iPhone, el iPad, la iMac y el Apple Watch, además de su sistema operativo iOS y macOS. Apple también ofrece servicios como iTunes, Apple Music, iCloud y Apple Pay.
-            </p>
-
-            <p>
-                <strong>Amazon.com, Inc.</strong><br />
-                Amazon es una de las mayores empresas de comercio electrónico y tecnología del mundo. Inicialmente, comenzó como una plataforma de venta de libros en línea, pero ha crecido para ofrecer una amplia variedad de productos y servicios, incluyendo Amazon Prime (entrega rápida), Amazon Web Services (servicios en la nube), dispositivos como el Kindle y la serie de altavoces inteligentes Echo, y producciones de contenido a través de Amazon Studios.
-            </p>
-
-            <p>
-                <strong>Tesla, Inc.</strong><br />
-                Tesla es una empresa automotriz y de energía con sede en Palo Alto, California. Su enfoque principal es la fabricación de vehículos eléctricos, incluyendo el Model S, Model 3, Model X y Model Y. Además de los automóviles, Tesla se dedica a la producción de baterías y sistemas de almacenamiento de energía, como el Powerwall y Powerpack, así como a la energía solar a través de productos como los paneles solares SolarGlass Roof. También está desarrollando tecnología de conducción autónoma.
-            </p>
+    <div class="card p-4">
+        <div class="card-header">
+            <h2 class="mb-0">INFORMACIÓN DE LA EMPRESA</h2>
+        </div>
+        <div style="text-align: center;">
+            <img src="~/Content/img/empresa.jpg" alt="empresa" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
         </div>
 
-        @using (Html.BeginForm())
-        {
-            @Html.HiddenFor(m => m.PlanId)
+        <div class="card-body">
+            <div class="intro-text">
+                <p>
+                    El <strong>Plan Estratégico de Tecnologías de la Información (PETI)</strong> es un instrumento fundamental para gestionar eficientemente los recursos tecnológicos de su organización.
+                    Permite alinear la tecnología con los objetivos estratégicos del negocio, optimizando procesos y generando valor.
+                </p>
 
-            <div class="mb-3">
-                <label class="fw-bold">Nombre de la empresa:</label>
-                @Html.TextBoxFor(m => m.NombreEmpresa, new { @class = "form-control", placeholder = "Escriba el nombre de la empresa..." })
+                          </div>
+
+            <div class="example-box">
+                <div class="example-title">
+                    <i class="fas fa-lightbulb"></i> EJEMPLOS DE EMPRESAS LÍDERES
+                </div>
+
+                <div class="company-example">
+                    <div class="company-name">Apple Inc.</div>
+                    <p>
+                        Empresa tecnológica multinacional especializada en diseño y desarrollo de productos electrónicos, software y servicios.
+                        Sus productos emblemáticos incluyen iPhone, iPad, Mac y Apple Watch, complementados con servicios como iCloud, Apple Music
+                        y Apple Pay. Apple destaca por su ecosistema integrado y enfoque en experiencia del usuario.
+                    </p>
+                </div>
+
+                <div class="company-example">
+                    <div class="company-name">Amazon.com, Inc.</div>
+                    <p>
+                        Líder global en comercio electrónico y servicios en la nube. Más allá de su plataforma de ventas, ofrece servicios como
+                        Amazon Web Services (AWS), dispositivos Echo con Alexa, y producciones originales a través de Amazon Studios. Su modelo
+                        se basa en innovación constante y orientación al cliente.
+                    </p>
+                </div>
+
+                <div class="company-example">
+                    <div class="company-name">Tesla, Inc.</div>
+                    <p>
+                        Empresa pionera en vehículos eléctricos y energía sostenible. Fabrica automóviles eléctricos de alto rendimiento y desarrolla
+                        tecnologías de baterías y energía solar. Su enfoque en conducción autónoma y sostenibilidad la posiciona como referente
+                        en movilidad del futuro.
+                    </p>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label class="fw-bold">Descripción breve:</label>
-                @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", rows = 4, placeholder = "Describa brevemente lo que hace la empresa..." })
-            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(m => m.PlanId)
 
-            <div class="d-flex justify-content-between mt-4">
-                <a href="@Url.Action("Index", "Menu")" class="btn btn-secondary">🔙 ÍNDICE</a>
-                <button type="submit" class="btn btn-success">💾 GUARDAR Y CONTINUAR</button>
-                <a href="@Url.Action("Index", "Mision")" class="btn btn-primary">1. MISIÓN ➡️</a>
-            </div>
-        }
+                <div class="mb-4">
+                    <label class="form-label">NOMBRE DE LA EMPRESA</label>
+                    @Html.TextBoxFor(m => m.NombreEmpresa, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ingrese el nombre legal de su organización"
+                    })
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">DESCRIPCIÓN DE LA EMPRESA</label>
+                    @Html.TextAreaFor(m => m.Descripcion, new
+                    {
+                        @class = "form-control descripcion-horizontal",
+                        rows = "3",
+                        @style = "width: 100%;",
+                        placeholder = "Describa los principales productos/servicios, sector de operación, mercado objetivo y características distintivas de su empresa..."
+                    })
+                </div>
+
+
+                <div class="navigation-buttons">
+                    <a href="@Url.Action("Index", "Menu")" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> VOLVER AL ÍNDICE
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> GUARDAR Y CONTINUAR
+                    </button>
+                    <a href="@Url.Action("Index", "Mision")" class="btn btn-primary">
+                        SIGUIENTE: MISIÓN <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            }
+        </div>
+
     </div>
 </div>

@@ -6,113 +6,474 @@
     double? potencialMejora = ViewBag.PotencialMejora as double?;
 }
 
-<h2>Evaluación de la Cadena de Valor</h2>
-<br />
-<h6>
-    A continuación marque con una X para valorar su empresa en función de cada una de las afirmaciones,
-    de tal forma que:
-    <br />1 = En total desacuerdo;
-    <br />2 = No está de acuerdo;
-    <br />3 = Está de acuerdo;
-    <br />4 = Está bastante de acuerdo;
-    <br />5 = En total acuerdo.
-    <br />En caso de no completar una casilla le aparecerá el mensaje de error.
-</h6>
+<style>
+    :root {
+        --primary-color: #4361ee;
+        --secondary-color: #3a0ca3;
+        --accent-color: #7209b7;
+        --success-color: #4cc9f0;
+        --warning-color: #ffc107;
+        --dark-color: #2b2d42;
+        --light-color: #f8f9fa;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --hover-effect: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
+    .value-chain-container {
+        background-color: #f8f9fa;
+        padding: 2rem 0;
+    }
 
-@using (Html.BeginForm("Index", "CadenaValor", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+    .value-chain-card {
+        background: white;
+        border: none;
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width:5%;">#</th>
-                <th>Pregunta</th>
-                <th style="width:15%;">Valoración (1 a 5)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <tr>
-                    <td>@Model[i].PreguntaNumero</td>
-                    <td>@Model[i].PreguntaTexto</td>
-                    <td>
-                        @Html.HiddenFor(m => m[i].Id)
-                        @Html.HiddenFor(m => m[i].PlanId)
-                        @Html.HiddenFor(m => m[i].PreguntaNumero)
-                        @Html.HiddenFor(m => m[i].PreguntaTexto)
+    .value-chain-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-align: center;
+        border-bottom: none;
+    }
 
-                        @Html.DropDownListFor(m => m[i].Valoracion,
-                            new SelectList(
-                                new List<SelectListItem> {
-                                    new SelectListItem{ Text = "1", Value="1"},
-                                    new SelectListItem{ Text = "2", Value="2"},
-                                    new SelectListItem{ Text = "3", Value="3"},
-                                    new SelectListItem{ Text = "4", Value="4"},
-                                    new SelectListItem{ Text = "5", Value="5"},
-                                }, "Value", "Text", Model[i].Valoracion), new { @class = "form-control", required = "required" })
-                        @Html.ValidationMessageFor(m => m[i].Valoracion, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    .value-chain-body {
+        padding: 2rem;
+    }
 
-    <h2>Reflexione sobre el resultado obtenido. Anote aquellas observaciones que puedan ser de su interés. Identifique sus fortalezas y debilidades respecto a su cadena de valor</h2>
-    <br />
+    .rating-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        margin: 2rem 0;
+    }
 
-    <h5>Observaciones - Fortalezas</h5>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas1)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas1, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas1, "", new { @class = "text-danger" })
+        .rating-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .rating-table td {
+            padding: 1.25rem;
+            border: 1px solid #e9ecef;
+            background: white;
+            vertical-align: middle;
+        }
+
+    .rating-select-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .rating-select {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.3s;
+        background-color: #f8f9fa;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1em;
+    }
+
+        .rating-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+            outline: none;
+            background-color: white;
+        }
+
+    /* Estilos para tooltips */
+    .tooltip-icon {
+        position: absolute;
+        right: 2.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+        cursor: help;
+        font-size: 0.9rem;
+        z-index: 10;
+        transition: color 0.3s;
+    }
+
+        .tooltip-icon:hover {
+            color: var(--primary-color);
+        }
+
+    .custom-tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        width: 280px;
+        background-color: #2b2d42;
+        color: #fff;
+        text-align: left;
+        border-radius: 8px;
+        padding: 12px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -140px;
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #2b2d42 transparent transparent transparent;
+        }
+
+    .custom-tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .observation-section {
+        background-color: var(--light-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .observation-title {
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+        .observation-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.3s;
+        background-color: #f8f9fa;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+            outline: none;
+            background-color: white;
+        }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .btn-value-chain {
+        font-weight: 600;
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .btn-value-chain i {
+            margin-right: 0.5rem;
+        }
+
+    .btn-prev {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-next {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+    }
+
+    .btn-value-chain:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+
+    .instructions {
+        background-color: #f1f8fe;
+        border-left: 4px solid var(--primary-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Nuevos estilos para el diseño de dos columnas */
+    .strengths-card {
+        background-color: #f8fff8;
+        border-radius: 10px;
+        padding: 1.5rem;
+        height: 100%;
+        border-left: 4px solid #28a745;
+    }
+
+    .weaknesses-card {
+        background-color: #fff8f8;
+        border-radius: 10px;
+        padding: 1.5rem;
+        height: 100%;
+        border-left: 4px solid #dc3545;
+    }
+
+    .swot-row {
+        margin-bottom: 1.5rem;
+    }
+
+    .swot-header {
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .swot-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+</style>
+
+<div class="value-chain-container">
+    <div class="container">
+        <div class="value-chain-card">
+            <div class="value-chain-header">
+                <h2 class="mb-0">6. CADENA DE VALOR</h2>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="~/Content/img/cadena.png" alt="cadena" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
+            </div>
+
+            <div class="value-chain-body">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert-success">
+                        <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                    </div>
+                }
+
+                <div class="instructions">
+                    <h5><i class="fas fa-info-circle me-2"></i>Instrucciones de evaluación</h5>
+                    <p>
+                        A continuación marque con una X para valorar su empresa en función de cada una de las afirmaciones:
+                    </p>
+                    <ul>
+                        <li><strong>1 = En total desacuerdo</strong></li>
+                        <li><strong>2 = No está de acuerdo</strong></li>
+                        <li><strong>3 = Está de acuerdo</strong></li>
+                        <li><strong>4 = Está bastante de acuerdo</strong></li>
+                        <li><strong>5 = En total acuerdo</strong></li>
+                    </ul>
+                    <p class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Complete todas las valoraciones para continuar. Pase el cursor sobre el ícono <i class="fas fa-info-circle" style="color: #6c757d;"></i> para obtener orientación detallada sobre cada nivel.</p>
+                </div>
+
+                @using (Html.BeginForm("Index", "CadenaValor", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <table class="rating-table">
+                        <thead>
+                            <tr>
+                                <th style="width:8%;">#</th>
+                                <th>Área de evaluación</th>
+                                <th style="width:20%;">Valoración (1-5)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Model[i].PreguntaNumero</td>
+                                    <td>@Model[i].PreguntaTexto</td>
+                                    <td>
+                                        @Html.HiddenFor(m => m[i].Id)
+                                        @Html.HiddenFor(m => m[i].PlanId)
+                                        @Html.HiddenFor(m => m[i].PreguntaNumero)
+                                        @Html.HiddenFor(m => m[i].PreguntaTexto)
+
+                                        <div class="rating-select-container">
+                                            @Html.DropDownListFor(m => m[i].Valoracion,
+                                                new SelectList(
+                                                    new List<SelectListItem> {
+                                                        new SelectListItem{ Text = "1 - Total desacuerdo", Value="1"},
+                                                        new SelectListItem{ Text = "2 - No está de acuerdo", Value="2"},
+                                                        new SelectListItem{ Text = "3 - Neutral", Value="3"},
+                                                        new SelectListItem{ Text = "4 - Bastante de acuerdo", Value="4"},
+                                                        new SelectListItem{ Text = "5 - Totalmente de acuerdo", Value="5"},
+                                                    }, "Value", "Text", Model[i].Valoracion),
+                                                new { @class = "rating-select", required = "required" })
+
+                                            <div class="custom-tooltip">
+                                                <i class="fas fa-info-circle tooltip-icon"></i>
+                                                <span class="tooltip-text">
+                                                    <strong>Guía de valoración:</strong><br>
+                                                    <strong>1:</strong> Área muy débil, requiere atención inmediata<br>
+                                                    <strong>2:</strong> Área con deficiencias significativas<br>
+                                                    <strong>3:</strong> Área promedio, funcionamiento básico<br>
+                                                    <strong>4:</strong> Área sólida, buen desempeño<br>
+                                                    <strong>5:</strong> Área excelente, ventaja competitiva
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m[i].Valoracion, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="observation-section">
+                        <h3 class="observation-title"><i class="fas fa-lightbulb me-2"></i>Reflexión estratégica</h3>
+                        <p>Analice los resultados obtenidos e identifique las principales fortalezas y debilidades de su cadena de valor.</p>
+
+                        <div class="row">
+                            <!-- Columna de Fortalezas -->
+                            <div class="col-md-6 mb-3">
+                                <div class="strengths-card">
+                                    <h5 class="swot-header">
+                                        <i class="fas fa-thumbs-up swot-icon" style="color: #28a745;"></i>Fortalezas
+                                    </h5>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas1, "Fortaleza 1", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas1, new { @class = "form-control", placeholder = "Describa su principal fortaleza..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas1, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas2, "Fortaleza 2", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas2, new { @class = "form-control", placeholder = "Describa otra fortaleza importante..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas2, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas3, "Fortaleza 3", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas3, new { @class = "form-control", placeholder = "Describa una tercera fortaleza..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas3, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas4, "Fortaleza 4", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas4, new { @class = "form-control", placeholder = "Describa una fortaleza adicional..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas4, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna de Debilidades -->
+                            <div class="col-md-6 mb-3">
+                                <div class="weaknesses-card">
+                                    <h5 class="swot-header">
+                                        <i class="fas fa-exclamation-triangle swot-icon" style="color: #dc3545;"></i>Debilidades
+                                    </h5>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Debilidades1, "Debilidad 1", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades1, new { @class = "form-control", placeholder = "Describa su principal debilidad..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades1, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Debilidades2, "Debilidad 2", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades2, new { @class = "form-control", placeholder = "Describa otra debilidad importante..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades2, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Debilidades3, "Debilidad 3", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades3, new { @class = "form-control", placeholder = "Describa una tercera debilidad..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades3, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => fortalezasDebilidades.Debilidades4, "Debilidad 4", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades4, new { @class = "form-control", placeholder = "Describa una debilidad adicional..." })
+                                        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades4, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <a href="@Url.Action("Index", "AnalisisFODA")" class="btn-value-chain btn-prev">
+                            <i class="fas fa-arrow-left"></i> ANÁLISIS FODA
+                        </a>
+                        <button type="submit" class="btn-value-chain btn-save">
+                            <i class="fas fa-save"></i> GUARDAR EVALUACIÓN
+                        </button>
+                        <a href="@Url.Action("Index", "MatrizParticipacion")" class="btn-value-chain btn-next">
+                            MATRIZ BCG <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas2)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas2, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas2, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas3)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas3, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas3, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Fortalezas4)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Fortalezas4, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Fortalezas4, "", new { @class = "text-danger" })
-    </div>
-
-    <h5>Observaciones - Debilidades</h5>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Debilidades1)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades1, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades1, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Debilidades2)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades2, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades2, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Debilidades3)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades3, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades3, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => fortalezasDebilidades.Debilidades4)
-        @Html.TextBoxFor(m => fortalezasDebilidades.Debilidades4, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => fortalezasDebilidades.Debilidades4, "", new { @class = "text-danger" })
-    </div><br />
-
-
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
-}
-    
+</div>

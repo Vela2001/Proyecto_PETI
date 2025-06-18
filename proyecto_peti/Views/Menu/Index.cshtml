@@ -3,129 +3,204 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    :root {
+        --bg-light: #f4f6f9;
+        --card-radius: 20px;
+        --text-dark: #2c3e50;
+    }
+
+    body {
+        background-color: var(--bg-light);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, #3f51b5, #2196f3);
+        color: white;
+        border-radius: var(--card-radius);
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+
+    .hero-image {
+        width: 100%;
+        max-width: 900px;
+        margin: 2rem auto;
+        display: block;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-card {
+        color: white;
+        border: none;
+        border-radius: var(--card-radius);
+        padding: 2rem 1rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+    .menu-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .menu-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .gradient-infoempresa {
+        background: linear-gradient(45deg, #4a148c, #7b1fa2);
+    }
+
+    .gradient-mision {
+        background: linear-gradient(45deg, #c2185b, #e91e63);
+    }
+
+    .gradient-vision {
+        background: linear-gradient(45deg, #512da8, #673ab7);
+    }
+
+    .gradient-valores {
+        background: linear-gradient(45deg, #ff6f00, #ffa000);
+    }
+
+    .gradient-objetivos {
+        background: linear-gradient(45deg, #388e3c, #66bb6a);
+    }
+
+    .gradient-foda {
+        background: linear-gradient(45deg, #0097a7, #00acc1);
+    }
+
+    .gradient-cadena {
+        background: linear-gradient(45deg, #1976d2, #42a5f5);
+    }
+
+    .gradient-bcg {
+        background: linear-gradient(45deg, #6a1b9a, #ab47bc);
+    }
+
+    .gradient-porter {
+        background: linear-gradient(45deg, #d32f2f, #ef5350);
+    }
+
+    .gradient-pest {
+        background: linear-gradient(45deg, #455a64, #78909c);
+    }
+
+    .gradient-estrategia {
+        background: linear-gradient(45deg, #5d4037, #8d6e63);
+    }
+
+    .gradient-came {
+        background: linear-gradient(45deg, #e64a19, #ff7043);
+    }
+
+    .resumen-section {
+        background-color: white;
+        border-radius: var(--card-radius);
+        padding: 3rem 2rem;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 4rem;
+    }
+
+        .resumen-section h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+    .btn-resumen {
+        background-color: #3f51b5;
+        color: white;
+        border: none;
+        padding: 0.85rem 2.5rem;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-resumen:hover {
+            background-color: #2c387e;
+        }
+</style>
+
 <div class="container">
-    <div class="card card-soft mb-5 text-center py-4">
-        <h2 class="fw-bold text-primary mb-2">PLANEACIÓN ESTRATÉGICA</h2>
-        <p class="text-muted mb-0">Herramienta para gestión de información empresarial</p>
+    <!-- Hero -->
+    <div class="hero-section">
+        <h1>PLANEACIÓN ESTRATÉGICA</h1>
+        <p>Sistema integral para la gestión estratégica de su organización</p>
     </div>
 
-    <div class="card card-soft mb-4 text-center">
-        <a href="/InformacionEmpresa/Index" class="list-group-item list-group-item-soft text-infoempresa">
-            <i class="fas fa-building me-2"></i>INFORMACIÓN DE LA EMPRESA
-        </a>
+    <!-- Imagen -->
+    <div class="text-center">
+        <img src="~/Content/img/planeacion.jpg" alt="Planeación estratégica" class="hero-image" />
     </div>
 
+    <!-- Menú -->
     <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Mision/Index" class="list-group-item list-group-item-soft text-mision">
-                        <i class="fas fa-flag me-2"></i>1. MISIÓN
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Vision/Index" class="list-group-item list-group-item-soft text-vision">
-                        <i class="fas fa-eye me-2"></i>2. VISIÓN
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Valores/Index" class="list-group-item list-group-item-soft text-valores">
-                        <i class="fas fa-star me-2"></i>3. VALORES
-                    </a>
-                </div>
-            </div>
-        </div>
+        @{
+            var menuItems = new[] {
+                new { Url="/InformacionEmpresa/Index", Icon="fa-building", Text="Información de la Empresa", Color="gradient-infoempresa" },
+                new { Url="/Mision/Index", Icon="fa-flag", Text="1. Misión", Color="gradient-mision" },
+                new { Url="/Vision/Index", Icon="fa-eye", Text="2. Visión", Color="gradient-vision" },
+                new { Url="/Valores/Index", Icon="fa-star", Text="3. Valores", Color="gradient-valores" },
+                new { Url="/Objetivos/Index", Icon="fa-bullseye", Text="4. Objetivos", Color="gradient-objetivos" },
+                new { Url="/AnalisisFODA/Index", Icon="fa-search", Text="5. Análisis FODA", Color="gradient-foda" },
+                new { Url="/CadenaValor/Index", Icon="fa-link", Text="6. Cadena de Valor", Color="gradient-cadena" },
+                new { Url="/MatrizParticipacion/Index", Icon="fa-chart-pie", Text="7. Matriz BCG", Color="gradient-bcg" },
+                new { Url="/Porter/Index", Icon="fa-hand-rock", Text="8. Porter", Color="gradient-porter" },
+                new { Url="/PEST/Index", Icon="fa-globe", Text="9. Análisis PEST", Color="gradient-pest" },
+                new { Url="/Estrategia/Index", Icon="fa-chess", Text="10. Estrategias", Color="gradient-estrategia" },
+                new { Url="/CAME/Index", Icon="fa-tasks", Text="11. Matriz CAME", Color="gradient-came" }
+            };
 
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Objetivos/Index" class="list-group-item list-group-item-soft text-objetivos">
-                        <i class="fas fa-bullseye me-2"></i>4. OBJETIVOS
+            foreach (var item in menuItems)
+            {
+                <div class="col-md-4">
+                    <a href="@item.Url" class="text-decoration-none">
+                        <div class="menu-card @item.Color">
+                            <i class="fas @item.Icon menu-icon"></i>
+                            <div class="menu-title">@item.Text</div>
+                        </div>
                     </a>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/AnalisisFODA/Index" class="list-group-item list-group-item-soft text-analisis">
-                        <i class="fas fa-search me-2"></i>5. ANÁLISIS INTERNO Y EXTERNO
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/CadenaValor/Index" class="list-group-item list-group-item-soft text-cadena">
-                        <i class="fas fa-link me-2"></i>6. CADENA DE VALOR
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/MatrizParticipacion/Index" class="list-group-item list-group-item-soft text-matriz">
-                        <i class="fas fa-chart-pie me-2"></i>7. MATRIZ PARTICIPACIÓN
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Porter/Index" class="list-group-item list-group-item-soft text-porter">
-                        <i class="fas fa-hand-rock me-2"></i>8. LAS 5 FUERZAS DE PORTER
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/PEST/Index" class="list-group-item list-group-item-soft text-pest">
-                        <i class="fas fa-globe me-2"></i>9. PEST
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 offset-md-2">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/Estrategia/Index" class="list-group-item list-group-item-soft text-estrategia">
-                        <i class="fas fa-chess me-2"></i>10. IDENTIFICACIÓN ESTRATEGIA
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-soft h-100">
-                <div class="card-body text-center">
-                    <a href="/CAME/Index" class="list-group-item list-group-item-soft text-came">
-                        <i class="fas fa-tasks me-2"></i>11. MATRIZ CAME
-                    </a>
-                </div>
-            </div>
-        </div>
+            }
+        }
     </div>
 
-    <div class="card card-soft mt-5 text-center">
-        <div class="card-header-soft text-primary">RESUMEN DEL PLAN EJECUTIVO</div>
-        <div class="card-body">
-            <a href="/Resumen/Index" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">
-                <i class="fas fa-file-alt me-2"></i>Ver Resumen
-            </a>
-        </div>
+    <!-- Resumen -->
+    <div class="resumen-section">
+        <h3>Resumen Ejecutivo</h3>
+        <p class="text-muted">Revise y descargue el resumen completo de su planeación estratégica.</p>
+        <a href="/Resumen/Index" class="btn btn-resumen mt-3">
+            <i class="fas fa-file-alt me-2"></i>Generar Resumen
+        </a>
     </div>
 </div>

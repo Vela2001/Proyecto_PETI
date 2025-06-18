@@ -5,44 +5,261 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-4">
-    <div class="card p-4 shadow-sm">
-        <h2 class="text-center mb-4 text-white bg-success py-2 rounded">5. ANÁLISIS INTERNO Y EXTERNO (FODA)</h2>
+<style>
+    :root {
+        --fortalezas: #28a745;
+        --debilidades: #dc3545;
+        --oportunidades: #17a2b8;
+        --amenazas: #ffc107;
+        --card-bg: #ffffff;
+        --text-color: #495057;
+    }
 
-        <p>
-            El <strong>Análisis FODA</strong> permite identificar las fortalezas, debilidades, oportunidades y amenazas de la empresa.
-            Es fundamental para definir estrategias realistas basadas en el entorno interno y externo.
-        </p>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', sans-serif;
+    }
 
-        @using (Html.BeginForm("Index", "AnalisisFODA", FormMethod.Post))
-        {
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label class="form-label fw-bold text-success">Fortalezas</label>
-                    @Html.TextAreaFor(m => m.Fortalezas, new { @class = "form-control", rows = 5, placeholder = "¿Cuáles son los principales puntos fuertes de la empresa?" })
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label fw-bold text-danger">Debilidades</label>
-                    @Html.TextAreaFor(m => m.Debilidades, new { @class = "form-control", rows = 5, placeholder = "¿Qué aspectos internos limitan su desempeño?" })
-                </div>
-            </div>
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        border: none;
+        overflow: hidden;
+        background: var(--card-bg);
+    }
 
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <label class="form-label fw-bold text-primary">Oportunidades</label>
-                    @Html.TextAreaFor(m => m.Oportunidades, new { @class = "form-control", rows = 5, placeholder = "¿Qué oportunidades ofrece el entorno externo?" })
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label fw-bold text-warning">Amenazas</label>
-                    @Html.TextAreaFor(m => m.Amenazas, new { @class = "form-control", rows = 5, placeholder = "¿Qué amenazas externas podrían afectar negativamente?" })
-                </div>
-            </div>
+    .card-header {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-align: center;
+        border-bottom: none;
+    }
 
-            <div class="d-flex justify-content-between">
-                <a href="@Url.Action("Index", "Objetivos")" class="btn btn-secondary">🔙 4. OBJETIVOS</a>
-                <button type="submit" class="btn btn-success">💾 GUARDAR</button>
-                <a href="@Url.Action("Index", "CadenaValor")" class="btn btn-primary">6. CADENA DE VALOR 🔜</a>
-            </div>
+    .foda-section {
+        margin-bottom: 2rem;
+    }
+
+    .foda-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .foda-card {
+        border-radius: 10px;
+        padding: 1.5rem;
+        height: 100%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-top: 4px solid;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: white;
+    }
+
+        .foda-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
+
+    .fortalezas-card {
+        border-color: var(--fortalezas);
+    }
+
+    .debilidades-card {
+        border-color: var(--debilidades);
+    }
+
+    .oportunidades-card {
+        border-color: var(--oportunidades);
+    }
+
+    .amenazas-card {
+        border-color: var(--amenazas);
+    }
+
+    .foda-title {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .foda-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        padding: 1rem;
+        font-size: 1rem;
+        transition: all 0.3s;
+        min-height: 150px;
+    }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+    .btn {
+        font-weight: 600;
+        padding: 0.75rem 1.75rem;
+        border-radius: 30px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: none;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+    .btn-success {
+        background: linear-gradient(135deg, #28a745, #20c997);
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #218838, #1aa179);
+            transform: translateY(-2px);
+        }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #007bff, #17a2b8);
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0069d9, #138496);
+            transform: translateY(-2px);
+        }
+
+    .navigation-buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .intro-text {
+        color: var(--text-color);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .foda-example {
+        background-color: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        border-radius: 0 8px 8px 0;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        font-size: 0.95rem;
+    }
+
+    .foda-example-title {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">5. ANÁLISIS FODA</h2>
+        </div>
+        <div style="text-align: center;">
+            <img src="~/Content/img/foda.png" alt="Visión empresarial" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
+        </div>
+
+        <div class="card-body">
+            <p class="intro-text">
+                El <strong>Análisis FODA</strong> es una herramienta estratégica que te permite identificar las <strong>Fortalezas</strong>,
+                <strong>Debilidades</strong>, <strong>Oportunidades</strong> y <strong>Amenazas</strong> de tu empresa.
+                Este análisis es fundamental para desarrollar estrategias efectivas basadas en una comprensión
+                clara de tu entorno interno y externo.
+            </p>
+
+            <div class="foda-example">
+                <div class="foda-example-title">💡 Consejo:</div>
+                <p>
+                    Sé específico y objetivo en cada cuadrante. Prioriza los factores más relevantes para tu negocio
+                    y considera cómo interactúan entre sí (ej: cómo usar fortalezas para aprovechar oportunidades).
+                </p>
+            </div>
+
+            @using (Html.BeginForm("Index", "AnalisisFODA", FormMethod.Post))
+            {
+                <div class="foda-grid">
+                    <!-- Fortalezas -->
+                    <div class="foda-card fortalezas-card">
+                        <div class="foda-title">
+                            <span class="foda-icon">💪</span> Fortalezas
+                        </div>
+                        @Html.TextAreaFor(m => m.Fortalezas, new
+                        {
+                            @class = "form-control",
+                            rows = 7,
+                            placeholder = "Factores internos positivos:\n• Recursos valiosos\n• Habilidades distintivas\n• Ventajas competitivas\n• Aspectos que haces mejor que la competencia"
+                        })
+                    </div>
+
+                    <!-- Debilidades -->
+                    <div class="foda-card debilidades-card">
+                        <div class="foda-title">
+                            <span class="foda-icon">⚠️</span> Debilidades
+                        </div>
+                        @Html.TextAreaFor(m => m.Debilidades, new
+                        {
+                            @class = "form-control",
+                            rows = 7,
+                            placeholder = "Factores internos a mejorar:\n• Falta de recursos clave\n• Áreas con bajo desempeño\n• Limitaciones competitivas\n• Aspectos que necesitas desarrollar"
+                        })
+                    </div>
+
+                    <!-- Oportunidades -->
+                    <div class="foda-card oportunidades-card">
+                        <div class="foda-title">
+                            <span class="foda-icon">🔍</span> Oportunidades
+                        </div>
+                        @Html.TextAreaFor(m => m.Oportunidades, new
+                        {
+                            @class = "form-control",
+                            rows = 7,
+                            placeholder = "Factores externos positivos:\n• Tendencias del mercado\n• Cambios regulatorios favorables\n• Nuevas tecnologías\n• Necesidades no satisfechas"
+                        })
+                    </div>
+
+                    <!-- Amenazas -->
+                    <div class="foda-card amenazas-card">
+                        <div class="foda-title">
+                            <span class="foda-icon">🌪️</span> Amenazas
+                        </div>
+                        @Html.TextAreaFor(m => m.Amenazas, new
+                        {
+                            @class = "form-control",
+                            rows = 7,
+                            placeholder = "Factores externos riesgosos:\n• Competencia creciente\n• Cambios regulatorios adversos\n• Tendencias negativas\n• Factores económicos desfavorables"
+                        })
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <a href="@Url.Action("Index", "Objetivos")" class="btn btn-secondary">← 4. OBJETIVOS</a>
+                    <button type="submit" class="btn btn-success">GUARDAR ANÁLISIS</button>
+                    <a href="@Url.Action("Index", "CadenaValor")" class="btn btn-primary">6. CADENA DE VALOR →</a>
+                </div>
+            }
+        </div>
     </div>
 </div>

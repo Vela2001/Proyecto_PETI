@@ -7,24 +7,25 @@
 
 <style>
     body {
-        background-color: #f3f6f9;
+        background-color: #ffffff;
         font-family: 'Segoe UI', sans-serif;
     }
 
     .card {
         background-color: #ffffff;
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        padding: 2.2rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
     }
 
     h2.text-center {
-        font-weight: 700;
-        color: #1d3557;
-        background: linear-gradient(90deg, #457b9d, #1d3557);
-        color: #fff;
+        font-weight: 800;
+        background: linear-gradient(90deg, #0077b6, #00b4d8);
+        color: white;
         padding: 1rem;
-        border-radius: 8px;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
     }
 
     ul {
@@ -33,18 +34,23 @@
     }
 
     ul li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.6rem;
+        color: #333;
+        font-weight: 500;
     }
 
     .bg-light {
-        background-color: #f1f5f9 !important;
-        border-left: 4px solid #457b9d;
-        border-radius: 10px;
+        background-color: #f1f5f9;
+        border-left: 5px solid #00b4d8;
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .form-label {
-        font-weight: 600;
-        color: #1d3557;
+        font-weight: 700;
+        color: #0077b6;
+        font-size: 1.1rem;
     }
 
     .vision-textarea {
@@ -53,68 +59,87 @@
         font-size: 1rem;
         padding: 1.2rem;
         background-color: #ffffff;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
         resize: vertical;
         width: 100%;
         transition: border-color 0.3s;
     }
 
     .vision-textarea:focus {
-        border-color: #457b9d;
-        box-shadow: 0 0 0 0.1rem rgba(69, 123, 157, 0.25);
-    }
-
-    .text-center img {
-        filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.1));
+        border-color: #00b4d8;
+        box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.25);
     }
 
     .btn {
         font-weight: 600;
-        border-radius: 50px;
-        padding: 0.6rem 1.4rem;
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+        border-radius: 30px;
+        padding: 0.65rem 1.5rem;
+        transition: all 0.25s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
 
     .btn:hover {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        opacity: 0.95;
     }
 
     .d-flex.justify-content-between {
-        margin-top: 2rem;
+        margin-top: 2.5rem;
+    }
+
+    .img-bottom {
+        width: 100%;
+        max-width: 700px;
+        margin: 2.5rem auto 0;
+        display: block;
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .inspirational-quote {
+        font-style: italic;
+        color: #555;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.1rem;
     }
 </style>
 
 <div class="container mt-4">
     <div class="card p-4 shadow-sm">
-        <h2 class="text-center mb-4">2. VISIÓN</h2>
+        <h2 class="text-center">2. VISIÓN</h2>
+
+        <div style="text-align: center;">
+            <img src="~/Content/img/vision.png" alt="Visión empresarial" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
+        </div>
+
 
         <p>
-            La <strong>VISIÓN</strong> de una empresa define lo que la empresa quiere lograr en el futuro.
-            Es lo que la organización aspira ser en torno a 3-5 años.
+            La <strong>VISIÓN</strong> define a dónde quiere llegar tu empresa en los próximos años.
+            Es una guía inspiradora que orienta todas las decisiones estratégicas.
         </p>
 
         <ul>
-            <li>Debe ser retadora, positiva, comprensible y coherente con la misión.</li>
-            <li>Marcada por el mismo propósito de la misión.</li>
-            <li>Motivadora y estimulante para todos los miembros.</li>
+            <li>🔍 Retadora, positiva y coherente con la misión.</li>
+            <li>🎯 Enfocada en el propósito central de la organización.</li>
+            <li>💡 Fuente de motivación y compromiso.</li>
         </ul>
 
         <p>
-            La visión debe ser conocida y compartida por toda la membresía de la empresa y también por aquellos que se relacionan con ella.
+            La visión debe compartirse con todo el equipo y las partes interesadas.
         </p>
 
-        <div class="bg-light p-3 rounded mb-4">
-            <h5><strong>EJEMPLOS</strong></h5>
-            <p><strong>Empresa de servicios:</strong> Ser el grupo empresarial de referencia en nuestro área de actividad.</p>
-            <p><strong>Empresa productora de café:</strong> Queremos ser uno de los referentes en términos de la cultura y la excelencia del café. Una empresa con una oferta de los mejores productos y servicios que se conviertan en la primera elección de los amantes del café de todo el mundo.</p>
-            <p><strong>Agencia de certificación:</strong> Ser líderes en nuestro sector y un actor principal en todos los mercados donde operamos.</p>
+        <div class="bg-light mb-4">
+            <h5><strong>📌 EJEMPLOS DE VISIÓN</strong></h5>
+            <p><strong>Servicios:</strong> Ser el grupo empresarial más confiable y reconocido en nuestro sector.</p>
+            <p><strong>Productora de café:</strong> Convertirnos en líderes mundiales en cultura y excelencia cafetera.</p>
+            <p><strong>Certificadora:</strong> Ser referentes en confianza y excelencia técnica a nivel global.</p>
         </div>
 
         @using (Html.BeginForm("Index", "Vision", FormMethod.Post))
         {
             <div class="mb-3">
-                <label class="form-label fw-bold">En este apartado describa la Visión de su empresa:</label>
+                <label class="form-label">📝 Describe la Visión de tu empresa:</label>
                 @Html.TextAreaFor(m => m.Contenido, new
                 {
                     @class = "form-control vision-textarea",
@@ -124,17 +149,16 @@
                 })
             </div>
 
-            <div class="text-center my-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Target_icon.svg/512px-Target_icon.svg.png" style="width: 80px;" alt="Visión" />
-                <p class="mt-2"><strong>Relación entre Misión, Proceso y Visión</strong></p>
-                <p class="fst-italic">¿Cuál es la situación actual? ¿Qué camino seguir? ¿Cuál es la situación futura?</p>
-            </div>
+            <p class="inspirational-quote">"La visión es el arte de ver lo invisible." – Jonathan Swift</p>
 
             <div class="d-flex justify-content-between">
                 <a href="@Url.Action("Index", "Mision")" class="btn btn-outline-secondary">🔙 1. MISIÓN</a>
-                <button type="submit" class="btn btn-outline-success">💾 Guardar y continuar</button>
-                <a href="@Url.Action("Index", "Valores")" class="btn btn-outline-primary">3. VALORES 🔜</a>
+                <button type="submit" class="btn btn-success">💾 Guardar y continuar</button>
+                <a href="@Url.Action("Index", "Valores")" class="btn btn-primary">3. VALORES 🔜</a>
             </div>
         }
+
+
+
     </div>
 </div>

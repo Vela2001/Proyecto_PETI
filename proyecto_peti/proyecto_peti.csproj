@@ -96,6 +96,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\cadena.png" />
+    <Content Include="Content\img\empresa.jpg" />
+    <Content Include="Content\img\foda.png" />
+    <Content Include="Content\img\matrizbcg.jpg" />
+    <Content Include="Content\img\mision.png" />
+    <Content Include="Content\img\objetivos.jpg" />
+    <Content Include="Content\img\planeacion.jpg" />
+    <Content Include="Content\img\valores.jpg" />
+    <Content Include="Content\img\vision.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Source\css\bootstrap-grid.css" />
