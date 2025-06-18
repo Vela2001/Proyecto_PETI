@@ -97,7 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\cadena.png" />
+    <Content Include="Content\img\CAME.png" />
     <Content Include="Content\img\empresa.jpg" />
+    <Content Include="Content\img\estrategias.jpg" />
     <Content Include="Content\img\foda.png" />
     <Content Include="Content\img\matrizbcg.jpg" />
     <Content Include="Content\img\mision.png" />
@@ -134,7 +136,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalisisFODAController.cs" />
     <Compile Include="Controllers\CadenaValorController.cs" />
+    <Compile Include="Controllers\IdentificacionEstrategiasController.cs" />
     <Compile Include="Controllers\InformacionEmpresaController.cs" />
+    <Compile Include="Controllers\MatrizCAMEController.cs" />
     <Compile Include="Controllers\MatrizParticipacionController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MisionController.cs" />
@@ -189,6 +193,9 @@
     <Content Include="Views\Porter\Index.cshtml" />
     <Content Include="Views\MatrizParticipacion\Index.cshtml" />
     <Content Include="Views\MatrizParticipacion\AutoDiagnosticoBCG.cshtml" />
+    <Content Include="Views\IdentificacionEstrategias\Index.cshtml" />
+    <Content Include="Views\MatrizCAME\Index.cshtml" />
+    <Content Include="Views\Porter\AutodiagnosticoPorter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

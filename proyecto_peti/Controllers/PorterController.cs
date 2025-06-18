@@ -51,5 +51,9 @@ namespace proyecto_peti.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "PEST");
         }
+        public ActionResult AutodiagnosticoPorter()
+        {
+            return View();
+        }
     }
 }
