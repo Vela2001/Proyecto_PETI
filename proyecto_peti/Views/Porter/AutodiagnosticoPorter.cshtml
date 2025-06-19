@@ -1,4 +1,4 @@
-﻿
+﻿@model proyecto_peti.ViewModel.PerfilCompetitivoViewModel
 @{
     ViewBag.Title = "AutodiagnosticoPorter";
 }
@@ -229,7 +229,7 @@
                 A continuación marque con una X en las casillas que estime conveniente según el estado actual de su empresa. Valore su perfil competitivo en la escala Hostil-Favorable. Al finalizar lea la conclusión, para su caso particular, relativa al análisis del entorno próximo.
             </p>
         </div>
-        <form id="perfilCompetitivoForm" action="#" method="post">
+        <form id="perfilCompetitivoForm" action="@Url.Action("GuardarPerfilCompetitivo", "Porter")" method="post">
             <div class="main-container">
 
                 <table class="profile-table">
@@ -250,135 +250,155 @@
                             <th class="section-title-cell" rowspan="6">Rivalidad empresas del sector</th>
                             <th class="criterion-cell">- Crecimiento</th>
                             <td class="hostile-label-cell">Lento</td>
-                            <td class="selectable-cell"><input type="radio" id="r1c1" name="rivalidad_crecimiento" value="1"><label for="r1c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r1c2" name="rivalidad_crecimiento" value="2"><label for="r1c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r1c3" name="rivalidad_crecimiento" value="3"><label for="r1c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r1c4" name="rivalidad_crecimiento" value="4"><label for="r1c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r1c5" name="rivalidad_crecimiento" value="5"><label for="r1c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r1c6" name="rivalidad_crecimiento" value="6"><label for="r1c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio"
+                                           id=@($"r1c"+i)
+                                           name="rivalidad_crecimiento"
+                                           value="@i"
+                                           @(Model.rivalidad_crecimiento == i ? "checked" : "") />
+                                    <label for=@($"r1c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Rápido</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Naturaleza de los competidores</th>
                             <td class="hostile-label-cell">Muchos</td>
-                            <td class="selectable-cell"><input type="radio" id="r2c1" name="rivalidad_naturaleza" value="1"><label for="r2c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r2c2" name="rivalidad_naturaleza" value="2"><label for="r2c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r2c3" name="rivalidad_naturaleza" value="3"><label for="r2c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r2c4" name="rivalidad_naturaleza" value="4"><label for="r2c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r2c5" name="rivalidad_naturaleza" value="5"><label for="r2c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r2c6" name="rivalidad_naturaleza" value="6"><label for="r2c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio"
+                                           id=@($"r2c"+i)
+                                           name="rivalidad_naturaleza"
+                                           value="@i"
+                                           @if (Model.rivalidad_naturaleza == i) { <text>checked="checked"</text>; } />
+                                    <label for=@($"r2c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Pocos</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Exceso de capacidad productiva</th>
-                            <td class="hostile-label-cell">Si</td>
-                            <td class="selectable-cell"><input type="radio" id="r3c1" name="rivalidad_exceso_capacidad" value="1"><label for="r3c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r3c2" name="rivalidad_exceso_capacidad" value="2"><label for="r3c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r3c3" name="rivalidad_exceso_capacidad" value="3"><label for="r3c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r3c4" name="rivalidad_exceso_capacidad" value="4"><label for="r3c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r3c5" name="rivalidad_exceso_capacidad" value="5"><label for="r3c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r3c6" name="rivalidad_exceso_capacidad" value="6"><label for="r3c6"></label></td>
+                            <td class="hostile-label-cell">Sí</td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"r3c"+i) name="rivalidad_exceso_capacidad" value="@i" @(Model.rivalidad_exceso_capacidad == i ? "checked" : "") />
+                                    <label for=@($"r3c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">No</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Rentabilidad media del sector</th>
                             <td class="hostile-label-cell">Baja</td>
-                            <td class="selectable-cell"><input type="radio" id="r4c1" name="rivalidad_rentabilidad" value="1"><label for="r4c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r4c2" name="rivalidad_rentabilidad" value="2"><label for="r4c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r4c3" name="rivalidad_rentabilidad" value="3"><label for="r4c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r4c4" name="rivalidad_rentabilidad" value="4"><label for="r4c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r4c5" name="rivalidad_rentabilidad" value="5"><label for="r4c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r4c6" name="rivalidad_rentabilidad" value="6"><label for="r4c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"r4c"+i) name="rivalidad_rentabilidad" value="@i" @(Model.rivalidad_rentabilidad == i ? "checked" : "") />
+                                    <label for=@($"r4c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Alta</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Diferenciación del producto</th>
                             <td class="hostile-label-cell">Escasa</td>
-                            <td class="selectable-cell"><input type="radio" id="r5c1" name="rivalidad_diferenciacion" value="1"><label for="r5c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r5c2" name="rivalidad_diferenciacion" value="2"><label for="r5c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r5c3" name="rivalidad_diferenciacion" value="3"><label for="r5c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r5c4" name="rivalidad_diferenciacion" value="4"><label for="r5c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r5c5" name="rivalidad_diferenciacion" value="5"><label for="r5c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r5c6" name="rivalidad_diferenciacion" value="6"><label for="r5c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id="@($"r5c"+i)" name="rivalidad_diferenciacion" value="@i" @(Model.rivalidad_diferenciacion == i ? "checked" : "") />
+                                    <label for="@($"r5c"+i)"></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Elevada</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Barreras de salida</th>
                             <td class="hostile-label-cell">Bajas</td>
-                            <td class="selectable-cell"><input type="radio" id="r6c1" name="rivalidad_barreras_salida" value="1"><label for="r6c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r6c2" name="rivalidad_barreras_salida" value="2"><label for="r6c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r6c3" name="rivalidad_barreras_salida" value="3"><label for="r6c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r6c4" name="rivalidad_barreras_salida" value="4"><label for="r6c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r6c5" name="rivalidad_barreras_salida" value="5"><label for="r6c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="r6c6" name="rivalidad_barreras_salida" value="6"><label for="r6c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"r6c"+i) name="rivalidad_barreras_salida" value="@i" @(Model.rivalidad_barreras_salida == i ? "checked" : "") />
+                                    <label for=@($"r6c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Altas</td>
                         </tr>
-
                         <tr>
                             <th class="section-title-cell" rowspan="6">Barreras de Entrada</th>
                             <th class="criterion-cell">- Economías de escala</th>
                             <td class="hostile-label-cell">No</td>
-                            <td class="selectable-cell"><input type="radio" id="b1c1" name="barreras_escala" value="1"><label for="b1c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b1c2" name="barreras_escala" value="2"><label for="b1c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b1c3" name="barreras_escala" value="3"><label for="b1c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b1c4" name="barreras_escala" value="4"><label for="b1c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b1c5" name="barreras_escala" value="5"><label for="b1c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b1c6" name="barreras_escala" value="6"><label for="b1c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b1c"+i) name="barreras_escala" value="@i" @(Model.barreras_escala == i ? "checked" : "") />
+                                    <label for=@($"b1c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Sí</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Necesidad de capital</th>
                             <td class="hostile-label-cell">Bajas</td>
-                            <td class="selectable-cell"><input type="radio" id="b2c1" name="barreras_capital" value="1"><label for="b2c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b2c2" name="barreras_capital" value="2"><label for="b2c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b2c3" name="barreras_capital" value="3"><label for="b2c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b2c4" name="barreras_capital" value="4"><label for="b2c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b2c5" name="barreras_capital" value="5"><label for="b2c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b2c6" name="barreras_capital" value="6"><label for="b2c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b2c"+i) name="barreras_capital" value="@i" @(Model.barreras_capital == i ? "checked" : "") />
+                                    <label for=@($"b2c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Altas</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Acceso a la tecnología</th>
                             <td class="hostile-label-cell">Fácil</td>
-                            <td class="selectable-cell"><input type="radio" id="b3c1" name="barreras_tecnologia" value="1"><label for="b3c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b3c2" name="barreras_tecnologia" value="2"><label for="b3c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b3c3" name="barreras_tecnologia" value="3"><label for="b3c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b3c4" name="barreras_tecnologia" value="4"><label for="b3c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b3c5" name="barreras_tecnologia" value="5"><label for="b3c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b3c6" name="barreras_tecnologia" value="6"><label for="b3c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b3c"+i) name="barreras_tecnologia" value="@i" @(Model.barreras_tecnologia == i ? "checked" : "") />
+                                    <label for=@($"b3c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Difícil</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Reglamentos o leyes limitativos</th>
                             <td class="hostile-label-cell">No</td>
-                            <td class="selectable-cell"><input type="radio" id="b4c1" name="barreras_leyes" value="1"><label for="b4c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b4c2" name="barreras_leyes" value="2"><label for="b4c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b4c3" name="barreras_leyes" value="3"><label for="b4c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b4c4" name="barreras_leyes" value="4"><label for="b4c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b4c5" name="barreras_leyes" value="5"><label for="b4c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b4c6" name="barreras_leyes" value="6"><label for="b4c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b4c"+i) name="barreras_leyes" value="@i" @(Model.barreras_leyes == i ? "checked" : "") />
+                                    <label for=@($"b4c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Sí</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Trámites burocráticos</th>
                             <td class="hostile-label-cell">No</td>
-                            <td class="selectable-cell"><input type="radio" id="b5c1" name="barreras_tramites" value="1"><label for="b5c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b5c2" name="barreras_tramites" value="2"><label for="b5c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b5c3" name="barreras_tramites" value="3"><label for="b5c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b5c4" name="barreras_tramites" value="4"><label for="b5c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b5c5" name="barreras_tramites" value="5"><label for="b5c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b5c6" name="barreras_tramites" value="6"><label for="b5c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b5c"+i) name="barreras_tramites" value="@i" @(Model.barreras_tramites == i ? "checked" : "") />
+                                    <label for=@($"b5c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Sí</td>
                         </tr>
+
                         <tr>
                             <th class="criterion-cell">- Reacción esperada actuales competidores</th>
                             <td class="hostile-label-cell">Escasa</td>
-                            <td class="selectable-cell"><input type="radio" id="b6c1" name="barreras_reaccion" value="1"><label for="b6c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b6c2" name="barreras_reaccion" value="2"><label for="b6c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b6c3" name="barreras_reaccion" value="3"><label for="b6c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b6c4" name="barreras_reaccion" value="4"><label for="b6c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b6c5" name="barreras_reaccion" value="5"><label for="b6c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="b6c6" name="barreras_reaccion" value="6"><label for="b6c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"b6c"+i) name="barreras_reaccion" value="@i" @(Model.barreras_reaccion == i ? "checked" : "") />
+                                    <label for=@($"b6c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Enérgica</td>
                         </tr>
 
@@ -386,45 +406,49 @@
                             <th class="section-title-cell" rowspan="4">Poder de los Clientes</th>
                             <th class="criterion-cell">- Número de clientes</th>
                             <td class="hostile-label-cell">Pocos</td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c1" name="clientes_numero" value="1"><label for="pc1c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c2" name="clientes_numero" value="2"><label for="pc1c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c3" name="clientes_numero" value="3"><label for="pc1c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c4" name="clientes_numero" value="4"><label for="pc1c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c5" name="clientes_numero" value="5"><label for="pc1c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc1c6" name="clientes_numero" value="6"><label for="pc1c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id="@($"pc1c"+i)" name="clientes_numero" value="@i" @(Model.clientes_numero == i ? "checked" : "") />
+                                    <label for="@($"pc1c"+i)"></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Muchos</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Posibilidad de integración ascendente</th>
                             <td class="hostile-label-cell">Pequeña</td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c1" name="clientes_integracion" value="1"><label for="pc2c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c2" name="clientes_integracion" value="2"><label for="pc2c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c3" name="clientes_integracion" value="3"><label for="pc2c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c4" name="clientes_integracion" value="4"><label for="pc2c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c5" name="clientes_integracion" value="5"><label for="pc2c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc2c6" name="clientes_integracion" value="6"><label for="pc2c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id="@($"pc2c"+i)" name="clientes_integracion" value="@i" @(Model.clientes_integracion == i ? "checked" : "") />
+                                    <label for="@($"pc2c"+i)"></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Grande</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Rentabilidad de los clientes</th>
                             <td class="hostile-label-cell">Baja</td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c1" name="clientes_rentabilidad" value="1"><label for="pc3c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c2" name="clientes_rentabilidad" value="2"><label for="pc3c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c3" name="clientes_rentabilidad" value="3"><label for="pc3c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c4" name="clientes_rentabilidad" value="4"><label for="pc3c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c5" name="clientes_rentabilidad" value="5"><label for="pc3c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc3c6" name="clientes_rentabilidad" value="6"><label for="pc3c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id="@($"pc3c"+i)" name="clientes_rentabilidad" value="@i" @(Model.clientes_rentabilidad == i ? "checked" : "") />
+                                    <label for="@($"pc3c"+i)"></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Alta</td>
                         </tr>
                         <tr>
                             <th class="criterion-cell">- Coste de cambio de proveedor para cliente</th>
                             <td class="hostile-label-cell">Bajo</td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c1" name="clientes_coste_cambio" value="1"><label for="pc4c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c2" name="clientes_coste_cambio" value="2"><label for="pc4c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c3" name="clientes_coste_cambio" value="3"><label for="pc4c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c4" name="clientes_coste_cambio" value="4"><label for="pc4c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c5" name="clientes_coste_cambio" value="5"><label for="pc4c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="pc4c6" name="clientes_coste_cambio" value="6"><label for="pc4c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id="@($"pc4c"+i)" name="clientes_coste_cambio" value="@i" @(Model.clientes_coste_cambio == i ? "checked" : "") />
+                                    <label for="@($"pc4c"+i)"></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Alto</td>
                         </tr>
 
@@ -432,12 +456,13 @@
                             <th class="section-title-cell" rowspan="1">Productos sustitutivos</th>
                             <th class="criterion-cell">- Disponibilidad de Productos Sustitutivos</th>
                             <td class="hostile-label-cell">Grande</td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c1" name="sustitutos_disponibilidad" value="1"><label for="ps1c1"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c2" name="sustitutos_disponibilidad" value="2"><label for="ps1c2"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c3" name="sustitutos_disponibilidad" value="3"><label for="ps1c3"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c4" name="sustitutos_disponibilidad" value="4"><label for="ps1c4"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c5" name="sustitutos_disponibilidad" value="5"><label for="ps1c5"></label></td>
-                            <td class="selectable-cell"><input type="radio" id="ps1c6" name="sustitutos_disponibilidad" value="6"><label for="ps1c6"></label></td>
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                <td class="selectable-cell">
+                                    <input type="radio" id=@($"ps1c"+i) name="sustitutos_disponibilidad" value="@i" @(Model.sustitutos_disponibilidad == i ? "checked" : "") />
+                                    <label for=@($"ps1c"+i)></label>
+                                </td>
+                            }
                             <td class="favorable-label-cell">Pequeña</td>
                         </tr>
 
@@ -472,11 +497,11 @@
                     <tbody>
                         <tr>
                             <td class="label-cell">O1:</td>
-                            <td><input type="text" name="oportunidad1" class="form-control border-0"></td>
+                            <td><input type="text" name="oportunidad1" class="form-control border-0" value="@Model.oportunidad1" /></td>
                         </tr>
                         <tr>
                             <td class="label-cell">O2:</td>
-                            <td><input type="text" name="oportunidad2" class="form-control border-0"></td>
+                            <td><input type="text" name="oportunidad2" class="form-control border-0" value="@Model.oportunidad2" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -490,15 +515,25 @@
                     <tbody>
                         <tr>
                             <td class="label-cell">A1:</td>
-                            <td><input type="text" name="amenaza1" class="form-control border-0"></td>
+                            <td><input type="text" name="amenaza1" class="form-control border-0" value="@Model.amenaza1" /></td>
                         </tr>
                         <tr>
                             <td class="label-cell">A2:</td>
-                            <td><input type="text" name="amenaza2" class="form-control border-0"></td>
+                            <td><input type="text" name="amenaza2" class="form-control border-0" value="@Model.amenaza2" /></td>
                         </tr>
                     </tbody>
                 </table>
+
+
+
             </div>
+
+            <div class="text-end mt-3">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Guardar Perfil Competitivo
+                </button>
+            </div>
+
 
             <div class="d-flex justify-content-between mt-4">
                 <a href="#" class="btn btn-nav-porter">
@@ -508,6 +543,8 @@
                     9. PEST <i class="fas fa-chevron-circle-right"></i>
                 </a>
             </div>
+
+
         </form>
     </div>
 

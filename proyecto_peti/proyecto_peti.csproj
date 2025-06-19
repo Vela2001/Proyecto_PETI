@@ -97,9 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\cadena.png" />
-    <Content Include="Content\img\CAME.png" />
     <Content Include="Content\img\empresa.jpg" />
-    <Content Include="Content\img\estrategias.jpg" />
     <Content Include="Content\img\foda.png" />
     <Content Include="Content\img\matrizbcg.jpg" />
     <Content Include="Content\img\mision.png" />
@@ -149,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlmacenFODA.cs" />
     <Compile Include="Models\AnalisisFODA.cs" />
     <Compile Include="Models\AnalisisPEST.cs" />
     <Compile Include="Models\BCG_PRM.cs" />
@@ -168,12 +167,15 @@
     <Compile Include="Models\ObjetivosEspecificos.cs" />
     <Compile Include="Models\ObjetivosEstrategicos.cs" />
     <Compile Include="Models\PlanEstrategico.cs" />
+    <Compile Include="Models\Porter_PerfilCompetitivo.cs" />
     <Compile Include="Models\ResumenEjecutivo.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\Valores.cs" />
     <Compile Include="Models\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BCGMatrizViewModel.cs" />
+    <Compile Include="ViewModel\MatrizFODAViewModel.cs" />
+    <Compile Include="ViewModel\PerfilCompetitivoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

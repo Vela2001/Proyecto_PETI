@@ -1,174 +1,93 @@
-﻿@{
-    ViewBag.Title = "Matriz CAME";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model proyecto_peti.Models.MatrizCAME
 
-<style>
-    body {
-        background: linear-gradient(to right, #e3f2fd, #fce4ec);
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11. Matriz CAME (Visualización)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-    .card-came {
-        background-color: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        padding: 2rem;
-        margin-top: 2rem;
-    }
-
-    .title-came {
-        background: linear-gradient(to right, #3f51b5, #2196f3);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 15px;
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 700;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-        margin-bottom: 2rem;
-    }
-
-    .description {
-        text-align: center;
-        font-size: 1.1rem;
-        color: #333;
-        margin-bottom: 1rem;
-    }
-
-    .highlight {
-        background-color: #f5f5f5;
-        padding: 1rem;
-        border-left: 5px solid #3f51b5;
-        border-radius: 10px;
-        font-size: 1rem;
-        margin: 1.5rem 0;
-        text-align: center;
-    }
-
-    .came-table thead {
-        background-color: #e3f2fd;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .came-table td, .came-table th {
-        vertical-align: middle !important;
-    }
-
-    .came-section {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        text-align: center;
-    }
-
-    .section-c { background-color: #42a5f5; }
-    .section-a { background-color: #ef5350; }
-    .section-m { background-color: #66bb6a; }
-    .section-e { background-color: #ab47bc; }
-
-    textarea.form-control {
-        resize: none;
-        border-radius: 10px;
-        transition: 0.3s;
-    }
-
-    textarea.form-control:focus {
-        box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
-        border-color: #3f51b5;
-    }
-
-    .btn-came {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 30px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .btn-came:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
-    }
-
-    .btn-save { background-color: #4caf50; color: white; border: none; }
-    .btn-prev { background-color: #9e9e9e; color: white; border: none; }
-    .btn-next { background-color: #3f51b5; color: white; border: none; }
-
-    .media (max-width: 768px) {
-        .d-flex.justify-content-between {
-            flex-direction: column;
-            gap: 1rem;
-        }
-    }
-</style>
-
-<div class="container">
-    <div class="card-came">
-        <div class="title-came">11. MATRIZ CAME</div>
-
-        <p class="description">
-            Para ejecutar con éxito la estrategia, identifique acciones específicas para:
-            <strong>Corregir debilidades</strong>, <strong>Afrontar amenazas</strong>,
-            <strong>Mantener fortalezas</strong> y <strong>Explotar oportunidades</strong>.
+    <div class="container mt-4">
+        <h2 class="text-center text-primary">11. MATRIZ CAME</h2>
+        <p class="text-center">
+            A continuación y para finalizar de elaborar un Plan Estratégico, además de tener identificada la estrategia,
+            es necesario determinar acciones que permitan corregir las debilidades, afrontar las amenazas,
+            mantener las fortalezas y explotar las oportunidades.
         </p>
-        <div style="text-align: center;">
-            <img src="~/Content/img/CAME.png" alt="Matriz came" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
+        <div class="alert alert-secondary text-center">
+            <strong>Reflexione y anote acciones a llevar a cabo</strong> teniendo en cuenta que estas acciones deben favorecer
+            la ejecución exitosa de la estrategia general identificada.
         </div>
 
-        <div class="highlight">
-            💡 <strong>Recomendación:</strong> Sea concreto. Estas acciones deben tener impacto directo en la implementación estratégica.
-        </div>
+        <form id="perfilCompetitivoForm" action="@Url.Action("GuardarMatrizCAME", "MatrizCAME")" method="post">
+            @Html.HiddenFor(m => m.PlanId)
 
-        <form method="post">
-            <div class="table-responsive">
-                <table class="table table-bordered came-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 8%">Tipo</th>
-                            <th style="width: 8%">#</th>
-                            <th>Acción Estratégica</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- C -->
-                        <tr class="section-c"><td rowspan="4" class="came-section">C</td><td>1</td><td><textarea name="Corregir1" class="form-control"></textarea></td></tr>
-                        <tr><td>2</td><td><textarea name="Corregir2" class="form-control"></textarea></td></tr>
-                        <tr><td>3</td><td><textarea name="Corregir3" class="form-control"></textarea></td></tr>
-                        <tr><td>4</td><td><textarea name="Corregir4" class="form-control"></textarea></td></tr>
+            <table class="table table-bordered text-center">
+                <thead class="table-info">
+                    <tr>
+                        <th style="width: 5%">&nbsp;</th>
+                        <th style="width: 10%">Acciones</th>
+                        <th style="width: 85%">Estrategia</th>
+                    </tr>
+                </thead>
+                tbody>
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">C</td>
+                    <td>1</td>
+                    <td>@Html.TextAreaFor(m => m.Corregir1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>@Html.TextAreaFor(m => m.Corregir2, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>@Html.TextAreaFor(m => m.Corregir3, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>@Html.TextAreaFor(m => m.Corregir4, new { @class = "form-control", rows = 1 })</td>
+                </tr>
 
-                        <!-- A -->
-                        <tr class="section-a"><td rowspan="4" class="came-section">A</td><td>5</td><td><textarea name="Afrontar1" class="form-control"></textarea></td></tr>
-                        <tr><td>6</td><td><textarea name="Afrontar2" class="form-control"></textarea></td></tr>
-                        <tr><td>7</td><td><textarea name="Afrontar3" class="form-control"></textarea></td></tr>
-                        <tr><td>8</td><td><textarea name="Afrontar4" class="form-control"></textarea></td></tr>
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">A</td>
+                    <td>5</td>
+                    <td>@Html.TextAreaFor(m => m.Afrontar1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>6</td><td>@Html.TextAreaFor(m => m.Afrontar2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>7</td><td>@Html.TextAreaFor(m => m.Afrontar3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>8</td><td>@Html.TextAreaFor(m => m.Afrontar4, new { @class = "form-control", rows = 1 })</td></tr>
 
-                        <!-- M -->
-                        <tr class="section-m"><td rowspan="4" class="came-section">M</td><td>9</td><td><textarea name="Mantener1" class="form-control"></textarea></td></tr>
-                        <tr><td>10</td><td><textarea name="Mantener2" class="form-control"></textarea></td></tr>
-                        <tr><td>11</td><td><textarea name="Mantener3" class="form-control"></textarea></td></tr>
-                        <tr><td>12</td><td><textarea name="Mantener4" class="form-control"></textarea></td></tr>
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">M</td>
+                    <td>9</td>
+                    <td>@Html.TextAreaFor(m => m.Mantener1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>10</td><td>@Html.TextAreaFor(m => m.Mantener2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>11</td><td>@Html.TextAreaFor(m => m.Mantener3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>12</td><td>@Html.TextAreaFor(m => m.Mantener4, new { @class = "form-control", rows = 1 })</td></tr>
 
-                        <!-- E -->
-                        <tr class="section-e"><td rowspan="4" class="came-section">E</td><td>13</td><td><textarea name="Explotar1" class="form-control"></textarea></td></tr>
-                        <tr><td>14</td><td><textarea name="Explotar2" class="form-control"></textarea></td></tr>
-                        <tr><td>15</td><td><textarea name="Explotar3" class="form-control"></textarea></td></tr>
-                        <tr><td>16</td><td><textarea name="Explotar4" class="form-control"></textarea></td></tr>
-                    </tbody>
-                </table>
-            </div>
+                <tr class="table-primary">
+                    <td rowspan="4" class="align-middle fw-bold">E</td>
+                    <td>13</td>
+                    <td>@Html.TextAreaFor(m => m.Explotar1, new { @class = "form-control", rows = 1 })</td>
+                </tr>
+                <tr><td>14</td><td>@Html.TextAreaFor(m => m.Explotar2, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>15</td><td>@Html.TextAreaFor(m => m.Explotar3, new { @class = "form-control", rows = 1 })</td></tr>
+                <tr><td>16</td><td>@Html.TextAreaFor(m => m.Explotar4, new { @class = "form-control", rows = 1 })</td></tr>
+                </tbody>
+            </table>
 
             <div class="d-flex justify-content-between mt-4">
-                <a href="@Url.Action("Index", "IdentificacionEstrategias")" class="btn-came btn-prev">
-                    🔙 IDENTIFICACIÓN DE ESTRATEGIAS
-                </a>
-                <button type="submit" class="btn-came btn-save">
-                    💾 GUARDAR MATRIZ CAME
-                </button>
-                <a href="@Url.Action("Index", "Resumen")" class="btn-came btn-next">
-                    RESUMEN EJECUTIVO 🔜
-                </a>
+                <a href="#" class="btn btn-secondary">🔙 10. IDENTIFICACIÓN DE ESTRATEGIAS</a>
+                <button type="submit" class="btn btn-success">💾 GUARDAR MATRIZ CAME</button>
+                <a href="#" class="btn btn-primary">RESUMEN ESTRATÉGICO 🔜</a>
             </div>
         </form>
     </div>
-</div>
+
+</body>
+</html>

@@ -35,9 +35,8 @@ namespace proyecto_peti.Models
         public virtual DbSet<BCG_DemandaGlobal> BCG_DemandaGlobal { get; set; }
         public virtual DbSet<BCG_PRM> BCG_PRM { get; set; }
         public virtual DbSet<BCG_FODA> BCG_FODA { get; set; }
-
-
-
+        public virtual DbSet<Porter_PerfilCompetitivo> Porter_PerfilCompetitivo { get; set; }
+        public virtual DbSet<AlmacenFODA> AlmacenFODA { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

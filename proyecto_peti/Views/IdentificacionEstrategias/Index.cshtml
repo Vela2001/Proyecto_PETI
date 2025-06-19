@@ -1,636 +1,306 @@
-﻿<!DOCTYPE html>
+﻿@model proyecto_peti.ViewModel.MatrizFODAViewModel
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10. Identificación de Estrategias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --accent-color: #7209b7;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .page-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-strategy {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            font-weight: 600;
-            border-radius: 10px 10px 0 0 !important;
-        }
-
-        .matrix-table {
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-            .matrix-table th {
-                background-color: #f8f9fa;
-                font-weight: 600;
-                text-align: center;
-                padding: 1rem;
-            }
-
-            .matrix-table td {
-                padding: 0.75rem;
-                vertical-align: middle;
-                background-color: white;
-                text-align: center;
-            }
-
-        .matrix-input {
-            width: 70px;
-            margin: 0 auto;
-            text-align: center;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            padding: 0.5rem;
-        }
-
-            .matrix-input:focus {
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
-            }
-
-        .total-row {
-            background-color: #fff3cd !important;
-            font-weight: 600;
-        }
-
-        .strategy-card {
-            border-left: 4px solid var(--primary-color);
-            height: 100%;
-        }
-
-        .strategy-FO {
-            border-left-color: var(--success-color);
-        }
-
-        .strategy-FA {
-            border-left-color: var(--info-color);
-        }
-
-        .strategy-DO {
-            border-left-color: var(--warning-color);
-        }
-
-        .strategy-DA {
-            border-left-color: var(--danger-color);
-        }
-
-        .factor-box {
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .factor-label {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-        }
-
-            .factor-label i {
-                margin-right: 0.5rem;
-            }
-
-        .btn-strategy {
-            font-weight: 600;
-            padding: 0.75rem 1.75rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .btn-strategy i {
-                margin-right: 0.5rem;
-            }
-
-        .btn-prev {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        .btn-next {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-        }
-
-        .btn-save {
-            background: linear-gradient(135deg, var(--success-color), #20c997);
-            color: white;
-        }
-
-        .highlight-box {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin: 1.25rem 0;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-        }
-
-        .result-badge {
-            font-size: 0.9rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 50rem;
-            font-weight: 600;
-        }
-
-        .badge-FO {
-            background-color: rgba(40, 167, 69, 0.15);
-            color: var(--success-color);
-        }
-
-        .badge-FA {
-            background-color: rgba(23, 162, 184, 0.15);
-            color: var(--info-color);
-        }
-
-        .badge-DO {
-            background-color: rgba(255, 193, 7, 0.15);
-            color: #d39e00;
-        }
-
-        .badge-DA {
-            background-color: rgba(220, 53, 69, 0.15);
-            color: var(--danger-color);
-        }
-
-        .total-display {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-    </style>
 </head>
 <body>
-    <!-- Encabezado -->
-    <header class="page-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <h1 class="mb-3"><i class="fas fa-chess-knight me-2"></i>Identificación de Estrategias</h1>
-                    <p class="lead mb-0">Defina las estrategias empresariales basadas en el análisis FODA</p>
+
+    <div class="container mt-4">
+        <h2 class="text-center text-primary">10. IDENTIFICACIÓN DE ESTRATEGIAS</h2>
+
+        <p>
+            Tras el análisis realizado habiendo identificado las oportunidades, amenazas, fortalezas y debilidades,
+            es el momento de identificar la estrategia que deberá adoptar una empresa para el logro de sus objetivos empresariales.
+        </p>
+
+        <form id="perfilCompetitivoForm" action="@Url.Action("GuardarMatrizFODA", "IdentificacionEstrategias")" method="post">
+            @Html.HiddenFor(m => m.Id)
+            <h5 class="mt-4">Factores Internos y Externos</h5>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Fortalezas</label>
+                    @Html.TextAreaFor(m => m.ListaFortalezas, new { @class = "form-control", rows = 3 })
+                </div>
+                <div class="col-md-6">
+                    <label>Debilidades</label>
+                    @Html.TextAreaFor(m => m.ListaDebilidades, new { @class = "form-control", rows = 3 })
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label>Oportunidades</label>
+                    @Html.TextAreaFor(m => m.ListaOportunidades, new { @class = "form-control", rows = 3 })
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label>Amenazas</label>
+                    @Html.TextAreaFor(m => m.ListaAmenazas, new { @class = "form-control", rows = 3 })
                 </div>
             </div>
 
-        </div>
-    </header>
-    <div style="text-align: center;">
-        <img src="~/Content/img/estrategias.jpg" alt="Visión empresarial" style="width: 100%; max-width: 700px; border-radius: 12px; margin-top: 2rem;" />
-    </div></br>
+            <h5 class="mt-5">Matriz FO (Fortalezas - Oportunidades)</h5>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>O1</th>
+                        <th>O2</th>
+                        <th>O3</th>
+                        <th>O4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>F1</th>
+                        <td><input type="number" name="FO_F1_O1" class="form-control fo-cell" data-col="1" value="@(Model.FO.ContainsKey("FO_F1_O1") ? Model.FO["FO_F1_O1"] : 0)" /></td>
+                        <td><input type="number" name="FO_F1_O2" class="form-control fo-cell" data-col="2" value="@(Model.FO.ContainsKey("FO_F1_O2") ? Model.FO["FO_F1_O2"] : 0)" /></td>
+                        <td><input type="number" name="FO_F1_O3" class="form-control fo-cell" data-col="3" value="@(Model.FO.ContainsKey("FO_F1_O3") ? Model.FO["FO_F1_O3"] : 0)" /></td>
+                        <td><input type="number" name="FO_F1_O4" class="form-control fo-cell" data-col="4" value="@(Model.FO.ContainsKey("FO_F1_O4") ? Model.FO["FO_F1_O4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>F2</th>
+                        <td><input type="number" name="FO_F2_O1" class="form-control fo-cell" data-col="1" value="@(Model.FO.ContainsKey("FO_F2_O1") ? Model.FO["FO_F2_O1"] : 0)" /></td>
+                        <td><input type="number" name="FO_F2_O2" class="form-control fo-cell" data-col="2" value="@(Model.FO.ContainsKey("FO_F2_O2") ? Model.FO["FO_F2_O2"] : 0)" /></td>
+                        <td><input type="number" name="FO_F2_O3" class="form-control fo-cell" data-col="3" value="@(Model.FO.ContainsKey("FO_F2_O3") ? Model.FO["FO_F2_O3"] : 0)" /></td>
+                        <td><input type="number" name="FO_F2_O4" class="form-control fo-cell" data-col="4" value="@(Model.FO.ContainsKey("FO_F2_O4") ? Model.FO["FO_F2_O4"] : 0)" /></td>
+                    </tr>
 
-    <div class="container mb-5">
-        <!-- Tarjeta de introducción -->
-        <div class="card card-strategy mb-4">
-            <div class="card-body">
-                <div class="highlight-box">
-                    <h5><i class="fas fa-lightbulb text-warning me-2"></i>Instrucciones</h5>
-                    <p class="mb-0">
-                        Complete las matrices estratégicas basadas en su análisis FODA. La puntuación mayor le indicará
-                        la estrategia principal que deberá implementar su empresa para alcanzar sus objetivos.
-                    </p>
-                </div>
-            </div>
-        </div>
+                    <tr>
+                        <th>F3</th>
+                        <td><input type="number" name="FO_F3_O1" class="form-control fo-cell" data-col="1" value="@(Model.FO.ContainsKey("FO_F3_O1") ? Model.FO["FO_F3_O1"] : 0)" /></td>
+                        <td><input type="number" name="FO_F3_O2" class="form-control fo-cell" data-col="2" value="@(Model.FO.ContainsKey("FO_F3_O2") ? Model.FO["FO_F3_O2"] : 0)" /></td>
+                        <td><input type="number" name="FO_F3_O3" class="form-control fo-cell" data-col="3" value="@(Model.FO.ContainsKey("FO_F3_O3") ? Model.FO["FO_F3_O3"] : 0)" /></td>
+                        <td><input type="number" name="FO_F3_O4" class="form-control fo-cell" data-col="4" value="@(Model.FO.ContainsKey("FO_F3_O4") ? Model.FO["FO_F3_O4"] : 0)" /></td>
+                    </tr>
 
-        <form action="#" method="post">
-            <input type="hidden" name="Id" id="Id" value="">
+                    <tr>
+                        <th>F4</th>
+                        <td><input type="number" name="FO_F4_O1" class="form-control fo-cell" data-col="1" value="@(Model.FO.ContainsKey("FO_F4_O1") ? Model.FO["FO_F4_O1"] : 0)" /></td>
+                        <td><input type="number" name="FO_F4_O2" class="form-control fo-cell" data-col="2" value="@(Model.FO.ContainsKey("FO_F4_O2") ? Model.FO["FO_F4_O2"] : 0)" /></td>
+                        <td><input type="number" name="FO_F4_O3" class="form-control fo-cell" data-col="3" value="@(Model.FO.ContainsKey("FO_F4_O3") ? Model.FO["FO_F4_O3"] : 0)" /></td>
+                        <td><input type="number" name="FO_F4_O4" class="form-control fo-cell" data-col="4" value="@(Model.FO.ContainsKey("FO_F4_O4") ? Model.FO["FO_F4_O4"] : 0)" /></td>
+                    </tr>
 
-            <!-- Sección de Factores FODA -->
-            <div class="card card-strategy">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Factores Clave del Análisis FODA</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="factor-box">
-                                <div class="factor-label">
-                                    <i class="fas fa-thumbs-up text-success"></i> Fortalezas
-                                </div>
-                                <textarea name="ListaFortalezas" id="ListaFortalezas" class="form-control" rows="3"
-                                          placeholder="Liste las principales fortalezas identificadas..."></textarea>
-                            </div>
+                    <tr class="bg-warning">
+                        <th>Total</th>
+                        <td><span id="fo-total-col-1">0</span></td>
+                        <td><span id="fo-total-col-2">0</span></td>
+                        <td><span id="fo-total-col-3">0</span></td>
+                        <td><span id="fo-total-col-4">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
 
-                            <div class="factor-box">
-                                <div class="factor-label">
-                                    <i class="fas fa-bullseye text-primary"></i> Oportunidades
-                                </div>
-                                <textarea name="ListaOportunidades" id="ListaOportunidades" class="form-control" rows="3"
-                                          placeholder="Liste las principales oportunidades identificadas..."></textarea>
-                            </div>
-                        </div>
+            <h5 class="mt-5">Matriz FA (Fortalezas - Amenazas)</h5>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>A1</th>
+                        <th>A2</th>
+                        <th>A3</th>
+                        <th>A4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>F1</th>
+                        <td><input type="number" name="FA_F1_A1" class="form-control fa-cell" data-col="1" value="@(Model.FA.ContainsKey("FA_F1_A1") ? Model.FA["FA_F1_A1"] : 0)" /></td>
+                        <td><input type="number" name="FA_F1_A2" class="form-control fa-cell" data-col="2" value="@(Model.FA.ContainsKey("FA_F1_A2") ? Model.FA["FA_F1_A2"] : 0)" /></td>
+                        <td><input type="number" name="FA_F1_A3" class="form-control fa-cell" data-col="3" value="@(Model.FA.ContainsKey("FA_F1_A3") ? Model.FA["FA_F1_A3"] : 0)" /></td>
+                        <td><input type="number" name="FA_F1_A4" class="form-control fa-cell" data-col="4" value="@(Model.FA.ContainsKey("FA_F1_A4") ? Model.FA["FA_F1_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>F2</th>
+                        <td><input type="number" name="FA_F2_A1" class="form-control fa-cell" data-col="1" value="@(Model.FA.ContainsKey("FA_F2_A1") ? Model.FA["FA_F2_A1"] : 0)" /></td>
+                        <td><input type="number" name="FA_F2_A2" class="form-control fa-cell" data-col="2" value="@(Model.FA.ContainsKey("FA_F2_A2") ? Model.FA["FA_F2_A2"] : 0)" /></td>
+                        <td><input type="number" name="FA_F2_A3" class="form-control fa-cell" data-col="3" value="@(Model.FA.ContainsKey("FA_F2_A3") ? Model.FA["FA_F2_A3"] : 0)" /></td>
+                        <td><input type="number" name="FA_F2_A4" class="form-control fa-cell" data-col="4" value="@(Model.FA.ContainsKey("FA_F2_A4") ? Model.FA["FA_F2_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>F3</th>
+                        <td><input type="number" name="FA_F3_A1" class="form-control fa-cell" data-col="1" value="@(Model.FA.ContainsKey("FA_F3_A1") ? Model.FA["FA_F3_A1"] : 0)" /></td>
+                        <td><input type="number" name="FA_F3_A2" class="form-control fa-cell" data-col="2" value="@(Model.FA.ContainsKey("FA_F3_A2") ? Model.FA["FA_F3_A2"] : 0)" /></td>
+                        <td><input type="number" name="FA_F3_A3" class="form-control fa-cell" data-col="3" value="@(Model.FA.ContainsKey("FA_F3_A3") ? Model.FA["FA_F3_A3"] : 0)" /></td>
+                        <td><input type="number" name="FA_F3_A4" class="form-control fa-cell" data-col="4" value="@(Model.FA.ContainsKey("FA_F3_A4") ? Model.FA["FA_F3_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>F4</th>
+                        <td><input type="number" name="FA_F4_A1" class="form-control fa-cell" data-col="1" value="@(Model.FA.ContainsKey("FA_F4_A1") ? Model.FA["FA_F4_A1"] : 0)" /></td>
+                        <td><input type="number" name="FA_F4_A2" class="form-control fa-cell" data-col="2" value="@(Model.FA.ContainsKey("FA_F4_A2") ? Model.FA["FA_F4_A2"] : 0)" /></td>
+                        <td><input type="number" name="FA_F4_A3" class="form-control fa-cell" data-col="3" value="@(Model.FA.ContainsKey("FA_F4_A3") ? Model.FA["FA_F4_A3"] : 0)" /></td>
+                        <td><input type="number" name="FA_F4_A4" class="form-control fa-cell" data-col="4" value="@(Model.FA.ContainsKey("FA_F4_A4") ? Model.FA["FA_F4_A4"] : 0)" /></td>
+                    </tr>
 
-                        <div class="col-md-6">
-                            <div class="factor-box">
-                                <div class="factor-label">
-                                    <i class="fas fa-exclamation-triangle text-warning"></i> Debilidades
-                                </div>
-                                <textarea name="ListaDebilidades" id="ListaDebilidades" class="form-control" rows="3"
-                                          placeholder="Liste las principales debilidades identificadas..."></textarea>
-                            </div>
+                    <tr class="bg-warning">
+                        <th>Total</th>
+                        <td><span id="fa-total-col-1">0</span></td>
+                        <td><span id="fa-total-col-2">0</span></td>
+                        <td><span id="fa-total-col-3">0</span></td>
+                        <td><span id="fa-total-col-4">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
 
-                            <div class="factor-box">
-                                <div class="factor-label">
-                                    <i class="fas fa-shield-alt text-danger"></i> Amenazas
-                                </div>
-                                <textarea name="ListaAmenazas" id="ListaAmenazas" class="form-control" rows="3"
-                                          placeholder="Liste las principales amenazas identificadas..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h5 class="mt-4">Matriz DO (Debilidades - Oportunidades)</h5>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>O1</th>
+                        <th>O2</th>
+                        <th>O3</th>
+                        <th>O4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>D1</th>
+                        <td><input type="number" name="DO_D1_O1" class="form-control do-cell" data-col="1" value="@(Model.DO.ContainsKey("DO_D1_O1") ? Model.DO["DO_D1_O1"] : 0)" /></td>
+                        <td><input type="number" name="DO_D1_O2" class="form-control do-cell" data-col="2" value="@(Model.DO.ContainsKey("DO_D1_O2") ? Model.DO["DO_D1_O2"] : 0)" /></td>
+                        <td><input type="number" name="DO_D1_O3" class="form-control do-cell" data-col="3" value="@(Model.DO.ContainsKey("DO_D1_O3") ? Model.DO["DO_D1_O3"] : 0)" /></td>
+                        <td><input type="number" name="DO_D1_O4" class="form-control do-cell" data-col="4" value="@(Model.DO.ContainsKey("DO_D1_O4") ? Model.DO["DO_D1_O4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D2</th>
+                        <td><input type="number" name="DO_D2_O1" class="form-control do-cell" data-col="1" value="@(Model.DO.ContainsKey("DO_D2_O1") ? Model.DO["DO_D2_O1"] : 0)" /></td>
+                        <td><input type="number" name="DO_D2_O2" class="form-control do-cell" data-col="2" value="@(Model.DO.ContainsKey("DO_D2_O2") ? Model.DO["DO_D2_O2"] : 0)" /></td>
+                        <td><input type="number" name="DO_D2_O3" class="form-control do-cell" data-col="3" value="@(Model.DO.ContainsKey("DO_D2_O3") ? Model.DO["DO_D2_O3"] : 0)" /></td>
+                        <td><input type="number" name="DO_D2_O4" class="form-control do-cell" data-col="4" value="@(Model.DO.ContainsKey("DO_D2_O4") ? Model.DO["DO_D2_O4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D3</th>
+                        <td><input type="number" name="DO_D3_O1" class="form-control do-cell" data-col="1" value="@(Model.DO.ContainsKey("DO_D3_O1") ? Model.DO["DO_D3_O1"] : 0)" /></td>
+                        <td><input type="number" name="DO_D3_O2" class="form-control do-cell" data-col="2" value="@(Model.DO.ContainsKey("DO_D3_O2") ? Model.DO["DO_D3_O2"] : 0)" /></td>
+                        <td><input type="number" name="DO_D3_O3" class="form-control do-cell" data-col="3" value="@(Model.DO.ContainsKey("DO_D3_O3") ? Model.DO["DO_D3_O3"] : 0)" /></td>
+                        <td><input type="number" name="DO_D3_O4" class="form-control do-cell" data-col="4" value="@(Model.DO.ContainsKey("DO_D3_O4") ? Model.DO["DO_D3_O4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D4</th>
+                        <td><input type="number" name="DO_D4_O1" class="form-control do-cell" data-col="1" value="@(Model.DO.ContainsKey("DO_D4_O1") ? Model.DO["DO_D4_O1"] : 0)" /></td>
+                        <td><input type="number" name="DO_D4_O2" class="form-control do-cell" data-col="2" value="@(Model.DO.ContainsKey("DO_D4_O2") ? Model.DO["DO_D4_O2"] : 0)" /></td>
+                        <td><input type="number" name="DO_D4_O3" class="form-control do-cell" data-col="3" value="@(Model.DO.ContainsKey("DO_D4_O3") ? Model.DO["DO_D4_O3"] : 0)" /></td>
+                        <td><input type="number" name="DO_D4_O4" class="form-control do-cell" data-col="4" value="@(Model.DO.ContainsKey("DO_D4_O4") ? Model.DO["DO_D4_O4"] : 0)" /></td>
+                    </tr>
+                    <tr class="bg-warning">
+                        <th>Total</th>
+                        <td><span id="do-total-col-1">0</span></td>
+                        <td><span id="do-total-col-2">0</span></td>
+                        <td><span id="do-total-col-3">0</span></td>
+                        <td><span id="do-total-col-4">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <!-- Matriz FO -->
-            <div class="card card-strategy mt-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-rocket text-success me-2"></i>Matriz FO (Fortalezas - Oportunidades)</h5>
-                    <span class="result-badge badge-FO">Estrategia Ofensiva</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table matrix-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%"></th>
-                                    <th>O1</th>
-                                    <th>O2</th>
-                                    <th>O3</th>
-                                    <th>O4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>F1</th>
-                                    <td><input type="number" name="FO_F1_O1" class="form-control matrix-input fo-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FO_F1_O2" class="form-control matrix-input fo-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FO_F1_O3" class="form-control matrix-input fo-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FO_F1_O4" class="form-control matrix-input fo-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F2</th>
-                                    <td><input type="number" name="FO_F2_O1" class="form-control matrix-input fo-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FO_F2_O2" class="form-control matrix-input fo-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FO_F2_O3" class="form-control matrix-input fo-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FO_F2_O4" class="form-control matrix-input fo-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F3</th>
-                                    <td><input type="number" name="FO_F3_O1" class="form-control matrix-input fo-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FO_F3_O2" class="form-control matrix-input fo-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FO_F3_O3" class="form-control matrix-input fo-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FO_F3_O4" class="form-control matrix-input fo-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F4</th>
-                                    <td><input type="number" name="FO_F4_O1" class="form-control matrix-input fo-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FO_F4_O2" class="form-control matrix-input fo-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FO_F4_O3" class="form-control matrix-input fo-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FO_F4_O4" class="form-control matrix-input fo-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr class="total-row">
-                                    <th>Total</th>
-                                    <td class="total-display"><span id="fo-total-col-1">0</span></td>
-                                    <td class="total-display"><span id="fo-total-col-2">0</span></td>
-                                    <td class="total-display"><span id="fo-total-col-3">0</span></td>
-                                    <td class="total-display"><span id="fo-total-col-4">0</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-3 text-muted">
-                        <small><i class="fas fa-info-circle me-1"></i>Evalúe cómo sus fortalezas pueden aprovechar las oportunidades (1-5)</small>
-                    </div>
-                </div>
-            </div>
+            <h5 class="mt-4">Matriz DA (Debilidades - Amenazas)</h5>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>A1</th>
+                        <th>A2</th>
+                        <th>A3</th>
+                        <th>A4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>D1</th>
+                        <td><input type="number" name="DA_D1_A1" class="form-control da-cell" data-col="1" value="@(Model.DA.ContainsKey("DA_D1_A1") ? Model.DA["DA_D1_A1"] : 0)" /></td>
+                        <td><input type="number" name="DA_D1_A2" class="form-control da-cell" data-col="2" value="@(Model.DA.ContainsKey("DA_D1_A2") ? Model.DA["DA_D1_A2"] : 0)" /></td>
+                        <td><input type="number" name="DA_D1_A3" class="form-control da-cell" data-col="3" value="@(Model.DA.ContainsKey("DA_D1_A3") ? Model.DA["DA_D1_A3"] : 0)" /></td>
+                        <td><input type="number" name="DA_D1_A4" class="form-control da-cell" data-col="4" value="@(Model.DA.ContainsKey("DA_D1_A4") ? Model.DA["DA_D1_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D2</th>
+                        <td><input type="number" name="DA_D2_A1" class="form-control da-cell" data-col="1" value="@(Model.DA.ContainsKey("DA_D2_A1") ? Model.DA["DA_D2_A1"] : 0)" /></td>
+                        <td><input type="number" name="DA_D2_A2" class="form-control da-cell" data-col="2" value="@(Model.DA.ContainsKey("DA_D2_A2") ? Model.DA["DA_D2_A2"] : 0)" /></td>
+                        <td><input type="number" name="DA_D2_A3" class="form-control da-cell" data-col="3" value="@(Model.DA.ContainsKey("DA_D2_A3") ? Model.DA["DA_D2_A3"] : 0)" /></td>
+                        <td><input type="number" name="DA_D2_A4" class="form-control da-cell" data-col="4" value="@(Model.DA.ContainsKey("DA_D2_A4") ? Model.DA["DA_D2_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D3</th>
+                        <td><input type="number" name="DA_D3_A1" class="form-control da-cell" data-col="1" value="@(Model.DA.ContainsKey("DA_D3_A1") ? Model.DA["DA_D3_A1"] : 0)" /></td>
+                        <td><input type="number" name="DA_D3_A2" class="form-control da-cell" data-col="2" value="@(Model.DA.ContainsKey("DA_D3_A2") ? Model.DA["DA_D3_A2"] : 0)" /></td>
+                        <td><input type="number" name="DA_D3_A3" class="form-control da-cell" data-col="3" value="@(Model.DA.ContainsKey("DA_D3_A3") ? Model.DA["DA_D3_A3"] : 0)" /></td>
+                        <td><input type="number" name="DA_D3_A4" class="form-control da-cell" data-col="4" value="@(Model.DA.ContainsKey("DA_D3_A4") ? Model.DA["DA_D3_A4"] : 0)" /></td>
+                    </tr>
+                    <tr>
+                        <th>D4</th>
+                        <td><input type="number" name="DA_D4_A1" class="form-control da-cell" data-col="1" value="@(Model.DA.ContainsKey("DA_D4_A1") ? Model.DA["DA_D4_A1"] : 0)" /></td>
+                        <td><input type="number" name="DA_D4_A2" class="form-control da-cell" data-col="2" value="@(Model.DA.ContainsKey("DA_D4_A2") ? Model.DA["DA_D4_A2"] : 0)" /></td>
+                        <td><input type="number" name="DA_D4_A3" class="form-control da-cell" data-col="3" value="@(Model.DA.ContainsKey("DA_D4_A3") ? Model.DA["DA_D4_A3"] : 0)" /></td>
+                        <td><input type="number" name="DA_D4_A4" class="form-control da-cell" data-col="4" value="@(Model.DA.ContainsKey("DA_D4_A4") ? Model.DA["DA_D4_A4"] : 0)" /></td>
+                    </tr>
+                    <tr class="bg-warning">
+                        <th>Total</th>
+                        <td><span id="da-total-col-1">0</span></td>
+                        <td><span id="da-total-col-2">0</span></td>
+                        <td><span id="da-total-col-3">0</span></td>
+                        <td><span id="da-total-col-4">0</span></td>
+                    </tr>
 
-            <!-- Matriz FA -->
-            <div class="card card-strategy mt-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-shield-alt text-info me-2"></i>Matriz FA (Fortalezas - Amenazas)</h5>
-                    <span class="result-badge badge-FA">Estrategia Defensiva</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table matrix-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%"></th>
-                                    <th>A1</th>
-                                    <th>A2</th>
-                                    <th>A3</th>
-                                    <th>A4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>F1</th>
-                                    <td><input type="number" name="FA_F1_A1" class="form-control matrix-input fa-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FA_F1_A2" class="form-control matrix-input fa-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FA_F1_A3" class="form-control matrix-input fa-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FA_F1_A4" class="form-control matrix-input fa-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F2</th>
-                                    <td><input type="number" name="FA_F2_A1" class="form-control matrix-input fa-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FA_F2_A2" class="form-control matrix-input fa-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FA_F2_A3" class="form-control matrix-input fa-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FA_F2_A4" class="form-control matrix-input fa-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F3</th>
-                                    <td><input type="number" name="FA_F3_A1" class="form-control matrix-input fa-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FA_F3_A2" class="form-control matrix-input fa-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FA_F3_A3" class="form-control matrix-input fa-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FA_F3_A4" class="form-control matrix-input fa-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>F4</th>
-                                    <td><input type="number" name="FA_F4_A1" class="form-control matrix-input fa-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="FA_F4_A2" class="form-control matrix-input fa-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="FA_F4_A3" class="form-control matrix-input fa-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="FA_F4_A4" class="form-control matrix-input fa-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr class="total-row">
-                                    <th>Total</th>
-                                    <td class="total-display"><span id="fa-total-col-1">0</span></td>
-                                    <td class="total-display"><span id="fa-total-col-2">0</span></td>
-                                    <td class="total-display"><span id="fa-total-col-3">0</span></td>
-                                    <td class="total-display"><span id="fa-total-col-4">0</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-3 text-muted">
-                        <small><i class="fas fa-info-circle me-1"></i>Evalúe cómo sus fortalezas pueden contrarrestar las amenazas (1-5)</small>
-                    </div>
-                </div>
-            </div>
+                </tbody>
+            </table>
 
-            <!-- Matriz DO -->
-            <div class="card card-strategy mt-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-exchange-alt text-warning me-2"></i>Matriz DO (Debilidades - Oportunidades)</h5>
-                    <span class="result-badge badge-DO">Estrategia de Reorientación</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table matrix-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%"></th>
-                                    <th>O1</th>
-                                    <th>O2</th>
-                                    <th>O3</th>
-                                    <th>O4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>D1</th>
-                                    <td><input type="number" name="DO_D1_O1" class="form-control matrix-input do-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DO_D1_O2" class="form-control matrix-input do-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DO_D1_O3" class="form-control matrix-input do-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DO_D1_O4" class="form-control matrix-input do-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D2</th>
-                                    <td><input type="number" name="DO_D2_O1" class="form-control matrix-input do-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DO_D2_O2" class="form-control matrix-input do-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DO_D2_O3" class="form-control matrix-input do-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DO_D2_O4" class="form-control matrix-input do-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D3</th>
-                                    <td><input type="number" name="DO_D3_O1" class="form-control matrix-input do-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DO_D3_O2" class="form-control matrix-input do-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DO_D3_O3" class="form-control matrix-input do-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DO_D3_O4" class="form-control matrix-input do-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D4</th>
-                                    <td><input type="number" name="DO_D4_O1" class="form-control matrix-input do-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DO_D4_O2" class="form-control matrix-input do-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DO_D4_O3" class="form-control matrix-input do-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DO_D4_O4" class="form-control matrix-input do-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr class="total-row">
-                                    <th>Total</th>
-                                    <td class="total-display"><span id="do-total-col-1">0</span></td>
-                                    <td class="total-display"><span id="do-total-col-2">0</span></td>
-                                    <td class="total-display"><span id="do-total-col-3">0</span></td>
-                                    <td class="total-display"><span id="do-total-col-4">0</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-3 text-muted">
-                        <small><i class="fas fa-info-circle me-1"></i>Evalúe cómo superar debilidades para aprovechar oportunidades (1-5)</small>
-                    </div>
-                </div>
-            </div>
+            <h5 class="mt-5 text-center text-primary">SÍNTESIS DE RESULTADOS</h5>
+            <p class="text-muted text-center">La puntuación mayor le indica la estrategia que deberá llevar a cabo.</p>
 
-            <!-- Matriz DA -->
-            <div class="card card-strategy mt-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Matriz DA (Debilidades - Amenazas)</h5>
-                    <span class="result-badge badge-DA">Estrategia de Supervivencia</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table matrix-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%"></th>
-                                    <th>A1</th>
-                                    <th>A2</th>
-                                    <th>A3</th>
-                                    <th>A4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>D1</th>
-                                    <td><input type="number" name="DA_D1_A1" class="form-control matrix-input da-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DA_D1_A2" class="form-control matrix-input da-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DA_D1_A3" class="form-control matrix-input da-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DA_D1_A4" class="form-control matrix-input da-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D2</th>
-                                    <td><input type="number" name="DA_D2_A1" class="form-control matrix-input da-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DA_D2_A2" class="form-control matrix-input da-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DA_D2_A3" class="form-control matrix-input da-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DA_D2_A4" class="form-control matrix-input da-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D3</th>
-                                    <td><input type="number" name="DA_D3_A1" class="form-control matrix-input da-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DA_D3_A2" class="form-control matrix-input da-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DA_D3_A3" class="form-control matrix-input da-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DA_D3_A4" class="form-control matrix-input da-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr>
-                                    <th>D4</th>
-                                    <td><input type="number" name="DA_D4_A1" class="form-control matrix-input da-cell" data-col="1" value=""></td>
-                                    <td><input type="number" name="DA_D4_A2" class="form-control matrix-input da-cell" data-col="2" value=""></td>
-                                    <td><input type="number" name="DA_D4_A3" class="form-control matrix-input da-cell" data-col="3" value=""></td>
-                                    <td><input type="number" name="DA_D4_A4" class="form-control matrix-input da-cell" data-col="4" value=""></td>
-                                </tr>
-                                <tr class="total-row">
-                                    <th>Total</th>
-                                    <td class="total-display"><span id="da-total-col-1">0</span></td>
-                                    <td class="total-display"><span id="da-total-col-2">0</span></td>
-                                    <td class="total-display"><span id="da-total-col-3">0</span></td>
-                                    <td class="total-display"><span id="da-total-col-4">0</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-3 text-muted">
-                        <small><i class="fas fa-info-circle me-1"></i>Evalúe el impacto de amenazas considerando sus debilidades (1-5)</small>
-                    </div>
-                </div>
-            </div>
+            <table class="table table-bordered text-center">
+                <thead class="table-info">
+                    <tr>
+                        <th>Relaciones</th>
+                        <th>Tipología de estrategia</th>
+                        <th>Puntuación</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FO</td>
+                        <td>Estrategia Ofensiva</td>
+                        <td>
+                            <input class="form-control text-center" id="PuntajeFO" name="PuntajeFO" type="number" value="">
+                        </td>
+                        <td class="text-start">Deberá adoptar estrategias de crecimiento</td>
+                    </tr>
+                    <tr>
+                        <td>FA</td>
+                        <td>Estrategia Defensiva</td>
+                        <td>
+                            <input class="form-control text-center" id="PuntajeFA" name="PuntajeFA" type="number" value="">
+                        </td>
+                        <td class="text-start">La empresa está preparada para enfrentarse a las amenazas</td>
+                    </tr>
+                    <tr>
+                        <td>DA</td>
+                        <td>Estrategia de Supervivencia</td>
+                        <td>
+                            <input class="form-control text-center" id="PuntajeDA" name="PuntajeDA" type="number" value="">
+                        </td>
+                        <td class="text-start">Se enfrenta a amenazas externas sin las fortalezas necesarias para luchar con la competencia</td>
+                    </tr>
+                    <tr>
+                        <td>DO</td>
+                        <td>Estrategia de Reorientación</td>
+                        <td>
+                            <input class="form-control text-center" id="PuntajeDO" name="PuntajeDO" type="number" value="">
+                        </td>
+                        <td class="text-start">La empresa no puede aprovechar las oportunidades porque carece de preparación adecuada</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <!-- Resultados -->
-            <div class="card card-strategy mt-4">
-                <div class="card-header bg-white">
-                    <h5 class="section-title mb-0"><i class="fas fa-chart-pie text-primary me-2"></i>Síntesis de Resultados</h5>
-                </div>
-                <div class="card-body">
-                    <p class="text-center text-muted mb-4">La puntuación mayor indica la estrategia principal que deberá implementar</p>
-
-                    <div class="row">
-                        <!-- Estrategia FO -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card strategy-card strategy-FO">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <h5 class="card-title mb-0">Estrategia Ofensiva (FO)</h5>
-                                        <span class="result-badge badge-FO">Total: <span id="PuntajeFO-display">0</span></span>
-                                    </div>
-                                    <p class="card-text">Deberá adoptar estrategias de crecimiento y expansión aprovechando sus fortalezas y las oportunidades del mercado.</p>
-                                    <input type="number" id="PuntajeFO" name="PuntajeFO" class="d-none" value="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Estrategia FA -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card strategy-card strategy-FA">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <h5 class="card-title mb-0">Estrategia Defensiva (FA)</h5>
-                                        <span class="result-badge badge-FA">Total: <span id="PuntajeFA-display">0</span></span>
-                                    </div>
-                                    <p class="card-text">La empresa está preparada para enfrentarse a las amenazas externas utilizando sus fortalezas internas.</p>
-                                    <input type="number" id="PuntajeFA" name="PuntajeFA" class="d-none" value="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Estrategia DO -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card strategy-card strategy-DO">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <h5 class="card-title mb-0">Estrategia de Reorientación (DO)</h5>
-                                        <span class="result-badge badge-DO">Total: <span id="PuntajeDO-display">0</span></span>
-                                    </div>
-                                    <p class="card-text">La empresa no puede aprovechar las oportunidades porque carece de preparación adecuada, necesita reorientar sus estrategias.</p>
-                                    <input type="number" id="PuntajeDO" name="PuntajeDO" class="d-none" value="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Estrategia DA -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card strategy-card strategy-DA">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <h5 class="card-title mb-0">Estrategia de Supervivencia (DA)</h5>
-                                        <span class="result-badge badge-DA">Total: <span id="PuntajeDA-display">0</span></span>
-                                    </div>
-                                    <p class="card-text">Se enfrenta a amenazas externas sin las fortalezas necesarias para competir, requiere estrategias de supervivencia.</p>
-                                    <input type="number" id="PuntajeDA" name="PuntajeDA" class="d-none" value="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recomendación final -->
-                    <div class="alert alert-primary mt-4" id="estrategia-recomendada" style="display: none;">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-star me-3 fs-3"></i>
-                            <div>
-                                <h5 class="alert-heading mb-2">Estrategia Recomendada</h5>
-                                <p class="mb-0" id="recomendacion-texto"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Botones de navegación -->
             <div class="d-flex justify-content-between mt-4 mb-5">
-                <a href="@Url.Action("Index", "PEST")" class="btn-strategy btn-prev">
-                    <i class="fas fa-arrow-left"></i> Análisis PEST
-                </a>
-                <button type="submit" class="btn-strategy btn-save">
-                    <i class="fas fa-save"></i> Guardar Estrategias
-                </button>
-                <a href="@Url.Action("Index", "MatrizCAME")" class="btn-strategy btn-next">
-                    Matriz CAME <i class="fas fa-arrow-right"></i>
-                </a>
+                <a href="#" class="btn btn-secondary">🔙 ANÁLISIS PORTER</a>
+                <button type="submit" class="btn btn-success">💾 GUARDAR</button>
+                <a href="#" class="btn btn-primary">11. MATRIZ CAME 🔜</a>
             </div>
-        </form>
-    </div>
+            }
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function actualizarTotales(cellClass, totalIdPrefix) {
             for (let col = 1; col <= 4; col++) {
@@ -643,53 +313,13 @@
             }
         }
 
-        function calcularPuntajes(cellClass, outputId, displayId) {
+        function calcularPuntajes(cellClass, outputId) {
             let total = 0;
             document.querySelectorAll('.' + cellClass).forEach(input => {
                 const val = parseInt(input.value) || 0;
                 total += val;
             });
             document.getElementById(outputId).value = total;
-            if (displayId) {
-                document.getElementById(displayId).textContent = total;
-            }
-            return total;
-        }
-
-        function determinarEstrategiaRecomendada() {
-            const puntajes = {
-                'FO': calcularPuntajes('fo-cell', 'PuntajeFO', 'PuntajeFO-display'),
-                'FA': calcularPuntajes('fa-cell', 'PuntajeFA', 'PuntajeFA-display'),
-                'DO': calcularPuntajes('do-cell', 'PuntajeDO', 'PuntajeDO-display'),
-                'DA': calcularPuntajes('da-cell', 'PuntajeDA', 'PuntajeDA-display')
-            };
-
-            // Encontrar la estrategia con mayor puntaje
-            const estrategiaRecomendada = Object.keys(puntajes).reduce((a, b) => puntajes[a] > puntajes[b] ? a : b);
-            const recomendacion = document.getElementById('estrategia-recomendada');
-            const textoRecomendacion = document.getElementById('recomendacion-texto');
-
-            if (puntajes[estrategiaRecomendada] > 0) {
-                let mensaje = '';
-                switch (estrategiaRecomendada) {
-                    case 'FO':
-                        mensaje = 'Basado en su análisis, la estrategia recomendada es la <strong>Estrategia Ofensiva (FO)</strong>. Debe enfocarse en aprovechar sus fortalezas para maximizar las oportunidades del mercado.';
-                        break;
-                    case 'FA':
-                        mensaje = 'Basado en su análisis, la estrategia recomendada es la <strong>Estrategia Defensiva (FA)</strong>. Debe utilizar sus fortalezas para minimizar el impacto de las amenazas externas.';
-                        break;
-                    case 'DO':
-                        mensaje = 'Basado en su análisis, la estrategia recomendada es la <strong>Estrategia de Reorientación (DO)</strong>. Debe superar sus debilidades para poder aprovechar las oportunidades del mercado.';
-                        break;
-                    case 'DA':
-                        mensaje = 'Basado en su análisis, la estrategia recomendada es la <strong>Estrategia de Supervivencia (DA)</strong>. Debe tomar medidas inmediatas para mitigar las amenazas mientras trabaja en mejorar sus debilidades.';
-                        break;
-                }
-                textoRecomendacion.innerHTML = mensaje;
-                recomendacion.style.display = 'block';
-            } else {
-                recomendacion.style.display = 'none';
-            }
         }
 
         function actualizarTodo() {
@@ -697,7 +327,11 @@
             actualizarTotales('fa-cell', 'fa');
             actualizarTotales('do-cell', 'do');
             actualizarTotales('da-cell', 'da');
-            determinarEstrategiaRecomendada();
+
+            calcularPuntajes('fo-cell', 'PuntajeFO');
+            calcularPuntajes('fa-cell', 'PuntajeFA');
+            calcularPuntajes('do-cell', 'PuntajeDO');
+            calcularPuntajes('da-cell', 'PuntajeDA');
         }
 
         // Añadir el 'listener' a todos los inputs de las celdas
@@ -710,5 +344,6 @@
             actualizarTodo();
         });
     </script>
+
 </body>
 </html>

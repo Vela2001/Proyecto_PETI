@@ -97,19 +97,28 @@ namespace proyecto_peti.Controllers
                             .Select(c => c.Participacion)
                             .ToList();
 
+                        while (tcmProducto.Count < 6)
+                        {
+                            tcmProducto.Add(0);
+                        }
+                        while (demandaProducto.Count < 6)
+                        {
+                            demandaProducto.Add(0);
+                        }
+
+                        while (CompetidoresProducto.Count < 12)
+                        {
+                            CompetidoresProducto.Add(0);
+                        }
 
                         return new ProductoInput
                         {
                             Nombre = $"Producto {i}",
                             Venta = venta != null ? venta.Monto : 0,
-                            TCM = tasasGuardadas
-                                .Where(t => t.Producto == i)
-                                .OrderBy(t => t.Periodo)
-                                .Select(t => t.TasaCrecimiento)
-                                .ToList(),
+                            TCM = tcmProducto != null ? tcmProducto : new List<decimal> { 0 , 0, 0, 0, 0, 0 },
                             PRM = prm?.Prm ?? 0,
-                            Demanda = demandaProducto,
-                            Competidores = CompetidoresProducto
+                            Demanda = demandaProducto != null ? demandaProducto : new List<decimal> { 0, 0, 0, 0, 0, 0 },
+                            Competidores = CompetidoresProducto != null ? CompetidoresProducto : new List<decimal> { 0, 0, 0, 0, 0, 0 }
                         
                         };
 
