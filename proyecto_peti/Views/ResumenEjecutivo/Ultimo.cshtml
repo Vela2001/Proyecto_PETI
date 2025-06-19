@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Final";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .final-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    .final-header {
+        background-color: #20c997; /* Un color turquesa similar al de la imagen */
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
+    .final-content p {
+        line-height: 1.6;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .final-content ul {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .final-content li {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+        .final-content li::before {
+            content: '➔';
+            color: #0d6efd; /* Azul */
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+        }
+
+    .final-quote {
+        font-style: italic;
+        text-align: center;
+        color: #555;
+        padding: 1rem;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+    }
+
+    .consultor-info {
+        margin-top: 2rem;
+    }
+
+    .info-label {
+        font-weight: bold;
+        color: #0d6efd; /* Azul */
+        font-size: 1.2rem;
+    }
+
+    .consultor-info p {
+        margin: 0.25rem 0;
+        font-size: 1.1rem;
+    }
+
+    .index-button-container {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .index-button {
+        background-color: #dc3545; /* Rojo similar al de la imagen */
+        color: white;
+        border: 2px solid #a71d2a;
+        padding: 0.75rem 2.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+        .index-button:hover {
+            background-color: #c82333;
+            color: white;
+        }
+</style>
+
+<div class="final-container">
+    <div class="final-header">
+        Por último...
+    </div>
+
+    <div class="final-content">
+        <p>
+            Con su Plan empresarial de proyecto de inversión listo, ya sabe lo que su empresa
+            tiene que hacer de aquí a unos años para alcanzar la misión, favorecer la visión y
+            procurar lograr ventaja competitiva. Pero, se puede estar preguntando:
+        </p>
+
+        <ul>
+            <li>¿Cómo debo llevarlo a cabo?</li>
+            <li>¿Cómo puedo saber si las acciones responde a la estrategia identificada?</li>
+            <li>¿Qué recursos tengo que emplear?</li>
+            <li>¿Cuándo y cómo debo tomar las decisiones clave?</li>
+        </ul>
+
+        <p>
+            Para ello, le proponemos que elabore y diseñe su Cuadro de Mando Integral.
+        </p>
+
+        <p class="final-quote">
+            Tenga presente que <em>
+                lo que de verdad diferencia a una empresa ganadora no es su
+                mayor o menor habilidad para definir brillantes y extensas estrategias sino su
+                capacidad para llevarlas a la práctica sabiendo saltar las barreras que habitualmente
+                se interponen entre el diseño y su ejecución.
+            </em>
+        </p>
+
+        <div class="consultor-info">
+            <p class="info-label">Consultor</p>
+            <p>Dr. Oscar Jimenez</p>
+            <p>mail : <a href="mailto:oscarjimenezflores@outlook.com">oscarjimenezflores@outlook.com</a></p>
+        </div>
+
+        <div class="mt-4">
+            <p class="info-label">Redes Sociales</p>
+            <p><a href="#">LinkedIn</a> | <a href="#">Twitter/X</a></p>
+        </div>
+    </div>
+
+    <div class="index-button-container">
+        <a href="@Url.Action("Index", "Home")" class="index-button">
+            INDICE
+        </a>
+    </div>
+</div>

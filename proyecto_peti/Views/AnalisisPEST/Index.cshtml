@@ -1,0 +1,449 @@
+﻿@model proyecto_peti.ViewModel.AnalisisPestViewModel
+
+@{
+    ViewBag.Title = "9. Análisis PEST";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">9. ANÁLISIS EXTERNO MACROENTORNO: PEST</h2>
+
+    <p><strong>PEST</strong> es un acrónimo y las letras representan el macro entorno de la empresa.</p>
+    <ul>
+        <li><strong>Políticos:</strong> aquellos factores que puedan determinar la actividad de la empresa. Por ejemplo, la legislación tributaria, laboral, tratados comerciales, normas de medio ambiente, etc.</li>
+        <li><strong>Económicos:</strong> los factores políticos implican efectos económicos. El comportamiento, la confianza del comprador y su nivel adquisitivo están relacionados con el auge, estancamiento, recesión y recuperación de la economía.</li>
+        <li><strong>Sociales:</strong> se enfoca a las fuerzas que actúan dentro de la sociedad y que afectan a las actitudes, opiniones e intereses de las personas.</li>
+        <li><strong>Tecnológicos:</strong> este factor es muy importante para casi toda la totalidad de las empresas industriales. La tecnología es una fuerza impulsora de negocios, mejora la calidad y puede reducir los tiempos para el mercadeo.</li>
+    </ul>
+
+    <h5 class="mt-4">Gráfico de Valoración</h5>
+    <p>El siguiente gráfico reflejará la valoración obtenida en cada una de las variables del diagnóstico macro-entorno.</p>
+    <div class="border p-3 mb-4" style="max-width: 800px; margin: auto;">
+        <canvas id="pestChart"></canvas>
+    </div>
+
+    @using (Html.BeginForm("Index", "AnalisisPest", FormMethod.Post))
+    {
+        @Html.HiddenFor((proyecto_peti.ViewModel.AnalisisPestViewModel m) => m.Id)
+        @Html.HiddenFor((proyecto_peti.ViewModel.AnalisisPestViewModel m) => m.PlanId)
+
+
+        <p class="alert alert-info">
+            A continuación marque con una X para valorar su empresa en función de cada una de las afirmaciones, de tal forma que 0= En total en desacuerdo; 1= No está de acuerdo; 2= Está de acuerdo; 3= Está bastante de acuerdo; 4= En total acuerdo.
+        </p>
+
+        <table class="table table-bordered align-middle">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th style="width: 50%;">AUTODIAGNÓSTICO ENTORNO GLOBAL P.E.S.T.</th>
+                    <th style="width: 10%;">En total desacuerdo<br />0</th>
+                    <th style="width: 10%;">No está de acuerdo<br />1</th>
+                    <th style="width: 10%;">Está de acuerdo<br />2</th>
+                    <th style="width: 10%;">Está bastante de acuerdo<br />3</th>
+                    <th style="width: 10%;">En total acuerdo<br />4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Preguntas 1-5: Factores Sociales y Demográficos -->
+                <tr>
+                    <td>1. Los cambios en la composición étnica de los consumidores de nuestro mercado.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta1, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>2. El envejecimiento de la población tiene un importante impacto en la demanda.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta2, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>3. Los nuevos estilos de vida y tendencias originan cambios en la oferta de nuestro sector.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta3, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>4. El envejecimiento de la población tiene un importante impacto en la oferta del sector donde operamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta4, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>5. Las variaciones en el nivel de riqueza de la población impactan considerablemente en la demanda de los productos/servicios del sector donde operamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta5, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+
+                <!-- Preguntas 6-10: Factores Políticos -->
+                <tr>
+                    <td>6. La legislación fiscal afecta muy considerablemente a la economía de las empresas del sector donde operamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta6, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>7. La legislación laboral afecta muy considerablemente a la operativa del sector donde actuamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta7, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>8. Las subvenciones otorgadas por las Administraciones Públicas son claves en el desarrollo competitivo del mercado donde operamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta8, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>9. El impacto que tiene la legislación de protección al consumidor, en la manera de producir bienes y/o servicios es muy importante.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta9, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>10. La normativa autonómica tiene un impacto considerable en el funcionamiento del sector donde actuamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta10, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+
+                <!-- Preguntas 11-15: Factores Económicos -->
+                <tr>
+                    <td>11. Las expectativas de crecimiento económico generales afectan crucialmente al mercado donde operamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta11, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>12. La política de tipos de interés es fundamental en el desarrollo financiero del sector donde trabaja nuestra empresa.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta12, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>13. La globalización permite a nuestra industria gozar de importantes oportunidades en nuevos mercados.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta13, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>14. La situación del empleo es fundamental para el desarrollo económico de nuestra empresa y nuestro sector.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta14, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>15. Las expectativas del ciclo económico de nuestro sector impactan en la situación económica de sus empresas.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta15, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+
+                <!-- Preguntas 16-20: Factores Tecnológicos -->
+                <tr>
+                    <td>16. Las Administraciones Públicas están incentivando el esfuerzo tecnológico de las empresas de nuestro sector.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta16, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>17. Internet, el comercio electrónico, el wireless y otras NTIC están impactando en la demanda de nuestros productos/servicios y en los de la competencia.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta17, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>18. El empleo de NTIC's es generalizado en el sector donde trabajamos.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta18, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>19. En nuestro sector, es de gran importancia ser pionero o referente en el empleo de aplicaciones tecnológicas.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta19, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>20. En el sector donde operamos, para ser competitivos, es condición 'sine qua non' innovar constantemente.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta20, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+
+                <!-- Preguntas 21-25: Factores Medioambientales -->
+                <tr>
+                    <td>21. La legislación medioambiental afecta al desarrollo de nuestro sector.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta21, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>22. Los clientes de nuestro mercado exigen que seamos socialmente responsables, en el plano medioambiental.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta22, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>23. En nuestro sector, las políticas medioambientales son una fuente de ventajas competitivas.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta23, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>24. La creciente preocupación social por el medio ambiente impacta notablemente en la demanda de productos/servicios ofertados en nuestro mercado.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta24, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>25. El factor ecológico es una fuente de diferenciación clara en el sector donde opera nuestra empresa.</td>
+                    @for (int i = 0; i <= 4; i++)
+                    {
+                        <td class="text-center">
+                            @Html.RadioButtonFor(m => m.Pregunta25, i, new { @class = "form-check-input pest-radio" })
+                        </td>
+                    }
+                </tr>
+
+                <!-- Filas de Promedios -->
+                <tr class="table-secondary">
+                    <td class="fw-bold">Promedio Factores Sociales y Demográficos (Preg. 1-5)</td>
+                    <td colspan="5"><input type="text" id="promedioSocial" class="form-control" readonly /></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td class="fw-bold">Promedio Factores Políticos (Preg. 6-10)</td>
+                    <td colspan="5"><input type="text" id="promedioPolitico" class="form-control" readonly /></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td class="fw-bold">Promedio Factores Económicos (Preg. 11-15)</td>
+                    <td colspan="5"><input type="text" id="promedioEconomico" class="form-control" readonly /></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td class="fw-bold">Promedio Factores Tecnológicos (Preg. 16-20)</td>
+                    <td colspan="5"><input type="text" id="promedioTecnologico" class="form-control" readonly /></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td class="fw-bold">Promedio Factores Medioambientales (Preg. 21-25)</td>
+                    <td colspan="5"><input type="text" id="promedioAmbiental" class="form-control" readonly /></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info mt-4">
+            A partir de la conclusión obtenida en el diagnóstico en cada uno de los factores, determine las oportunidades y amenazas más relevantes que desee que se reflejen en el análisis FODA de su Plan Estratégico.
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead class="table-warning">
+                        <tr><th>OPORTUNIDADES</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>O3:</strong> @Html.TextAreaFor(m => m.Oportunidad3, new { @class = "form-control", rows = 2 })</td></tr>
+                        <tr><td><strong>O4:</strong> @Html.TextAreaFor(m => m.Oportunidad4, new { @class = "form-control", rows = 2 })</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead class="table-danger text-white" style="background-color: #dc3545;">
+                        <tr><th>AMENAZAS</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>A3:</strong> @Html.TextAreaFor(m => m.Amenaza3, new { @class = "form-control", rows = 2 })</td></tr>
+                        <tr><td><strong>A4:</strong> @Html.TextAreaFor(m => m.Amenaza4, new { @class = "form-control", rows = 2 })</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between my-4">
+            <a href="@Url.Action("Index", "AnalisisPorter")" class="btn btn-secondary">🔙 8. ANÁLISIS PORTER</a>
+            <button type="submit" class="btn btn-success">💾 GUARDAR ANÁLISIS</button>
+            <a href="@Url.Action("Index", "IdentificacionEstrategias")" class="btn btn-primary">10. IDENTIFICACIÓN DE ESTRATEGIAS 🔜</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- CONFIGURACIÓN DEL GRÁFICO ---
+            const ctx = document.getElementById('pestChart').getContext('2d');
+            const pestChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sociales y Demográficos', 'Medio Ambientales', 'Políticos', 'Económicos', 'Tecnológicos'],
+                    datasets: [{
+                        label: 'Nivel de impacto',
+                        data: [0, 0, 0, 0, 0], // Datos iniciales
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 4 // La valoración máxima es 4
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Tipología de factores generales externos'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // --- LÓGICA DE CÁLCULO ---
+            function calcularResultados() {
+                const groups = {
+                    social: { start: 1, end: 5, sum: 0, count: 0, output: 'promedioSocial', chartIndex: 0 },
+                    ambiental: { start: 21, end: 25, sum: 0, count: 0, output: 'promedioAmbiental', chartIndex: 1 },
+                    politico: { start: 6, end: 10, sum: 0, count: 0, output: 'promedioPolitico', chartIndex: 2 },
+                    economico: { start: 11, end: 15, sum: 0, count: 0, output: 'promedioEconomico', chartIndex: 3 },
+                    tecnologico: { start: 16, end: 20, sum: 0, count: 0, output: 'promedioTecnologico', chartIndex: 4 }
+                };
+
+                // Recorremos las 25 preguntas
+                for (let i = 1; i <= 25; i++) {
+                    const selectedRadio = document.querySelector(`input[name="Pregunta${i}"]:checked`);
+                    if (selectedRadio) {
+                        const value = parseInt(selectedRadio.value);
+
+                        // Asignamos el valor al grupo correspondiente
+                        for (const key in groups) {
+                            const group = groups[key];
+                            if (i >= group.start && i <= group.end) {
+                                group.sum += value;
+                                group.count++;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // Calculamos promedios y actualizamos la UI
+                const chartData = [];
+                for (const key in groups) {
+                    const group = groups[key];
+                    const average = group.count > 0 ? (group.sum / group.count) : 0;
+
+                    // Actualizamos el campo de texto del promedio
+                    document.getElementById(group.output).value = average.toFixed(2);
+
+                    // Guardamos el dato para el gráfico
+                    chartData[group.chartIndex] = average;
+                }
+
+                // Actualizamos el gráfico
+                pestChart.data.datasets[0].data = chartData;
+                pestChart.update();
+            }
+
+            // --- EVENTOS ---
+            // Añadimos un listener a todos los radio buttons
+            const radios = document.querySelectorAll('.pest-radio');
+            radios.forEach(radio => {
+                radio.addEventListener('change', calcularResultados);
+            });
+
+            // Calculamos los resultados una vez al cargar la página por si hay datos precargados
+            calcularResultados();
+        });
+    </script>
+}

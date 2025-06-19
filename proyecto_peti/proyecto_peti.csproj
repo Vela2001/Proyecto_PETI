@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalisisFODAController.cs" />
+    <Compile Include="Controllers\AnalisisPESTController.cs" />
     <Compile Include="Controllers\CadenaValorController.cs" />
     <Compile Include="Controllers\IdentificacionEstrategiasController.cs" />
     <Compile Include="Controllers\InformacionEmpresaController.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Controllers\MisionController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
     <Compile Include="Controllers\PorterController.cs" />
+    <Compile Include="Controllers\ResumenEjecutivoController.cs" />
     <Compile Include="Controllers\ValoresController.cs" />
     <Compile Include="Controllers\VisionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,9 +175,11 @@
     <Compile Include="Models\Valores.cs" />
     <Compile Include="Models\Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AnalisisPestViewModel.cs" />
     <Compile Include="ViewModel\BCGMatrizViewModel.cs" />
     <Compile Include="ViewModel\MatrizFODAViewModel.cs" />
     <Compile Include="ViewModel\PerfilCompetitivoViewModel.cs" />
+    <Compile Include="ViewModel\Resumen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -198,6 +202,9 @@
     <Content Include="Views\IdentificacionEstrategias\Index.cshtml" />
     <Content Include="Views\MatrizCAME\Index.cshtml" />
     <Content Include="Views\Porter\AutodiagnosticoPorter.cshtml" />
+    <Content Include="Views\AnalisisPEST\Index.cshtml" />
+    <Content Include="Views\ResumenEjecutivo\Index.cshtml" />
+    <Content Include="Views\ResumenEjecutivo\Ultimo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

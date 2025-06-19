@@ -1,0 +1,499 @@
+﻿@model proyecto_peti.ViewModel.Resumen
+
+@{
+    ViewBag.Title = "Resumen Ejecutivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    // Asegurar que la lista de objetivos tenga al menos 3 elementos
+    if (Model.Objetivos == null || Model.Objetivos.Count == 0)
+    {
+        Model.Objetivos = new List<proyecto_peti.ViewModel.ObjetivoEstrategicoItem>
+{
+            new proyecto_peti.ViewModel.ObjetivoEstrategicoItem(),
+            new proyecto_peti.ViewModel.ObjetivoEstrategicoItem(),
+            new proyecto_peti.ViewModel.ObjetivoEstrategicoItem()
+        };
+    }
+    else
+    {
+        // Asegurar que tengamos exactamente 3 elementos
+        while (Model.Objetivos.Count < 3)
+        {
+            Model.Objetivos.Add(new proyecto_peti.ViewModel.ObjetivoEstrategicoItem());
+        }
+    }
+}
+
+<style>
+    .section-header {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 16px;
+        font-weight: bold;
+        border: 1px solid #0056b3;
+        text-align: center;
+        margin-bottom: 0;
+        font-size: 1.1rem;
+    }
+
+    .form-section {
+        display: flex;
+        margin-bottom: 1rem;
+        align-items: stretch;
+        min-height: 45px;
+    }
+
+        .form-section .header-cell {
+            flex: 0 0 200px;
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #0056b3;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-section .input-cell {
+            flex-grow: 1;
+            border: 1px solid #0056b3;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-section .form-control {
+            border: none;
+            border-radius: 0;
+            flex-grow: 1;
+        }
+
+        .form-section .input-cell .form-control:not(:last-child) {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+    .info-section {
+        display: flex;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    .info-label {
+        color: #007bff;
+        font-weight: bold;
+        min-width: 200px;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .info-section .form-control {
+        flex-grow: 1;
+    }
+
+    .objetivos-table, .objetivos-table th, .objetivos-table td {
+        border: 1px solid #999;
+        vertical-align: middle;
+    }
+
+        .objetivos-table th {
+            background-color: #e2f0d9;
+            text-align: center;
+            font-weight: bold;
+            padding: 12px;
+        }
+
+        .objetivos-table td {
+            padding: 8px;
+        }
+
+        .objetivos-table .mision-cell {
+            background-color: #f8f9fa;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .objetivos-table .objetivo-general-cell {
+            background-color: #fbe5d6;
+        }
+
+        .objetivos-table .objetivo-especifico-cell {
+            padding: 0;
+        }
+
+            .objetivos-table .objetivo-especifico-cell .form-control:not(:last-child) {
+                border-bottom: 1px solid #dee2e6;
+            }
+
+    .foda-table {
+        border: 1px solid #ddd;
+        width: 100%;
+    }
+
+        .foda-table td:first-child {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            width: 150px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        .foda-table td:last-child {
+            padding: 0;
+        }
+
+    .foda-debilidades {
+        background-color: #e2f0d9;
+    }
+
+    .foda-amenazas {
+        background-color: #e2f0d9;
+        border-top: 2px dotted #ccc;
+        border-bottom: 2px dotted #ccc;
+    }
+
+    .foda-fortalezas {
+        background-color: #fbe5d6;
+    }
+
+    .foda-oportunidades {
+        background-color: #fbe5d6;
+        border-top: 2px dotted #ccc;
+        border-bottom: 2px dotted #ccc;
+    }
+
+    .logo-container {
+        background-color: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .logo-preview {
+        max-height: 100px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .acciones-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .acciones-table td:first-child {
+            width: 50px;
+            text-align: center;
+            background-color: #f2f2f2;
+            font-weight: bold;
+            border: 1px solid #dee2e6;
+            padding: 12px;
+        }
+
+        .acciones-table td:last-child {
+            border: 1px solid #dee2e6;
+            padding: 0;
+        }
+
+    .btn-submit {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+        transition: all 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,123,255,0.4);
+            background: linear-gradient(45deg, #0056b3, #003d82);
+        }
+
+    .card-section {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .page-title {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        margin: -15px -15px 30px -15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+</style>
+
+<div class="container-fluid mt-4">
+    <div class="page-title">
+        <h1>RESUMEN EJECUTIVO DEL PLAN ESTRATÉGICO</h1>
+    </div>
+
+    @using (Html.BeginForm("Index", "ResumenEjecutivo", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.PlanId)
+
+        <!-- Sección Logo -->
+        <div class="card-section">
+            <div class="section-header">
+                INFORMACIÓN DE LA EMPRESA
+            </div>
+            <div class="p-4">
+                <!-- Logo Container -->
+                <div class="logo-container">
+                    @if (!string.IsNullOrEmpty(Model?.LogoPath))
+                    {
+                        <img src="@Url.Content(Model.LogoPath)" alt="Logo de la empresa" class="logo-preview" />
+                    }
+                    <p class="mb-2"><strong>Logo de la empresa</strong></p>
+                    <input type="file" name="LogoFile" id="LogoFile" class="form-control" accept="image/*" />
+                    <small class="text-muted">Formatos aceptados: JPG, PNG, GIF (Máximo 2MB)</small>
+                </div>
+
+                <div class="info-section">
+                    <label class="info-label">Nombre de la empresa / proyecto:</label>
+                    @Html.EditorFor(m => m.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el nombre de la empresa" } })
+                </div>
+
+                <div class="info-section">
+                    <label class="info-label">Fecha de elaboración:</label>
+                    @Html.EditorFor(m => m.FechaElaboracion, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                </div>
+
+                <div class="info-section">
+                    <label class="info-label">Emprendedores / promotores:</label>
+                    @Html.EditorFor(m => m.Promotores, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombres de los promotores" } })
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Misión, Visión, Valores -->
+        <div class="card-section">
+            <div class="section-header">
+                IDENTIDAD ORGANIZACIONAL
+            </div>
+            <div class="p-0">
+                <div class="form-section">
+                    <div class="header-cell">MISIÓN</div>
+                    <div class="input-cell">
+                        @Html.TextAreaFor(m => m.Mision, new { @class = "form-control", rows = 4, placeholder = "Describa la misión de la empresa..." })
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="header-cell">VISIÓN</div>
+                    <div class="input-cell">
+                        @Html.TextAreaFor(m => m.Vision, new { @class = "form-control", rows = 4, placeholder = "Describa la visión de la empresa..." })
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="header-cell">VALORES</div>
+                    <div class="input-cell">
+                        @Html.TextBoxFor(m => m.Valor1, new { @class = "form-control", placeholder = "Primer valor" })
+                        @Html.TextBoxFor(m => m.Valor2, new { @class = "form-control", placeholder = "Segundo valor" })
+                        @Html.TextBoxFor(m => m.Valor3, new { @class = "form-control", placeholder = "Tercer valor" })
+                        @Html.TextBoxFor(m => m.Valor4, new { @class = "form-control", placeholder = "Cuarto valor" })
+                        @Html.TextBoxFor(m => m.Valor5, new { @class = "form-control", placeholder = "Quinto valor" })
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="header-cell">UNIDADES ESTRATÉGICAS</div>
+                    <div class="input-cell">
+                        @Html.TextAreaFor(m => m.UnidadesEstrategicas, new { @class = "form-control", rows = 4, placeholder = "Describa las unidades estratégicas..." })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objetivos Estratégicos -->
+        <div class="card-section">
+            <div class="section-header">OBJETIVOS ESTRATÉGICOS</div>
+            <div class="p-3">
+                <table class="table objetivos-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">MISIÓN</th>
+                            <th style="width: 35%;">OBJETIVOS GENERALES O ESTRATÉGICOS</th>
+                            <th style="width: 40%;">OBJETIVOS ESPECÍFICOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <tr>
+                                @if (i == 0)
+                                {
+                                    <td rowspan="3" class="mision-cell">
+                                        @Html.TextAreaFor(m => m.Mision, new { @class = "form-control h-100", @readonly = "readonly" })
+                                    </td>
+                                }
+                                <td class="objetivo-general-cell">
+                                    @Html.TextAreaFor(m => m.Objetivos[i].ObjetivoGeneral, new { @class = "form-control", rows = 3, placeholder = $"Objetivo general {i + 1}" })
+                                </td>
+                                <td class="objetivo-especifico-cell">
+                                    @Html.TextBoxFor(m => m.Objetivos[i].ObjetivoEspecifico1, new { @class = "form-control", placeholder = $"Objetivo específico {i + 1}.1" })
+                                    @Html.TextBoxFor(m => m.Objetivos[i].ObjetivoEspecifico2, new { @class = "form-control", placeholder = $"Objetivo específico {i + 1}.2" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Análisis FODA -->
+        <div class="card-section">
+            <div class="section-header">ANÁLISIS FODA</div>
+            <div class="p-3">
+                <table class="table foda-table">
+                    <tr>
+                        <td>DEBILIDADES</td>
+                        <td class="foda-debilidades">
+                            @Html.TextAreaFor(m => m.FodaDebilidades, new { @class = "form-control", rows = 4, @readonly = "readonly" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AMENAZAS</td>
+                        <td class="foda-amenazas">
+                            @Html.TextAreaFor(m => m.FodaAmenazas, new { @class = "form-control", rows = 4, @readonly = "readonly" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FORTALEZAS</td>
+                        <td class="foda-fortalezas">
+                            @Html.TextAreaFor(m => m.FodaFortalezas, new { @class = "form-control", rows = 4, @readonly = "readonly" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OPORTUNIDADES</td>
+                        <td class="foda-oportunidades">
+                            @Html.TextAreaFor(m => m.FodaOportunidades, new { @class = "form-control", rows = 4, @readonly = "readonly" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Identificación de Estrategia -->
+        <div class="card-section">
+            <div class="section-header">IDENTIFICACIÓN DE ESTRATEGIA</div>
+            <div class="p-4">
+                <p class="mb-3"><strong>Escriba en el siguiente recuadro la estrategia identificada en la Matriz FODA:</strong></p>
+                @Html.TextAreaFor(m => m.IdentificacionEstrategia, new { @class = "form-control", rows = 5, placeholder = "Describa la estrategia identificada..." })
+            </div>
+        </div>
+
+        <!-- Acciones Competitivas -->
+        <div class="card-section">
+            <div class="section-header">ACCIONES COMPETITIVAS</div>
+            <div class="p-3">
+                <table class="acciones-table">
+                    @for (int i = 1; i <= 16; i++)
+                    {
+                        var accionProp = "Accion" + i;
+                        <tr>
+                            <td>@i</td>
+                            <td>
+                                @Html.TextBox(accionProp, Model.GetType().GetProperty(accionProp)?.GetValue(Model), new { @class = "form-control", placeholder = $"Acción competitiva {i}" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+        <!-- Conclusiones -->
+        <div class="card-section">
+            <div class="section-header">CONCLUSIONES</div>
+            <div class="p-4">
+                <p class="mb-3"><strong>Anote las conclusiones más relevantes de su Plan:</strong></p>
+                @Html.TextAreaFor(m => m.Conclusiones, new { @class = "form-control", rows = 6, placeholder = "Escriba las conclusiones más importantes del plan estratégico..." })
+            </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="text-end my-4">
+            <button type="submit" class="btn btn-primary btn-submit" title="Guardar y continuar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                </svg>
+            </button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Preview del logo
+        document.getElementById('LogoFile').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const existingImg = document.querySelector('.logo-preview');
+                    if (existingImg) {
+                        existingImg.src = e.target.result;
+                        existingImg.style.display = 'block';
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'logo-preview';
+                        img.alt = 'Preview del logo';
+                        document.querySelector('.logo-container').insertBefore(img, document.querySelector('.logo-container p'));
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Sincronizar misión con tabla de objetivos
+        document.querySelector('textarea[name="Mision"]').addEventListener('input', function () {
+            const misionObjetivos = document.querySelector('textarea[name="Mision"][readonly]');
+            if (misionObjetivos) {
+                misionObjetivos.value = this.value;
+            }
+        });
+
+        // Validación básica del formulario
+        document.getElementById('resumenForm')?.addEventListener('submit', function (e) {
+            const requiredFields = ['NombreEmpresa', 'FechaElaboracion', 'Mision', 'Vision'];
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                const input = document.querySelector(`[name="${field}"]`);
+                if (input && !input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                } else if (input) {
+                    input.classList.remove('is-invalid');
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Por favor complete todos los campos obligatorios.');
+            }
+        });
+    </script>
+}
